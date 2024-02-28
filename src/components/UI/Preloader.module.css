@@ -1,0 +1,75 @@
+.preloader--container {
+  background: #000;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: 55;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.fade-out {
+  animation: fade-out 0.3s cubic-bezier(0.67, 0.01, 0.15, 0.98) forwards;
+}
+
+.input-field {
+  display: none;
+}
+
+.box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  visibility: hidden;
+  animation: fade-in 1s cubic-bezier(0.67, 0.01, 0.15, 0.98) infinite;
+}
+
+@keyframes fade-in {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    clip-path: polygon(0 0, 0 0, 0 0, 0 100%);
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 75em) {
+  .box {
+    width: 28rem;
+  }
+}
+@media (max-width: 59em) {
+  .box {
+    width: 26rem;
+  }
+}
+@media (max-width: 44em) {
+  .box {
+    width: 25rem;
+  }
+}
+@media (max-width: 35em) {
+  .box {
+    width: 10rem;
+  }
+}
