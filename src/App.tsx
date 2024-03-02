@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { preloaderActions } from "./store/preloader/preloaderSlice";
 import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,15 +63,15 @@ function App() {
         }, 1000);
       }
     };
-    validateUser();
+    logoutUser();
   }, []);
 
   return (
     <>
       <Toaster position="top-center" gutter={8} reverseOrder={true} />
-      <Preloader loading={preloader} />
+      <Preloader />
       <Routes>
-        <Route path="/" element={<Preloader loading={preloader} />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/auth/:authParam" element={<Auth />} />
       </Routes>
     </>

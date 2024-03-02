@@ -9,7 +9,7 @@
   text-align: center;
   overflow-y: hidden;
   overflow-x: hidden;
-  z-index: 55;
+  z-index: 9999;
   position: fixed;
   bottom: 0;
   left: 0;
