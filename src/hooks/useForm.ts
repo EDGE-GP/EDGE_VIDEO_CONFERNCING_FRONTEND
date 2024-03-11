@@ -21,7 +21,7 @@ const useForm = <Type>(
     // validate on every change and when the user stop writing
     const timeout = setTimeout(() => {
       validate(value);
-    }, 500);
+    }, 300);
     return () => {
       clearTimeout(timeout);
     };
