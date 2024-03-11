@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const GridBackground = () => {
   return (
@@ -17,7 +17,7 @@ const GridBackground = () => {
         <div className="relative flex-1 h-full border-b border-l border-solid border-rebrand-gray-300 blurry-borders"></div>
       </div>
       <div className="relative flex row-span-1 col-start-7 col-span-10">
-        <div className="relative flex-1 h-full border-b border-l border-solid border-rebrand-gray-300"></div>
+        <div className="relative flex-1 h-full border-b border-l border-solid border-rebrand-gray-300 "></div>
         <div className="relative flex-1 h-full border-b border-l border-solid border-rebrand-gray-300"></div>
         <div className="relative flex-1 h-full border-b border-l border-solid border-rebrand-gray-300"></div>
         <div className="relative flex-1 h-full border-b border-l border-solid border-rebrand-gray-300"></div>
@@ -95,6 +95,6 @@ const GridBackground = () => {
       </div>
     </div>
   );
-}
+};
 
-export default GridBackground
+export default GridBackground;
