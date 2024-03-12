@@ -9,9 +9,9 @@ import { useInView } from "framer-motion";
 import robotIcon from "../assets/robot.png";
 import signLanguageIcon from "../assets/sign.png";
 import repeatIcon from "../assets/repeat.png";
-import communicationIcon from "../assets/communication.png";
+import voiceRecognitionIcon from "../assets/voice-recognition.png";
 import { motion } from "framer-motion";
-import worldMap from "../assets/world-map_image.jpg";
+import worldMap from "../assets/csort.svg";
 import ambition from "../assets/ambition.svg";
 // import landingUser1 from "../assets/landing-user-1.png";
 // import landingUser2 from "../assets/landing-user-2.png";
@@ -26,6 +26,7 @@ const LandingPage = () => {
   //   // threshold: 0.675,
   //   initialInView: true,
   // });
+  const [randomBox, setRandomBox] = useState<number>(6);
   const rootElement = useRef<HTMLDivElement>(null);
   const isInView = useInView(rootElement, { amount: 0.88 });
   const [startOnHover, setStartOnHover] = useState<boolean>(false);
@@ -34,6 +35,12 @@ const LandingPage = () => {
       dispatch(preloaderActions.setPreloader(false));
     }, 1500);
   }, []);
+  useEffect(() => {
+    setInterval(() => {
+      setRandomBox(Math.floor(Math.random() * 5) + 1);
+    }, 3000);
+  }, []);
+
   return (
     <div className="relative ">
       <Navbar intersected={!isInView} />
@@ -139,33 +146,116 @@ const LandingPage = () => {
             </p>
           </div>
         </div>
-        <div className="w-1/2  flex pl-8 h-full relative justify-center items-center ">
-          {/* <div className="top-[64%] left-[40%] absolute">
-            <img src={eSign} className=" w-[64px] h-[64px] " alt="" />
-          </div> */}
+        <div className="w-1/2  flex pl-8 h-full relative justify-center items-center  ">
+          <span className="bottom-[3rem] rotate-180 right-[6.8rem] absolute">
+            <svg
+              width="60"
+              height="60"
+              viewBox="0 0 75 76"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.324 6.65704C11.324 9.10904 9.33599 11.097 6.88299 11.097C4.43099 11.097 2.44299 9.10904 2.44299 6.65704C2.44299 4.20604 4.43099 2.21704 6.88299 2.21704C9.33599 2.21704 11.324 4.20604 11.324 6.65704Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M31.725 6.65704C31.725 9.10904 29.736 11.097 27.285 11.097C24.83 11.097 22.843 9.10904 22.843 6.65704C22.843 4.20604 24.83 2.21704 27.285 2.21704C29.736 2.21704 31.725 4.20604 31.725 6.65704Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M52.127 6.65704C52.127 9.10904 50.138 11.097 47.686 11.097C45.233 11.097 43.244 9.10904 43.244 6.65704C43.244 4.20604 45.233 2.21704 47.686 2.21704C50.138 2.21704 52.127 4.20604 52.127 6.65704Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M68.086 3.75996C66.489 3.75996 65.189 5.05897 65.189 6.65797C65.189 8.25497 66.489 9.55397 68.086 9.55397C69.685 9.55397 70.985 8.25497 70.985 6.65797C70.985 5.05897 69.685 3.75996 68.086 3.75996ZM68.086 12.64C64.787 12.64 62.102 9.95697 62.102 6.65797C62.102 3.35697 64.787 0.672974 68.086 0.672974C71.386 0.672974 74.071 3.35697 74.071 6.65797C74.071 9.95697 71.386 12.64 68.086 12.64Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.88299 24.658C5.28499 24.658 3.98598 25.957 3.98598 27.555C3.98598 29.154 5.28499 30.453 6.88299 30.453C8.48099 30.453 9.77999 29.154 9.77999 27.555C9.77999 25.957 8.48099 24.658 6.88299 24.658ZM6.88299 33.541C3.58299 33.541 0.899994 30.857 0.899994 27.555C0.899994 24.257 3.58299 21.572 6.88299 21.572C10.184 21.572 12.867 24.257 12.867 27.555C12.867 30.857 10.184 33.541 6.88299 33.541Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M27.285 24.658C25.686 24.658 24.387 25.957 24.387 27.555C24.387 29.154 25.686 30.453 27.285 30.453C28.882 30.453 30.182 29.154 30.182 27.555C30.182 25.957 28.882 24.658 27.285 24.658ZM27.285 33.541C23.986 33.541 21.3 30.857 21.3 27.555C21.3 24.257 23.986 21.572 27.285 21.572C30.584 21.572 33.268 24.257 33.268 27.555C33.268 30.857 30.584 33.541 27.285 33.541Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M52.127 27.555C52.127 30.008 50.138 31.997 47.686 31.997C45.233 31.997 43.244 30.008 43.244 27.555C43.244 25.104 45.233 23.115 47.686 23.115C50.138 23.115 52.127 25.104 52.127 27.555Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M72.528 27.555C72.528 30.008 70.54 31.997 68.086 31.997C65.635 31.997 63.645 30.008 63.645 27.555C63.645 25.104 65.635 23.115 68.086 23.115C70.54 23.115 72.528 25.104 72.528 27.555Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.324 48.453C11.324 50.907 9.33599 52.895 6.88299 52.895C4.43099 52.895 2.44299 50.907 2.44299 48.453C2.44299 46.001 4.43099 44.014 6.88299 44.014C9.33599 44.014 11.324 46.001 11.324 48.453Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M27.285 45.557C25.686 45.557 24.387 46.856 24.387 48.453C24.387 50.051 25.686 51.352 27.285 51.352C28.882 51.352 30.182 50.051 30.182 48.453C30.182 46.856 28.882 45.557 27.285 45.557ZM27.285 54.438C23.986 54.438 21.3 51.755 21.3 48.453C21.3 45.154 23.986 42.47 27.285 42.47C30.584 42.47 33.268 45.154 33.268 48.453C33.268 51.755 30.584 54.438 27.285 54.438Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M52.127 48.453C52.127 50.907 50.138 52.895 47.686 52.895C45.233 52.895 43.244 50.907 43.244 48.453C43.244 46.001 45.233 44.014 47.686 44.014C50.138 44.014 52.127 46.001 52.127 48.453Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M68.086 45.557C66.489 45.557 65.189 46.856 65.189 48.453C65.189 50.051 66.489 51.352 68.086 51.352C69.685 51.352 70.985 50.051 70.985 48.453C70.985 46.856 69.685 45.557 68.086 45.557ZM68.086 54.438C64.787 54.438 62.102 51.755 62.102 48.453C62.102 45.154 64.787 42.47 68.086 42.47C71.386 42.47 74.071 45.154 74.071 48.453C74.071 51.755 71.386 54.438 68.086 54.438Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.88299 66.454C5.28499 66.454 3.98598 67.753 3.98598 69.353C3.98598 70.952 5.28499 72.2511 6.88299 72.2511C8.48099 72.2511 9.77999 70.952 9.77999 69.353C9.77999 67.753 8.48099 66.454 6.88299 66.454ZM6.88299 75.3371C3.58299 75.3371 0.899994 72.654 0.899994 69.353C0.899994 66.053 3.58299 63.368 6.88299 63.368C10.184 63.368 12.867 66.053 12.867 69.353C12.867 72.654 10.184 75.3371 6.88299 75.3371Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M27.285 66.454C25.686 66.454 24.387 67.753 24.387 69.353C24.387 70.952 25.686 72.2511 27.285 72.2511C28.882 72.2511 30.182 70.952 30.182 69.353C30.182 67.753 28.882 66.454 27.285 66.454ZM27.285 75.3371C23.986 75.3371 21.3 72.654 21.3 69.353C21.3 66.053 23.986 63.368 27.285 63.368C30.584 63.368 33.268 66.053 33.268 69.353C33.268 72.654 30.584 75.3371 27.285 75.3371Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M47.686 66.454C46.087 66.454 44.787 67.753 44.787 69.353C44.787 70.952 46.087 72.2511 47.686 72.2511C49.285 72.2511 50.584 70.952 50.584 69.353C50.584 67.753 49.285 66.454 47.686 66.454ZM47.686 75.3371C44.386 75.3371 41.701 72.654 41.701 69.353C41.701 66.053 44.386 63.368 47.686 63.368C50.985 63.368 53.67 66.053 53.67 69.353C53.67 72.654 50.985 75.3371 47.686 75.3371Z"
+                fill="#1B1A19"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M72.528 69.353C72.528 71.805 70.54 73.794 68.086 73.794C65.635 73.794 63.645 71.805 63.645 69.353C63.645 66.9 65.635 64.911 68.086 64.911C70.54 64.911 72.528 66.9 72.528 69.353Z"
+                fill="#1B1A19"
+              />
+            </svg>
+          </span>
           <img src={background} className="h-[40rem]" alt="" />
-          {/* <div className="card-shadow h-[24.9rem] w-[34rem]  px-4 py-4    bg-white rounded-[14px]">
-            <div className="w-full h-[80%] grid grid-cols-3 grid-rows-2 gap-x-4 gap-y-3">
-              <div className="col-span-1 row-span-1 bg-[#FF9C66] rounded-[14px]">
-                <img src={landingUser1} alt="" className="w-full h-full" />
-              </div>
-              <div className="col-span-1 row-span-1 bg-[#D6BAFB] rounded-[14px]">
-                <img src={landingUser2} alt="" className="w-full h-full" />
-              </div>
-              <div className="col-span-1 row-span-1 bg-[#ACDB79] rounded-[14px]">
-                <img src={landingUser3} alt="" className="w-full h-full" />
-              </div>
-              <div className="col-span-1 row-span-1 bg-[#B3B8DC] rounded-[14px]">
-                <img src={landingUser6} alt="" className="w-full h-full" />
-              </div>
-              <div className="col-span-1 row-span-1 bg-[#FECA4A] rounded-[14px]">
-                <img src={landingUser5} alt="" className="w-full h-full" />
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
-
       <motion.div
         initial="initial"
         viewport={{ once: true }}
@@ -173,7 +263,156 @@ const LandingPage = () => {
         variants={{
           initial: {
             opacity: 0,
-            y: 100,
+            y: 50,
+          },
+          animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.5,
+            },
+          },
+        }}
+        className="px-24 pt-[3rem] w-screen  pb-[8rem]  justify-between relative"
+      >
+        <h1 className="text-[3rem] abel max-w-[60%] leading-[4rem]">
+          Building Bridges Aiming to Advance Community Communication
+        </h1>
+        <div className="flex w-full justify-between gap-x- mt-8 items-center">
+          <div className="relative  w-[40%]">
+            <span className="top-3 rotate-180 left-[-3rem] absolute">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 542 547"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M264.882 1.00718C310.395 45.4619 337.13 109.041 336.371 171.265C336.027 206.192 326.881 240.642 310.963 271.383C345.185 302.082 366.691 347.12 365.798 392.447C364.429 455.805 318.943 514.058 257.762 530.503L253.035 515.017C307.652 500.302 348.314 448.202 349.641 391.392C350.416 351.891 332.252 312.619 303.115 285.201C291.577 303.82 277.477 320.619 261.102 334.85C236.358 356.208 196.278 373.909 164.278 353.962C142.412 340.217 131.626 310.429 139.309 284.624C146.21 261.783 166.513 243.28 192.211 236.216C219.881 228.833 246.658 235.51 264.145 242.29C276.137 247.089 287.356 253.214 297.803 260.666C311.852 232.964 319.691 201.696 320.052 170.403C320.704 112.368 295.91 53.3797 253.634 11.9715L264.882 1.00718ZM168.603 337.845C169.803 338.852 171.203 340.027 172.565 340.841C196.955 356.047 229.621 340.68 250.2 323.066C266.089 309.415 279.503 293.028 290.392 275.181C280.708 268.039 270.05 262.056 259.021 257.735C243.619 251.719 220.577 245.873 197.175 252.231C176.594 257.665 160.457 272.424 155.035 290.254C149.862 306.976 155.805 327.103 168.603 337.845Z"
+                  fill="#212121"
+                />
+              </svg>
+            </span>
+
+            <span className="bottom-3  right-[-3rem] absolute">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 542 547"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M264.882 1.00718C310.395 45.4619 337.13 109.041 336.371 171.265C336.027 206.192 326.881 240.642 310.963 271.383C345.185 302.082 366.691 347.12 365.798 392.447C364.429 455.805 318.943 514.058 257.762 530.503L253.035 515.017C307.652 500.302 348.314 448.202 349.641 391.392C350.416 351.891 332.252 312.619 303.115 285.201C291.577 303.82 277.477 320.619 261.102 334.85C236.358 356.208 196.278 373.909 164.278 353.962C142.412 340.217 131.626 310.429 139.309 284.624C146.21 261.783 166.513 243.28 192.211 236.216C219.881 228.833 246.658 235.51 264.145 242.29C276.137 247.089 287.356 253.214 297.803 260.666C311.852 232.964 319.691 201.696 320.052 170.403C320.704 112.368 295.91 53.3797 253.634 11.9715L264.882 1.00718ZM168.603 337.845C169.803 338.852 171.203 340.027 172.565 340.841C196.955 356.047 229.621 340.68 250.2 323.066C266.089 309.415 279.503 293.028 290.392 275.181C280.708 268.039 270.05 262.056 259.021 257.735C243.619 251.719 220.577 245.873 197.175 252.231C176.594 257.665 160.457 272.424 155.035 290.254C149.862 306.976 155.805 327.103 168.603 337.845Z"
+                  fill="#212121"
+                />
+              </svg>
+            </span>
+            <img src={ambition} className="w-full" alt="" />
+          </div>
+          <div className="w-[45rem] h-[28rem] grid grid-cols-3 grid-rows-2">
+            <div className="col-span-1 flex items-center px-6 row-span-1 border-[#212121] ">
+              <img
+                src={edgeLogo}
+                alt=""
+                className="w-full brightness-0 invert-1"
+              />
+            </div>
+            <div
+              className={`px-4 py-5 col-span-1 row-span-1 border-[#212121] bg-[#212121] text-white border-t-2 border-l-2 bg-[#] rounded-tl-[20px] flex flex-col`}
+            >
+              <h1 className="text-xl abel font-semibold">
+                Clear Communication Channels
+              </h1>
+              <div className="mt-4 w-full">
+                <p className="abel text-pretty">
+                  Clear channels ensure everyone's message gets across, making
+                  communication effortless and inclusive.
+                </p>
+              </div>
+            </div>
+            <div
+              className={`col-span-1 px-4 py-5 flex flex-col row-span-1 border-[#212121] relative  border-t-2 border-l-2 border-r-2 rounded-tr-[20px]`}
+            >
+              <span className="absolute top-[-3rem] rotate- right-[-3rem] ">
+                <svg
+                  width="61"
+                  height="59"
+                  viewBox="0 0 61 59"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M24.5543 10.7784L48.4258 10.6141L48.59 34.4851L60.185 45.9218L59.8737 0.68438L14.6368 0.995669L24.5543 10.7784Z"
+                    fill="#231F20"
+                  />
+                  <path
+                    d="M49.7078 9.3142L50.0495 58.9669L0.0550232 9.65587L49.7078 9.3142ZM47.4247 52.749L47.1437 11.914L6.30864 12.195L47.4247 52.749Z"
+                    fill="#231F20"
+                  />
+                </svg>
+              </span>
+              <h1 className="text-xl abel font-semibold">
+                Visual Communication Support
+              </h1>
+              <div className="mt-4 w-full">
+                <p className="abel text-pretty">
+                  Visual tools support sign language, empowering the deaf
+                  community to communicate effectively and comfortably.
+                </p>
+              </div>
+            </div>
+            <div
+              className={`col-span-1 px-4 py-5 flex flex-col row-span-1 border-[#212121]  border-l-2 border-b-2 border-t-2 rounded-l-[20px] bg-[#]`}
+            >
+              <h1 className="text-xl abel font-semibold">
+                Seamless Interaction Design
+              </h1>
+              <div className="mt-4 w-full">
+                <p className="abel text-pretty">
+                  User-friendly interface ensures smooth communication,
+                  effortlessly catering to diverse needs and preferences.
+                </p>
+              </div>
+            </div>
+            <div
+              className={`col-span-1 px-4 py-5 flex flex-col  row-span-1 border-[#212121]  border-l-2 border-t-2 border-b-2`}
+            >
+              <h1 className="text-xl abel font-semibold">
+                Conversation Archives on Demand
+              </h1>
+              <div className="mt-4 w-full">
+                <p className="abel text-pretty">
+                  Easily access past discussions, ensuring important details are
+                  always at your fingertips for quick reference.
+                </p>
+              </div>
+            </div>
+            <div
+              className={`col-span-1 px-4 py-5 flex flex-col row-span-1  border-[#212121] bg-[#212121] text-white border-2 rounded-br-[20px] `}
+            >
+              <h1 className="text-xl abel font-semibold">
+                Everyone Can Join In
+              </h1>
+              <div className="mt-4 w-full">
+                <p className="abel text-pretty">
+                  Clear channels ensure everyone's message gets across, making
+                  communication effortless and inclusive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        initial="initial"
+        viewport={{ once: true }}
+        whileInView="animate"
+        variants={{
+          initial: {
+            opacity: 0,
+            y: 50,
           },
           animate: {
             opacity: 1,
@@ -187,17 +426,38 @@ const LandingPage = () => {
       >
         {/*  */}
         <div className="w-full flex relative">
-          <img
+          {/* <img
             src={edgeLogo}
             alt=""
             className="w-[15rem] brightness-0 invert-1"
-          />
+          /> */}
         </div>
         <div className="gap-x-20 flex justify-between items-center w-full ">
-          <div className="h-full flex flex-col justify-center w-1/2 relative">
+          <div className="h-full flex flex-col justify-center w-1/2 relative mb-4">
+            <span className="absolute top-[-2.5rem]  left-[-3rem] ">
+              <svg
+                width="60"
+                height="61"
+                viewBox="0 0 60 61"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.8293 36.266L11.051 12.395L34.9216 12.6167L46.5442 1.2081L1.30768 0.788007L0.8876 46.0241L10.8293 36.266Z"
+                  fill="#231F20"
+                />
+                <path
+                  d="M9.77207 11.0921L59.4238 11.5532L9.31098 60.7439L9.77207 11.0921ZM53.1643 14.0771L12.3301 13.6979L11.9509 54.5322L53.1643 14.0771Z"
+                  fill="#231F20"
+                />
+              </svg>
+            </span>
             <h1 className="text-[3rem] abel ">
               Empowerment Through Technology
             </h1>
+            {/* <h3 className="text-xl abel capitalize">
+              Experience the world through our innovative tech features.
+            </h3> */}
             <div className="grid grid-cols-2 grid-rows-2 gap-y-[3rem] gap-x-8  w-full mt-8">
               <div className="col-span-1 row-span-1 flex flex-col h-full w-full">
                 <div className=" flex items-center justify-start gap-x-2 w-full ">
@@ -213,6 +473,25 @@ const LandingPage = () => {
                     Experience flawless sign language translation through our
                     cutting-edge technology, ensuring clear communication for
                     all participants.
+                  </p>
+                </div>
+              </div>
+              <div className="col-span-1 row-span-1 flex flex-col h-full w-full">
+                <div className=" flex items-center justify-start gap-x-2 w-full ">
+                  <img
+                    src={voiceRecognitionIcon}
+                    className="brightness-0 w-6 h-6 invert-1"
+                    alt=""
+                  />
+                  <h1 className="text-xl abel">
+                    Voice Recognition Capabilities
+                  </h1>
+                </div>
+                <div className="mt-2 w-full">
+                  <p className="abel text-">
+                    Experience flawless voice recognition for crystal-clear
+                    communication, ensuring effortless understanding for
+                    everyone involved.
                   </p>
                 </div>
               </div>
@@ -236,13 +515,21 @@ const LandingPage = () => {
                   </p>
                 </div>
               </div>
+
               <div className="col-span-1 row-span-1 flex flex-col h-full w-full">
                 <div className=" flex items-center justify-start gap-x-2 w-full ">
-                  <img
-                    src={repeatIcon}
-                    className="brightness-0 w-6 h-6 invert-1"
-                    alt=""
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 50 50"
+                    stroke="#000"
+                    strokeWidth={1}
+                  >
+                    <path d="M 20 4 C 15.054688 4 11 8.054688 11 13 L 11 35.5625 L 5.71875 30.28125 L 4.28125 31.71875 L 11.28125 38.71875 L 12 39.40625 L 12.71875 38.71875 L 19.71875 31.71875 L 18.28125 30.28125 L 13 35.5625 L 13 13 C 13 9.144531 16.144531 6 20 6 L 31 6 L 31 4 Z M 38 10.59375 L 37.28125 11.28125 L 30.28125 18.28125 L 31.71875 19.71875 L 37 14.4375 L 37 37 C 37 40.855469 33.855469 44 30 44 L 19 44 L 19 46 L 30 46 C 34.945313 46 39 41.945313 39 37 L 39 14.4375 L 44.28125 19.71875 L 45.71875 18.28125 L 38.71875 11.28125 Z"></path>
+                  </svg>
                   <h1 className="text-xl abel"> Meeting Memory Lane</h1>
                 </div>
                 <div className="mt-2 w-full">
@@ -253,29 +540,11 @@ const LandingPage = () => {
                   </p>
                 </div>
               </div>
-
-              <div className="col-span-1 row-span-1 flex flex-col h-full w-full">
-                <div className=" flex items-center justify-start gap-x-2 w-full ">
-                  <img
-                    src={communicationIcon}
-                    className="brightness-0 w-6 h-6 invert-1"
-                    alt=""
-                  />
-                  <h1 className="text-xl abel">Effortless Communication</h1>
-                </div>
-                <div className="mt-2 w-full">
-                  <p className="abel text-">
-                    Achieve unparalleled clarity and cohesion in meetings with
-                    our seamlessly integrated two-way sign language recognition
-                    conversations.
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
           <div className="h-[30rem] flex flex-col justify-center items-center w-1/2  relative">
             <img src={worldMap} className="w-full" alt="" />
-            <span className="top-0  right-[-4rem] absolute">
+            <span className="top-3  right-[-3rem] absolute">
               <svg
                 width="64"
                 height="64"
@@ -290,7 +559,7 @@ const LandingPage = () => {
               </svg>
             </span>
 
-            <span className="bottom-0 rotate-180 left-[-4rem] absolute">
+            <span className="bottom-3 rotate-180 left-[-3rem] absolute">
               <svg
                 width="64"
                 height="64"
@@ -301,28 +570,118 @@ const LandingPage = () => {
                 <path
                   d="M264.882 1.00718C310.395 45.4619 337.13 109.041 336.371 171.265C336.027 206.192 326.881 240.642 310.963 271.383C345.185 302.082 366.691 347.12 365.798 392.447C364.429 455.805 318.943 514.058 257.762 530.503L253.035 515.017C307.652 500.302 348.314 448.202 349.641 391.392C350.416 351.891 332.252 312.619 303.115 285.201C291.577 303.82 277.477 320.619 261.102 334.85C236.358 356.208 196.278 373.909 164.278 353.962C142.412 340.217 131.626 310.429 139.309 284.624C146.21 261.783 166.513 243.28 192.211 236.216C219.881 228.833 246.658 235.51 264.145 242.29C276.137 247.089 287.356 253.214 297.803 260.666C311.852 232.964 319.691 201.696 320.052 170.403C320.704 112.368 295.91 53.3797 253.634 11.9715L264.882 1.00718ZM168.603 337.845C169.803 338.852 171.203 340.027 172.565 340.841C196.955 356.047 229.621 340.68 250.2 323.066C266.089 309.415 279.503 293.028 290.392 275.181C280.708 268.039 270.05 262.056 259.021 257.735C243.619 251.719 220.577 245.873 197.175 252.231C176.594 257.665 160.457 272.424 155.035 290.254C149.862 306.976 155.805 327.103 168.603 337.845Z"
                   fill="#212121"
+                />
+              </svg>
+            </span>
+            <span className="bottom-3 rotate-180 left-[2rem] absolute">
+              <svg
+                width="60"
+                height="60"
+                viewBox="0 0 75 76"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.324 6.65704C11.324 9.10904 9.33599 11.097 6.88299 11.097C4.43099 11.097 2.44299 9.10904 2.44299 6.65704C2.44299 4.20604 4.43099 2.21704 6.88299 2.21704C9.33599 2.21704 11.324 4.20604 11.324 6.65704Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M31.725 6.65704C31.725 9.10904 29.736 11.097 27.285 11.097C24.83 11.097 22.843 9.10904 22.843 6.65704C22.843 4.20604 24.83 2.21704 27.285 2.21704C29.736 2.21704 31.725 4.20604 31.725 6.65704Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M52.127 6.65704C52.127 9.10904 50.138 11.097 47.686 11.097C45.233 11.097 43.244 9.10904 43.244 6.65704C43.244 4.20604 45.233 2.21704 47.686 2.21704C50.138 2.21704 52.127 4.20604 52.127 6.65704Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M68.086 3.75996C66.489 3.75996 65.189 5.05897 65.189 6.65797C65.189 8.25497 66.489 9.55397 68.086 9.55397C69.685 9.55397 70.985 8.25497 70.985 6.65797C70.985 5.05897 69.685 3.75996 68.086 3.75996ZM68.086 12.64C64.787 12.64 62.102 9.95697 62.102 6.65797C62.102 3.35697 64.787 0.672974 68.086 0.672974C71.386 0.672974 74.071 3.35697 74.071 6.65797C74.071 9.95697 71.386 12.64 68.086 12.64Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M6.88299 24.658C5.28499 24.658 3.98598 25.957 3.98598 27.555C3.98598 29.154 5.28499 30.453 6.88299 30.453C8.48099 30.453 9.77999 29.154 9.77999 27.555C9.77999 25.957 8.48099 24.658 6.88299 24.658ZM6.88299 33.541C3.58299 33.541 0.899994 30.857 0.899994 27.555C0.899994 24.257 3.58299 21.572 6.88299 21.572C10.184 21.572 12.867 24.257 12.867 27.555C12.867 30.857 10.184 33.541 6.88299 33.541Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M27.285 24.658C25.686 24.658 24.387 25.957 24.387 27.555C24.387 29.154 25.686 30.453 27.285 30.453C28.882 30.453 30.182 29.154 30.182 27.555C30.182 25.957 28.882 24.658 27.285 24.658ZM27.285 33.541C23.986 33.541 21.3 30.857 21.3 27.555C21.3 24.257 23.986 21.572 27.285 21.572C30.584 21.572 33.268 24.257 33.268 27.555C33.268 30.857 30.584 33.541 27.285 33.541Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M52.127 27.555C52.127 30.008 50.138 31.997 47.686 31.997C45.233 31.997 43.244 30.008 43.244 27.555C43.244 25.104 45.233 23.115 47.686 23.115C50.138 23.115 52.127 25.104 52.127 27.555Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M72.528 27.555C72.528 30.008 70.54 31.997 68.086 31.997C65.635 31.997 63.645 30.008 63.645 27.555C63.645 25.104 65.635 23.115 68.086 23.115C70.54 23.115 72.528 25.104 72.528 27.555Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.324 48.453C11.324 50.907 9.33599 52.895 6.88299 52.895C4.43099 52.895 2.44299 50.907 2.44299 48.453C2.44299 46.001 4.43099 44.014 6.88299 44.014C9.33599 44.014 11.324 46.001 11.324 48.453Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M27.285 45.557C25.686 45.557 24.387 46.856 24.387 48.453C24.387 50.051 25.686 51.352 27.285 51.352C28.882 51.352 30.182 50.051 30.182 48.453C30.182 46.856 28.882 45.557 27.285 45.557ZM27.285 54.438C23.986 54.438 21.3 51.755 21.3 48.453C21.3 45.154 23.986 42.47 27.285 42.47C30.584 42.47 33.268 45.154 33.268 48.453C33.268 51.755 30.584 54.438 27.285 54.438Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M52.127 48.453C52.127 50.907 50.138 52.895 47.686 52.895C45.233 52.895 43.244 50.907 43.244 48.453C43.244 46.001 45.233 44.014 47.686 44.014C50.138 44.014 52.127 46.001 52.127 48.453Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M68.086 45.557C66.489 45.557 65.189 46.856 65.189 48.453C65.189 50.051 66.489 51.352 68.086 51.352C69.685 51.352 70.985 50.051 70.985 48.453C70.985 46.856 69.685 45.557 68.086 45.557ZM68.086 54.438C64.787 54.438 62.102 51.755 62.102 48.453C62.102 45.154 64.787 42.47 68.086 42.47C71.386 42.47 74.071 45.154 74.071 48.453C74.071 51.755 71.386 54.438 68.086 54.438Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M6.88299 66.454C5.28499 66.454 3.98598 67.753 3.98598 69.353C3.98598 70.952 5.28499 72.2511 6.88299 72.2511C8.48099 72.2511 9.77999 70.952 9.77999 69.353C9.77999 67.753 8.48099 66.454 6.88299 66.454ZM6.88299 75.3371C3.58299 75.3371 0.899994 72.654 0.899994 69.353C0.899994 66.053 3.58299 63.368 6.88299 63.368C10.184 63.368 12.867 66.053 12.867 69.353C12.867 72.654 10.184 75.3371 6.88299 75.3371Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M27.285 66.454C25.686 66.454 24.387 67.753 24.387 69.353C24.387 70.952 25.686 72.2511 27.285 72.2511C28.882 72.2511 30.182 70.952 30.182 69.353C30.182 67.753 28.882 66.454 27.285 66.454ZM27.285 75.3371C23.986 75.3371 21.3 72.654 21.3 69.353C21.3 66.053 23.986 63.368 27.285 63.368C30.584 63.368 33.268 66.053 33.268 69.353C33.268 72.654 30.584 75.3371 27.285 75.3371Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M47.686 66.454C46.087 66.454 44.787 67.753 44.787 69.353C44.787 70.952 46.087 72.2511 47.686 72.2511C49.285 72.2511 50.584 70.952 50.584 69.353C50.584 67.753 49.285 66.454 47.686 66.454ZM47.686 75.3371C44.386 75.3371 41.701 72.654 41.701 69.353C41.701 66.053 44.386 63.368 47.686 63.368C50.985 63.368 53.67 66.053 53.67 69.353C53.67 72.654 50.985 75.3371 47.686 75.3371Z"
+                  fill="#1B1A19"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M72.528 69.353C72.528 71.805 70.54 73.794 68.086 73.794C65.635 73.794 63.645 71.805 63.645 69.353C63.645 66.9 65.635 64.911 68.086 64.911C70.54 64.911 72.528 66.9 72.528 69.353Z"
+                  fill="#1B1A19"
                 />
               </svg>
             </span>
           </div>
         </div>
       </motion.div>
-      <div className="px-24 py-[1rem] w-screen h-screen  justify-between relative">
-        <h1 className="text-[3rem] abel max-w-[60%] leading-[4rem]">
-          Edge Aims to Enhance Communication amoung communities
-        </h1>
-        <div className="flex w-full justify-between mt-8 items-center">
-          <img src={ambition} className=" w-[38%]" alt="" />
-          <div className="w-[45rem] h-[28rem] grid grid-cols-3 grid-rows-2">
-            <div className="col-span-1 row-span-1 border-[#212121] "></div>
-            <div className="col-span-1 row-span-1 border-[#212121] border-t-2 border-l-2 bg-[#] rounded-tl-[20px]"></div>
-            <div className="col-span-1 row-span-1 border-[#212121] border-t-2 border-l-2 border-r-2 rounded-tr-[20px]"></div>
-            <div className="col-span-1 row-span-1 border-[#212121] border-l-2 border-b-2 border-t-2 rounded-l-[20px] bg-[#]"></div>
-            <div className="col-span-1 row-span-1 border-[#212121] border-l-2 border-t-2 border-b-2"></div>
-            <div className="col-span-1 row-span-1 border-[#212121] border-2 rounded-br-[20px] bg-[#212121]"></div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
