@@ -44,13 +44,13 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
         </div>
         <div className="flex justify-between items-center gap-x-8">
           <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
-            Products
-          </button>
-          <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
             features
           </button>
           <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
-            Resources
+            Objectives
+          </button>
+          <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
+            Reviews
           </button>
 
           <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
