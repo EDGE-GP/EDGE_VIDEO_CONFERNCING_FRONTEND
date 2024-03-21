@@ -1530,7 +1530,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="flex gap-x-4 items-center">
-            <a href="#">
+            <a href="https://github.com/EDGE-GP" target="_blank">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
