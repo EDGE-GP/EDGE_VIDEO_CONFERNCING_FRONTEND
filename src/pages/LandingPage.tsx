@@ -398,7 +398,7 @@ const LandingPage = () => {
               <img
                 src={edgeLogo}
                 alt=""
-                className="w-full brightness-0 invert-1"
+                className="w-full  brightness-0 invert-1"
               />
             </div>
             <div
@@ -1506,6 +1506,7 @@ const LandingPage = () => {
               />
             </svg>
           </span>
+
           <div className="flex justify-between items-center gap-x-[5rem]">
             <img src={edgeLogo} className="w-[5rem]" alt="" />
             <div className="flex w-full justify-between gap-x-[3rem]">
@@ -1529,7 +1530,7 @@ const LandingPage = () => {
               </a>
             </div>
           </div>
-          <div className="flex gap-x-4 items-center">
+          <div className="flex gap-x-2 items-center">
             <a href="https://github.com/EDGE-GP" target="_blank">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
