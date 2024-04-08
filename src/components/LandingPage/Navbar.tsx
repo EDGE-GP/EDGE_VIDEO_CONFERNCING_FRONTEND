@@ -53,9 +53,12 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
             Reviews
           </button>
 
-          <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
+          <Link
+            to="/dashboard"
+            className="abel hover:text-gray-300 card-shadow transition-all capitalize "
+          >
             Dashboard
-          </button>
+          </Link>
         </div>
         <div className="flex justify-between items-center gap-x-4">
           <Link

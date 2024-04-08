@@ -36,9 +36,7 @@ const LandingPage = () => {
   const isInView = useInView(rootElement, { amount: 0.88 });
   const [startOnHover, setStartOnHover] = useState<boolean>(false);
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(preloaderActions.setPreloader(false));
-    }, 1500);
+    // dispatch(preloaderActions.setPreloader(true));
   }, []);
   useEffect(() => {
     setInterval(() => {
