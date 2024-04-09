@@ -7,88 +7,22 @@ import tempProfileImage from "../../assets/selfPortrait.jpg";
 
 const Meetings = () => {
   return (
-    <div className=" h-[92vh] card-shadow px-8 pt-4 bg-white ml-[17rem] rounded-3xl mr-[2.5rem] ">
-      <h1 className="abel text-[3rem] leading-[3.5rem]">Meetings</h1>
-      <h3 className="abel text-[1rem] ">
+    <div className=" h-[92vh] card-shadow  pt-4 bg-white ml-[17rem] rounded-3xl  mr-[2rem] ">
+      <h1 className="abel text-[3rem] leading-[3.5rem] px-8">Meetings</h1>
+      <h3 className="abel text-[1rem] px-8">
         Take the Lead: Start Planning Your Meetings Today!
       </h3>
-      <div className="h-[85%] pb-4 mt-4 overflow-y-scroll">
+      <div className="h-[85%] pb-4 mt-3 overflow-y-scroll px-8">
         <div className=" w-full">
           <h1 className="mb-4 abel text-[1.5rem] ">Upcoming Meetings</h1>
           <div className="w-full flex flex-wrap gap-x-2 gap-y-2">
             <div className="w-[23.15rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">Project Kickoff Meeting</h1>
-              <h1 className="abel text-[1rem] ">
-                Thursday, 11<sub className="align-super">th</sub> April 2024
-              </h1>
-              <div className="flex flex-wrap mt-2">
-                <img
-                  className="w-[2.5rem] object-cover h-[2.5rem] rounded-full"
-                  src={tempProfileImage}
-                  alt=""
-                />
-                <img
-                  className="w-[2.5rem] object-cover  h-[2.5rem] translate-x-[-1rem] rounded-full"
-                  src={dummyAccount1}
-                  alt=""
-                />
-                <img
-                  className="w-[2.5rem] object-cover h-[2.5rem] translate-x-[-2rem] rounded-full"
-                  src={dummyAccount2}
-                  alt=""
-                />
-                <img
-                  className="w-[2.5rem] object-cover h-[2.5rem] translate-x-[-3rem] rounded-full"
-                  src={dummyAccount3}
-                  alt=""
-                />
+              <div className="flex items-center gap-x-2">
+                <div className="w-6 h-6 rounded-full bg-[#7986CB]"></div>
+                <h1 className="abel text-[1.375rem] ">
+                  Project Kickoff Meeting
+                </h1>
               </div>
-              <div className="mt-2 w-full flex justify-end items-center">
-                <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6">
-                  <span>Edit Meeting</span>
-                  <span>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g clip-path="url(#clip0_1_20437)">
-                        <path
-                          d="M5 16L4 20L8 19L19.5858 7.41421C20.3668 6.63316 20.3668 5.36683 19.5858 4.58579L19.4142 4.41421C18.6332 3.63316 17.3668 3.63317 16.5858 4.41421L5 16Z"
-                          stroke="#ffffff"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M15 6L18 9"
-                          stroke="#ffffff"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M13 20H21"
-                          stroke="#ffffff"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_1_20437">
-                          <rect width="24" height="24" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div className="w-[23.15rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">Project Kickoff Meeting</h1>
               <h1 className="abel text-[1rem] ">
                 Thursday, 11<sub className="align-super">th</sub> April 2024
               </h1>
@@ -160,7 +94,10 @@ const Meetings = () => {
             </div>
 
             <div className="w-[23.15rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">Standup Meeting</h1>
+              <div className="flex items-center gap-x-2">
+                <div className="w-6 h-6 rounded-full bg-[#616161]"></div>
+                <h1 className="abel text-[1.375rem] ">Standup Meeting</h1>
+              </div>
               <h1 className="abel text-[1rem] ">
                 Thursday, 18<sub className="align-super">th</sub> April 2024
               </h1>
@@ -231,9 +168,12 @@ const Meetings = () => {
               </div>
             </div>
             <div className="w-[22.65rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">
-                Customer Evaluation Meeting
-              </h1>
+              <div className="flex items-center gap-x-2">
+                <div className="w-6 h-6 rounded-full bg-[#F4511E]"></div>
+                <h1 className="abel text-[1.375rem] ">
+                  Customer Evaluation Meeting
+                </h1>
+              </div>
               <h1 className="abel text-[1rem] ">
                 Thursday, 25<sub className="align-super">th</sub> April 2024
               </h1>
@@ -303,13 +243,53 @@ const Meetings = () => {
                 </button>
               </div>
             </div>
+            <div className="w-[22.65rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-between py-3 items-start">
+              <div>
+                <div className="flex items-center gap-x-2">
+                  <h1 className="abel text-[1.375rem] ">
+                    Schedule your next meeting
+                  </h1>
+                </div>
+                <h1 className="abel text-[1rem] ">
+                  reach your peers and plan your next meeting right away
+                </h1>
+              </div>
+
+              <div className="mt-2 w-full flex justify-end items-center">
+                <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6">
+                  <span>Schedule Meeting</span>
+                  <span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 12H12M12 12H18M12 12V18M12 12V6"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div className="mt-4 w-full">
           <h1 className="mb-4 abel text-[1.5rem] ">Previous Meetings</h1>
           <div className="w-full flex flex-wrap gap-x-2 gap-y-2">
             <div className="w-[23.15rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">Project Kickoff Meeting</h1>
+              <div className="flex items-center gap-x-2">
+                <div className="w-6 h-6 rounded-full bg-[#7986CB]"></div>
+                <h1 className="abel text-[1.375rem] ">
+                  Project Kickoff Meeting
+                </h1>
+              </div>
               <h1 className="abel text-[1rem] ">
                 Thursday, 11<sub className="align-super">th</sub> April 2024
               </h1>
@@ -359,7 +339,10 @@ const Meetings = () => {
             </div>
 
             <div className="w-[23.15rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">Standup Meeting</h1>
+              <div className="flex items-center gap-x-2">
+                <div className="w-6 h-6 rounded-full bg-[#616161]"></div>
+                <h1 className="abel text-[1.375rem] ">Standup Meeting</h1>
+              </div>
               <h1 className="abel text-[1rem] ">
                 Thursday, 18<sub className="align-super">th</sub> April 2024
               </h1>
@@ -408,9 +391,12 @@ const Meetings = () => {
               </div>
             </div>
             <div className="w-[22.65rem] h-[11rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
-              <h1 className="abel text-[1.375rem]">
-                Customer Evaluation Meeting
-              </h1>
+              <div className="flex items-center gap-x-2">
+                <div className="w-6 h-6 rounded-full bg-[#F4511E]"></div>
+                <h1 className="abel text-[1.375rem] ">
+                  Customer Evaluation Meeting
+                </h1>
+              </div>
               <h1 className="abel text-[1rem] ">
                 Thursday, 25<sub className="align-super">th</sub> April 2024
               </h1>

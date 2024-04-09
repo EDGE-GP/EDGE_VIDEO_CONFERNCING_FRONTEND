@@ -35,7 +35,7 @@ const Auth: React.FC = () => {
     } else if (authParam === "reset-password") {
       setAuthMethod("reset-password");
     }
-  }, [authParam]);
+  }, [authParam, history]);
   console.log({
     authMethod,
   });

@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  redirect,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Auth from "./pages/Auth";
 import Preloader from "./components/UI/Preloader";
@@ -77,6 +83,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth/:authParam" element={<Auth />} />
+        <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/:section" element={<Dashboard />} />
       </Routes>
     </>
