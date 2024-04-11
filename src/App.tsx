@@ -85,6 +85,10 @@ function App() {
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/:section" element={<Dashboard />} />
+        <Route
+          path="/dashboard/"
+          element={<Navigate to="/dashboard/meetings" replace />}
+        />
       </Routes>
     </>
   );
