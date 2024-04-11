@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import CircularLoading from "../UI/CircularLoading";
 import useForm from "../../hooks/useForm";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AxiosError } from "axios";
+import { Link } from "react-router-dom";
+import axios, { isAxiosError } from "axios";
 import { notify } from "../../utils/Toaster/notify";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -11,7 +10,6 @@ import { authActions } from "../../store/auth/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const history = useNavigate;
   const [disabled, setDisabled] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -45,13 +43,15 @@ const Login = () => {
         );
         toast.remove();
       }, 2000);
-    } catch (err: AxiosError | any) {
+    } catch (err: unknown) {
       console.log(err);
-      notify(
-        err.response?.data?.message || "Something went wrong",
-        "error",
-        Infinity
-      );
+      if (isAxiosError(err)) {
+        notify(
+          err.response?.data?.message || "Something went wrong",
+          "error",
+          Infinity
+        );
+      }
       setLoading(false);
       setError(true);
       setTimeout(() => {
