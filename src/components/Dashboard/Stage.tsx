@@ -5,14 +5,20 @@ const Stage = () => {
     <div className=" h-full card-shadow  pt-4 bg-white ml-[17.5rem] rounded-3xl  mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Stage</h1>
       <h3 className="abel text-[1rem] px-8">
-        Seamlessly Create or Join Meetings for Instant Collaboration
+        Edge Stage: Seamlessly Create or Join Meetings for Instant Collaboration
       </h3>
-      <div className=" relative pb-4 h-[85%] mt-6 px-8 flex justify-center   items-start">
-        <div className="w-[40rem] ">
-          <h1 className="abel text-[2.5rem] text-start capitalize">
+      <div className=" relative pb-4 h-[85%] px-8 flex justify-center   items-start">
+        <div className="w-[40rem] mt-3">
+          <h1 className="abel text-[2.5rem] text-center capitalize leading-[3rem]">
             empowering connection, connecting you to the world where every hand
             speaks
           </h1>
+          <div className="w-full flex justify-center items-center">
+            <h3 className="abel text-[1rem] text-center max-w-[28rem]">
+              Edge Stage provide secure, inclusive, easy-to-use video
+              conferencing capabilities for everyone, on any device.
+            </h3>
+          </div>
           <div className="flex justify-center items-center  mt-3">
             <button className="flex gap-x-2 items-center abel h-[2.375rem] mr-4  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-6">
               <span>Create Instant Meeting</span>
@@ -65,8 +71,8 @@ const Stage = () => {
             </div>
             <button className="abel text-[1.25rem] text-[#cbcaca]">Join</button>
           </div>
-          <div className="w-[40rem] mt-5 flex justify-center">
-            <img src={header} alt="" className="w-[420px] " />
+          <div className="w-[40rem] mt-4 flex justify-center">
+            <img src={header} alt="" className="w-[405px] " />
           </div>
         </div>
         {/* <div className="pt-[2rem] relative">

@@ -9,7 +9,7 @@ const Meetings = () => {
   return (
     <div className=" h-full card-shadow  pt-4 bg-white ml-[17.5rem] rounded-3xl  mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Meetings</h1>
-      <h3 className="abel text-[1rem] px-8">
+      <h3 className="abel text-[1rem] px-8 capitalize">
         Manage your meetings: View past converstations and Edit scheduled
         Meetings
       </h3>

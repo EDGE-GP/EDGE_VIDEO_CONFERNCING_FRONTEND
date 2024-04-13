@@ -1,17 +1,31 @@
-import React from "react";
 import edgeLogo from "../../assets/edge.png";
 import tempProfileImage from "../../assets/selfPortrait.jpg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { preloaderActions } from "../../store/preloader/preloaderSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const history = useNavigate();
   const location = useLocation();
   console.log({ location });
   return (
     <div className="text-white px-4 py-4 h-[92%] w-[15.5rem] rounded-3xl fixed  bg-[#151515] gap-y-2 flex flex-col justify-between ">
       <div className="flex flex-col gap-y-2">
-        <div className="w-full flex justify-center items-center">
+        <button
+          onClick={() => {
+            dispatch(preloaderActions.setPreloader(true));
+            setTimeout(() => {
+              history("/");
+            }, 300);
+            setTimeout(() => {
+              dispatch(preloaderActions.setPreloader(false));
+            }, 1300);
+          }}
+          className="w-full flex justify-center items-center"
+        >
           <img src={edgeLogo} className="w-[10rem] h-[5.5rem]" alt="" />
-        </div>
+        </button>
         <Link
           to="/dashboard/meetings"
           className="w-full flex justify-center items-center mt- cursor-pointer "
