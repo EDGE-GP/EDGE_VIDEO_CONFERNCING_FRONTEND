@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Preloader.module.css";
 import preloaderImg from "../../assets/edge.png";
 import { useSelector } from "react-redux";
@@ -15,6 +15,8 @@ const Preloader = () => {
       setTimeout(() => {
         setHide(true);
       }, 300);
+    } else {
+      setHide(false);
     }
   }, [preloader]);
   return (

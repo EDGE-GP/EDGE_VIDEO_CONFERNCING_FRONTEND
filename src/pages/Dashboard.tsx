@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useParams } from "react-router";
 import StageMeeting from "../components/Dashboard/StageMeeting";
 import Stage from "../components/Dashboard/Stage";
+import Conversations from "../components/Dashboard/Conversations";
 const Dashboard = () => {
   const location = useLocation();
   const { section } = useParams();
@@ -52,6 +53,19 @@ const Dashboard = () => {
             >
               <div className="h-[92vh]">
                 <Schedule />
+              </div>
+            </motion.div>
+          )}
+          {section === "conversations" && (
+            <motion.div
+              key="conversations"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}
+            >
+              <div className="h-[92vh]">
+                <Conversations />
               </div>
             </motion.div>
           )}

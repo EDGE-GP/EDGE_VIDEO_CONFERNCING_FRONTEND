@@ -3,12 +3,11 @@ import tempProfileImage from "../../assets/selfPortrait.jpg";
 import dummyAccount1 from "../../assets/account4.png";
 import dummyAccount2 from "../../assets/account6.png";
 const StageMeeting = () => {
-
   return (
-    <div className=" h-full   flex gap-x-6 ml-[17.5rem] rounded-3xl  mr-[2rem] ">
+    <div className=" h-full   flex gap-x-6 ml-[17.5rem] rounded-2xl  mr-[2rem] ">
       <div className="w-[75%] h-full">
         {/* meeting header */}
-        <div className="h-[4.5rem] bg-white card-shadow px-4 rounded-3xl flex justify-between items-center">
+        <div className="h-[4.5rem] bg-white card-shadow px-4 rounded-2xl flex justify-between items-center">
           <div className="flex justify-start items-center  gap-x-4">
             <button className="w-[3rem] h-[3rem] rounded-full flex items-center justify-center bg-[#F8F8FA] transition-all hover:bg-[#f5f5f5]">
               <svg
@@ -57,27 +56,27 @@ const StageMeeting = () => {
           </div>
         </div>
         {/* meeting */}
-        <div className="h-[38rem] mt-4 rounded-3xl w-full bg-white card-shadow px-5 py-4">
+        <div className="h-[38rem] mt-4 rounded-2xl w-full bg-white card-shadow px-5 py-4">
           {/* one on one */}
           {/* <div className="flex gap-x-4 w-full h-full">
-            <div className="w-[75%] h-[36rem] bg-red-600 rounded-3xl"></div>
+            <div className="w-[75%] h-[36rem] bg-red-600 rounded-2xl"></div>
             <div className="w-[25%] h-full flex flex-col-reverse">
-              <div className="w-full h-[12rem] rounded-3xl bg-red-600"></div>
+              <div className="w-full h-[12rem] rounded-2xl bg-red-600"></div>
             </div>
           </div> */}
           {/* grid */}
-          {/* <div className="w-[75%] h-[24rem] bg-red-600 rounded-3xl"></div>
+          {/* <div className="w-[75%] h-[24rem] bg-red-600 rounded-2xl"></div>
           <div className="w-full grid grid-cols-4 gap-x-2 h-[11rem] mt-4">
-            <div className="col-span-1 bg-red-600 w-full h-full rounded-3xl"></div>
-            <div className="col-span-1 bg-red-600 w-full h-full rounded-3xl"></div>
-            <div className="col-span-1 bg-red-600 w-full h-full rounded-3xl"></div>
-            <div className="col-span-1 bg-red-600 w-full h-full rounded-3xl"></div>
+            <div className="col-span-1 bg-red-600 w-full h-full rounded-2xl"></div>
+            <div className="col-span-1 bg-red-600 w-full h-full rounded-2xl"></div>
+            <div className="col-span-1 bg-red-600 w-full h-full rounded-2xl"></div>
+            <div className="col-span-1 bg-red-600 w-full h-full rounded-2xl"></div>
           </div> */}
         </div>
       </div>
       {/* join requests */}
       <div className="w-[25%]">
-        <div className="w-full h-[15rem] px-4 py-2 rounded-3xl card-shadow bg-white">
+        <div className="w-full h-[15rem] px-4 py-2 rounded-2xl card-shadow bg-white">
           <h3 className="abel text-[1.3rem] mb-2">Request to join</h3>
           <div className="flex flex-col gap-y-2 h-[11.5em] overflow-y-scroll">
             <div className="flex justify-between ">
@@ -263,7 +262,7 @@ const StageMeeting = () => {
           </div>
         </div>
         {/* chat */}
-        <div className="mt-4 h-[27.5rem] w-full flex flex-col justify-between bg-white card-shadow rounded-3xl px-4 py-2">
+        <div className="mt-4 h-[27.5rem] w-full flex flex-col justify-between bg-white card-shadow rounded-2xl px-4 py-2">
           <h3 className="abel text-[1.3rem] mb-2">Meeting chat</h3>
           <div className="w-full h-[80%] flex flex-col-reverse gap-y-1 mb-2 overflow-y-scroll">
             <div className="flex  justify-start flex-row-reverse w-full gap-x-1">
