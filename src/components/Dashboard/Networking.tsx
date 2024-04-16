@@ -112,9 +112,9 @@ const Networking = () => {
           </div>
         </div>
       </div>
-      <div className="w-full col-span-2 row-span-2 h-full px-4 py-2 rounded-2xl card-shadow bg-white">
+      <div className="w-full col-span-2 row-span-2 h-full px-4 py-3 rounded-2xl card-shadow bg-white">
         <h3 className="abel text-[1.3rem] mb-2">Notifications</h3>
-        <div className="flex flex-col gap-y-2 h-[94%] overflow-y-scroll">
+        <div className="flex flex-col gap-y-2 h-[94.5%] overflow-y-scroll">
           <div className="flex flex-col   justify-between w-full px-3 py-3 rounded-2xl bg-[#F7F7F7]">
             <div className="w-full flex items-center gap-x-2 min-h-[3.5rem] ">
               <img
@@ -260,7 +260,7 @@ const Networking = () => {
                 src={tempProfileImage}
                 alt=""
               />
-              <h1 className="text-[1.25rem] abel">Ibrahim Askar</h1>
+              <h1 className="text-[1.1rem] abel">Ibrahim Askar</h1>
             </div>
             <div className="flex items-center gap-x-2">
               <button>
@@ -303,7 +303,7 @@ const Networking = () => {
                 src={dummyAccount1}
                 alt=""
               />
-              <h1 className="text-[1.25rem] abel">Feyd Rutha</h1>
+              <h1 className="text-[1.1rem] abel">Feyd Rutha</h1>
             </div>
             <div className="flex items-center gap-x-2">
               <button>
@@ -346,7 +346,7 @@ const Networking = () => {
                 src={dummyAccount2}
                 alt=""
               />
-              <h1 className="text-[1.25rem] abel">Paul Atreides</h1>
+              <h1 className="text-[1.1rem] abel">Paul Atreides</h1>
             </div>
             <div className="flex items-center gap-x-2">
               <button>
@@ -394,7 +394,7 @@ const Networking = () => {
                 src={tempProfileImage}
                 alt=""
               />
-              <h1 className="text-[1.25rem] abel">Ibrahim Askar</h1>
+              <h1 className="text-[1.1rem] abel">Ibrahim Askar</h1>
             </div>
             <div className="flex items-center gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
@@ -412,7 +412,7 @@ const Networking = () => {
                 src={dummyAccount1}
                 alt=""
               />
-              <h1 className="text-[1.25rem] abel">Feyd Rutha</h1>
+              <h1 className="text-[1.1rem] abel">Feyd Rutha</h1>
             </div>
             <div className="flex items-center gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
@@ -430,7 +430,7 @@ const Networking = () => {
                 src={dummyAccount2}
                 alt=""
               />
-              <h1 className="text-[1.25rem] abel">Paul Atreides</h1>
+              <h1 className="text-[1.1rem] abel">Paul Atreides</h1>
             </div>
             <div className="flex items-center gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
