@@ -88,54 +88,12 @@ const StageMeeting = () => {
                 />
                 <h1 className="text-[1.1rem] abel">Ibrahim Askar</h1>
               </div>
-              <div className="flex items-center gap-x-2">
-                <button className="w-[2rem] h-[2rem] flex items-center justify-center bg-[#DF6962] hover:bg-[#d2625c] transition-all rounded-full">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1_20121)">
-                      <path
-                        d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_20121">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+              <div className="flex items-center gap-x-2 h-full ">
+                <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
+                  Delete
                 </button>
-                <button className="w-[2rem] h-[2rem] flex items-center justify-center bg-[#151515] hover:bg-[#282828] transition-all rounded-full">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1_20103)">
-                      <path
-                        d="M20 7.00018L10 17.0002L5 12.0002"
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_20103">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+                <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
+                  Accept
                 </button>
               </div>
             </div>
@@ -148,54 +106,12 @@ const StageMeeting = () => {
                 />
                 <h1 className="text-[1.1rem] abel">Feyd Rutha</h1>
               </div>
-              <div className="flex items-center gap-x-2">
-                <button className="w-[2rem] h-[2rem] flex items-center justify-center bg-[#DF6962] hover:bg-[#d2625c] transition-all rounded-full">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1_20121)">
-                      <path
-                        d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_20121">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+              <div className="flex items-center gap-x-2 h-full ">
+                <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
+                  Delete
                 </button>
-                <button className="w-[2rem] h-[2rem] flex items-center justify-center bg-[#151515] hover:bg-[#282828] transition-all rounded-full">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1_20103)">
-                      <path
-                        d="M20 7.00018L10 17.0002L5 12.0002"
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_20103">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+                <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
+                  Accept
                 </button>
               </div>
             </div>
@@ -208,54 +124,12 @@ const StageMeeting = () => {
                 />
                 <h1 className="text-[1.1rem] abel">Paul Atreides</h1>
               </div>
-              <div className="flex items-center gap-x-2">
-                <button className="w-[2rem] h-[2rem] flex items-center justify-center bg-[#DF6962] hover:bg-[#d2625c] transition-all rounded-full">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1_20121)">
-                      <path
-                        d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_20121">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+              <div className="flex items-center gap-x-2 h-full ">
+                <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
+                  Delete
                 </button>
-                <button className="w-[2rem] h-[2rem] flex items-center justify-center bg-[#151515] hover:bg-[#282828] transition-all rounded-full">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1_20103)">
-                      <path
-                        d="M20 7.00018L10 17.0002L5 12.0002"
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_20103">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+                <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
+                  Accept
                 </button>
               </div>
             </div>

@@ -8,6 +8,9 @@ import Switch from "../utility/Switch";
 
 const Schedule = () => {
   const [meetingMinutes, setMeetingMinutes] = useState<boolean>(false);
+  const [signInterpretedToggle, setSignInterpreterToggle] =
+    useState<boolean>(false);
+  const [avatarToggle, setAvatarToggle] = useState<boolean>(false);
   const [activityFlag, setActivityFlag] = useState<
     | "#7986CB"
     | "#8E24AA"
@@ -74,7 +77,7 @@ const Schedule = () => {
                 </div>
               </div>
               <div>
-                <div className="flex flex-col mb-1">
+                <div className="flex flex-col mb-3">
                   <h3 className="abel text-[1.25rem] ">
                     Save meeting conversation
                   </h3>
@@ -87,6 +90,23 @@ const Schedule = () => {
                       <Switch
                         selected={meetingMinutes}
                         setSelect={setMeetingMinutes}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col mb-3">
+                  <h3 className="abel text-[1.25rem] ">
+                    Enable Sign Language Interpreter
+                  </h3>
+                  <div className="w-full flex justify-between items-center">
+                    <h3 className="abel text-[0.9rem] ">
+                      User's sign gestures will be detected and translated
+                      automatically for deaf users
+                    </h3>
+                    <div>
+                      <Switch
+                        selected={signInterpretedToggle}
+                        setSelect={setSignInterpreterToggle}
                       />
                     </div>
                   </div>
@@ -195,6 +215,20 @@ const Schedule = () => {
           </div>
           <div className="w-1/2">
             <DatePicker />
+            <div className="flex flex-col">
+              <h3 className="abel text-[1.25rem] ">
+                Enable Speech Avatar Display
+              </h3>
+              <div className="w-full flex justify-between items-center">
+                <h3 className="abel text-[0.9rem] ">
+                  Every interpreted word will be displayed to deaf users via a
+                  3d-model sign gestures
+                </h3>
+                <div>
+                  <Switch selected={avatarToggle} setSelect={setAvatarToggle} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex justify-end items-center gap-x-4">
