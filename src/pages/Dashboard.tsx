@@ -7,6 +7,7 @@ import { useLocation, useParams } from "react-router";
 import StageMeeting from "../components/Dashboard/StageMeeting";
 import Stage from "../components/Dashboard/Stage";
 import Conversations from "../components/Dashboard/Conversations";
+import Networking from "../components/Dashboard/Networking";
 const Dashboard = () => {
   const location = useLocation();
   const { section } = useParams();
@@ -66,6 +67,19 @@ const Dashboard = () => {
             >
               <div className="h-[92vh]">
                 <Conversations />
+              </div>
+            </motion.div>
+          )}
+          {section === "networking" && (
+            <motion.div
+              key="networking"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}
+            >
+              <div className="h-[92vh]">
+                <Networking />
               </div>
             </motion.div>
           )}

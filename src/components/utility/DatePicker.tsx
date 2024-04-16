@@ -63,7 +63,7 @@ const DatePicker: React.FC = () => {
   };
 
   return (
-    <div className="abel bg-white w-full  h-[26.1rem] flex flex-col  ">
+    <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>
       <div className="w-full flex items-start justify-between gap-x- ">
         <div className=" w-[65%] h-full">

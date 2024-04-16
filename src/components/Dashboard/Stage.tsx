@@ -71,7 +71,7 @@ const Stage = () => {
             </div>
             <button className="abel text-[1.25rem] text-[#cbcaca]">Join</button>
           </div>
-          <div className="w-[40rem] mt-4 flex justify-center">
+          <div className="w-[40rem] mt-5 flex justify-center">
             <img src={header} alt="" className="w-[405px] " />
           </div>
         </div>
