@@ -214,6 +214,7 @@ const Schedule = () => {
             </div>
           </div>
           <div className="w-1/2">
+            
             <DatePicker />
             <div className="flex flex-col">
               <h3 className="abel text-[1.25rem] ">
