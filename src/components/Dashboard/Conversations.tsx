@@ -10,7 +10,7 @@ const Conversations = () => {
         Meeting Minutes: Capturing Every Uttered Word or Signed Gesture for
         Future Reference
       </h3>
-      <div className=" relative pb-4 h-[84%]  mt-6 px-8 flex gap-x-4">
+      <div className=" relative pb-4 h-[84.5%] rounded-3xl  mt-6 px-8 flex gap-x-4">
         <div className="w-[20rem] h-full overflow-y-scroll border-[#151515] flex flex-col gap-y-2">
           <div className="flex flex-col gap-y-1 bg-[#F8F8F8]  rounded-xl py-3 px-3 abel w-full justify-center items-center abel cursor-pointer">
             <div className="w-full px-2">
