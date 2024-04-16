@@ -13,7 +13,7 @@ const Meetings = () => {
         Manage your meetings: View past converstations and Edit scheduled
         Meetings
       </h3>
-      <div className="h-[85%] pb-4 mt-3 overflow-y-scroll px-8">
+      <div className="h-[85%] rounded-3xl  pb-4 mt-3 overflow-y-scroll px-8">
         <div className=" w-full">
           <h1 className="mb-4 abel text-[1.5rem] ">Upcoming Meetings</h1>
           <div className="w-full flex flex-wrap gap-x-2 gap-y-2">
