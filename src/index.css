@@ -203,3 +203,21 @@
 input[type="time"]::-webkit-calendar-picker-indicator {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  .roundedbox{
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-width: 2px;
+}
+.noborder{
+  border: none;
+}
+.marginCards{
+  margin: .5rem;
+}
+  
+}

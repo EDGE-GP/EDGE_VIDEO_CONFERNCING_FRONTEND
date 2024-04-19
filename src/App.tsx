@@ -17,6 +17,7 @@ import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
+import Template from "./pages/Template";
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
       <Preloader />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/Template" element={<Template></Template>}></Route>
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/:section" element={<Dashboard />} />
