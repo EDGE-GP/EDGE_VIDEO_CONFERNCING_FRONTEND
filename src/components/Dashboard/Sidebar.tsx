@@ -3,14 +3,18 @@ import tempProfileImage from "../../assets/selfPortrait.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { preloaderActions } from "../../store/preloader/preloaderSlice";
+;
+import { AnimatePresence } from "framer-motion";
 
-const Sidebar = () => {
+const Sidebar = ({sideVisibality }) => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const location = useLocation();
   console.log({ location });
   return (
-    <div className="text-white px-4 py-4 h-[92%] w-[15.5rem] rounded-3xl fixed  bg-[#151515] gap-y-2 flex flex-col justify-between ">
+    
+ <AnimatePresence mode="wait">
+    <div className={`fixed top-[4rem] md:top-[auto] z-40 text-white px-4 py-4 md:h-[92%] h-[93%] w-[15.5rem] rounded-3xl translate-x-0 bg-[#151515] gap-y-2 flex  flex-col justify-between ${sideVisibality ? ' sidebar-transform ' : 'sidebar-show '}`}>
       <div className="flex flex-col gap-y-2">
         <button
           onClick={() => {
@@ -299,7 +303,7 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-    </div>
+    </div></AnimatePresence>
   );
 };
 
