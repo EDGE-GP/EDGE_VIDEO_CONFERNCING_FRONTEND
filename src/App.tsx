@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Auth from "./pages/Auth";
 import Preloader from "./components/UI/Preloader";
@@ -12,9 +12,23 @@ import { useDispatch } from "react-redux";
 import { preloaderActions } from "./store/preloader/preloaderSlice";
 import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
+import { useNavigate } from "react-router";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useNavigate();
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (location.pathname.includes("dashboard") && !isLoggedIn) {
+      history("/auth/login");
+    }
+    if (isLoggedIn && location.pathname.includes("auth")) {
+      history("/dashboard/meetings");
+    }
+  }, [isLoggedIn]);
+
   useEffect(() => {
     const validateUser = async () => {
       try {

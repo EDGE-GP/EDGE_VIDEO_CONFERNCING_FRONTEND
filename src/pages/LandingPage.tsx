@@ -17,8 +17,10 @@ import dummyAccount2 from "../assets/account6.png";
 import dummyAccount3 from "../assets/account7.jpg";
 import dummyAccount4 from "../assets/account5.png";
 import dummyAccount5 from "../assets/account3.png";
+import { useNavigate } from "react-router";
 
 const LandingPage = () => {
+  const history = useNavigate();
   const rootElement = useRef<HTMLDivElement>(null);
   const isInView = useInView(rootElement, { amount: 0.88 });
   const [startOnHover, setStartOnHover] = useState<boolean>(false);
@@ -47,6 +49,9 @@ const LandingPage = () => {
           </h1>
           <div className="w-full flex justify-start gap-x-6 mt-4">
             <button
+              onClick={() => {
+                history("/dashboard");
+              }}
               onMouseEnter={() => {
                 setStartOnHover(true);
               }}

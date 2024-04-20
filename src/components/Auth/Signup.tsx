@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import CircularLoading from "../UI/CircularLoading";
 import useForm from "../../hooks/useForm";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { notify } from "../../utils/Toaster/notify";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth/authSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -87,17 +90,30 @@ const Signup = () => {
       toast.remove();
       notify("Signup successful", "success", Infinity);
       setDisabled(true);
+      setTimeout(() => {
+        toast.remove();
+        dispatch(
+          authActions.setUser({
+            user: res.data.user,
+          })
+        );
+      }, 2000);
       //   setTimeout(() => {
       //     history("/");
       //     setLoading(true);
       //   }, 1500);
-    } catch (err: AxiosError | any) {
+    } catch (err) {
+      if (isAxiosError(err)) {
+        notify(
+          err.response?.data?.message || "Something went wrong",
+          "error",
+          Infinity
+        );
+      } else {
+        notify("Something went wrong", "error", Infinity);
+      }
       setLoading(false);
-      notify(
-        err.response?.data?.message || "Something went wrong",
-        "error",
-        Infinity
-      );
+
       setError(true);
       setTimeout(() => {
         setError(false);
