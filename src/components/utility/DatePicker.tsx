@@ -37,11 +37,18 @@ const DatePicker: React.FC = () => {
     format(today, "MMM-yyyy")
   );
 
-  const [currentTime, setCurrentTime] = useState<string>(
+  const [selectedTime, setSelectedTime] = useState<string>(
     format(new Date(), "HH:mm")
   );
   const firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
-  console.log({ currentTime });
+  //make a date object with the selected day and time;
+  console.log({
+    selectedDay,
+    selectedTime,
+  });
+  console.log({
+    time: `${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`,
+  });
   const days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
@@ -181,9 +188,9 @@ const DatePicker: React.FC = () => {
               className="h-full w-full outline-none appearance-none bg-transparent text-[#666666] font-[500] text-[16px] loew"
               onChange={(e) => {
                 e.preventDefault();
-                setCurrentTime(e.target.value);
+                setSelectedTime(e.target.value);
               }}
-              value={currentTime}
+              value={selectedTime}
             />
           </div>
         </div>

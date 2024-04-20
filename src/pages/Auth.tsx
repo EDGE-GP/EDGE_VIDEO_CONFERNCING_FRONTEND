@@ -21,7 +21,7 @@ const Auth: React.FC = () => {
   const history = useNavigate();
   useEffect(() => {
     if (isLoggedIn) {
-      history("/");
+      history("/dashboard/meetings");
     }
   }, [isLoggedIn, history]);
   useEffect(() => {
@@ -56,12 +56,21 @@ const Auth: React.FC = () => {
               <div className="flex justify-between items-start">
                 <div className="flex flex-col px-8 py-[3.8rem]">
                   {/* <h1 className="Poiret text-5xl mb-6">edge.</h1> */}
-                  <img src={loginImg} alt="" className="w-[8rem] mb-2" />
+                  <div className=" z-10">
+                    <img
+                      onClick={() => {
+                        history("/");
+                      }}
+                      src={loginImg}
+                      alt=""
+                      className="w-[8rem] cursor-pointer mb-2"
+                    />
+                  </div>
                   <h3 className=" text-base text-start w-[80%] text-white tracking-[0.1rem]">
                     Connecting You to the World, anytime, anywhere!
                   </h3>
                 </div>
-                <div className="pt-32 z-10">
+                <div className="pt-[8rem] z-10">
                   <div
                     className={`w-[9.4rem] ${
                       authMethod === "login" ||

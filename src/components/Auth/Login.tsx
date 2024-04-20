@@ -20,6 +20,7 @@ const Login = () => {
       if (emailError || passwordError) return;
       setLoading(true);
       console.log(email, password);
+      toast.remove();
       const res = await axios.post(
         `${process.env.BACKEND_SERVER}/api/v1/users/login/`,
         {
@@ -32,7 +33,6 @@ const Login = () => {
       );
       console.log(res);
       setLoading(false);
-      toast.remove();
       notify("Login successful", "success", Infinity);
       setDisabled(true);
       setTimeout(() => {

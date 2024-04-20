@@ -3,12 +3,37 @@ import tempProfileImage from "../../assets/selfPortrait.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { preloaderActions } from "../../store/preloader/preloaderSlice";
+import axios from "axios";
+import { authActions } from "../../store/auth/authSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const location = useLocation();
   console.log({ location });
+  const logoutUser = async () => {
+    try {
+      dispatch(preloaderActions.setPreloader(true));
+      const res = await axios(
+        `${process.env.BACKEND_SERVER}/api/v1/users/logout/`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+      dispatch(authActions.logout());
+      setTimeout(() => {
+        dispatch(preloaderActions.setPreloader(false));
+      }, 1500);
+      history("/");
+    } catch (err) {
+      console.log(err);
+      history("/auth/login");
+      setTimeout(() => {
+        dispatch(preloaderActions.setPreloader(false));
+      }, 1500);
+    }
+  };
   return (
     <div className="text-white px-4 py-4 h-[92%] w-[15.5rem] rounded-3xl fixed  bg-[#151515] gap-y-2 flex flex-col justify-between ">
       <div className="flex flex-col gap-y-2">
@@ -106,8 +131,8 @@ const Sidebar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M6.75 1C7.16421 1 7.5 1.33579 7.5 1.75V3H12.5V1.75C12.5 1.33579 12.8358 1 13.25 1C13.6642 1 14 1.33579 14 1.75V3H16.25C17.7688 3 19 4.23122 19 5.75V16.25C19 17.7688 17.7688 19 16.25 19H3.75C2.23122 19 1 17.7688 1 16.25V5.75C1 4.23122 2.23122 3 3.75 3H6V1.75C6 1.33579 6.33579 1 6.75 1ZM6 4.5H3.75C3.05964 4.5 2.5 5.05964 2.5 5.75V8H17.5V5.75C17.5 5.05964 16.9404 4.5 16.25 4.5H14V5.25C14 5.66421 13.6642 6 13.25 6C12.8358 6 12.5 5.66421 12.5 5.25V4.5H7.5V5.25C7.5 5.66421 7.16421 6 6.75 6C6.33579 6 6 5.66421 6 5.25V4.5ZM17.5 9.5H2.5V16.25C2.5 16.9404 3.05964 17.5 3.75 17.5H16.25C16.9404 17.5 17.5 16.9404 17.5 16.25V9.5Z"
                   fill={
                     location.pathname.includes("schedule") ? "black" : "white"
@@ -244,7 +269,7 @@ const Sidebar = () => {
               ibrahemhani2014@gmail.com
             </span>
           </div>
-          <button>
+          <button onClick={logoutUser}>
             <svg
               width="20"
               height="20"

@@ -2,8 +2,11 @@ import React, { useRef } from "react";
 import edgeLogo from "../../assets/edge.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   console.log({ intersected });
   return (
     <motion.div
@@ -28,8 +31,8 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
           borderBottomLeftRadius: intersected ? 0 : "9999px",
           borderTopRightRadius: intersected ? 0 : "9999px",
           borderBottomRightRadius: intersected ? 0 : "9999px",
-          paddingLeft: intersected ? "4.5rem" : "1.5rem",
-          paddingRight: intersected ? "4.5rem" : "1.5rem",
+          paddingLeft: intersected ? "4.5rem" : "2.5rem",
+          paddingRight: intersected ? "4.5rem" : "2.5rem",
           height: intersected ? "4rem" : "3.5rem",
         }}
         transition={{
@@ -43,6 +46,9 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
           <img src={edgeLogo} className="w-[4rem]" alt="" />
         </div>
         <div className="flex justify-between items-center gap-x-8">
+          {/* <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
+            Main
+          </button> */}
           <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
             features
           </button>
@@ -52,28 +58,30 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
           <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
             Reviews
           </button>
-
+        </div>
+        {!isLoggedIn ? (
+          <div className="flex justify-between items-center gap-x-4">
+            <Link
+              to="/auth/login"
+              className="abel hover:text-gray-300 card-shadow transition-all "
+            >
+              Login
+            </Link>
+            <Link
+              to="/auth/signup"
+              className="abel hover:text-gray-300 card-shadow transition-all "
+            >
+              Sign up
+            </Link>
+          </div>
+        ) : (
           <Link
-            to="/dashboard"
+            to={"/dashboard/meetings"}
             className="abel hover:text-gray-300 card-shadow transition-all capitalize "
           >
             Dashboard
           </Link>
-        </div>
-        <div className="flex justify-between items-center gap-x-4">
-          <Link
-            to="/auth/login"
-            className="abel hover:text-gray-300 card-shadow transition-all "
-          >
-            Login
-          </Link>
-          <Link
-            to="/auth/signup"
-            className="abel hover:text-gray-300 card-shadow transition-all "
-          >
-            Sign up
-          </Link>
-        </div>
+        )}
       </motion.div>
     </motion.div>
   );
