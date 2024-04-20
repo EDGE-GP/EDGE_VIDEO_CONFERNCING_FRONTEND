@@ -2,18 +2,29 @@ import Meetings from "../components/Dashboard/Meetings";
 import Schedule from "../components/Dashboard/Schedule";
 import Sidebar from "../components/Dashboard/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
-
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import StageMeeting from "../components/Dashboard/StageMeeting";
 import Stage from "../components/Dashboard/Stage";
 import Conversations from "../components/Dashboard/Conversations";
 import Networking from "../components/Dashboard/Networking";
 import Settings from "../components/Dashboard/Settings";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+
 const Dashboard = () => {
+  const history = useNavigate();
   const location = useLocation();
   const { section } = useParams();
   const params = new URLSearchParams(location.search);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      history("/auth/login");
+    }
+  }, [isLoggedIn]);
   return (
     <div className="w-screen bg-[#F7F7F7] pl-[2rem] h-screen overflow-hidden items-center  flex justify-between ">
       <Sidebar />

@@ -40,16 +40,16 @@ const Settings = () => {
                     <path
                       d="M16.9999 7.00004L6.99994 17"
                       stroke="#212121"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M7.00006 7.00003L17.0001 17"
                       stroke="#212121"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                   <defs>
