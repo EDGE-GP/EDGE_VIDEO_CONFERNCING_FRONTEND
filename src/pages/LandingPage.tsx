@@ -669,7 +669,7 @@ const LandingPage = () => {
                     },
                   },
                 }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5 P  ">
+                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards ">
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <img
                       src={signLanguageIcon}
@@ -703,7 +703,7 @@ const LandingPage = () => {
                     },
                   },
                 }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  ">
+                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards">
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <img
                       src={voiceRecognitionIcon}
@@ -739,7 +739,7 @@ const LandingPage = () => {
                     },
                   },
                 }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full mt-5 mb-5  ">
+                className="col-span-1 row-span-1 flex flex-col h-full w-full mt-5 mb-5  marginCards">
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <img
                       src={robotIcon}
@@ -777,7 +777,7 @@ const LandingPage = () => {
                     },
                   },
                 }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  ">
+                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards">
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <svg
                       className="rotate-90"
