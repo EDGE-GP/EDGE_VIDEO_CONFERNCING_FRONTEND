@@ -8,7 +8,6 @@ import Stage from "../components/Dashboard/Stage";
 import Conversations from "../components/Dashboard/Conversations";
 import Networking from "../components/Dashboard/Networking";
 import Settings from "../components/Dashboard/Settings";
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -24,7 +23,7 @@ const Dashboard = () => {
     if (!isLoggedIn) {
       history("/auth/login");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, history]);
   return (
     <div className="w-screen bg-[#F7F7F7] pl-[2rem] h-screen overflow-hidden items-center  flex justify-between ">
       <Sidebar />

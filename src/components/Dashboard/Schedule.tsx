@@ -5,6 +5,7 @@ import dummyAccount2 from "../../assets/account6.png";
 import dummyAccount3 from "../../assets/account3.png";
 import tempProfileImage from "../../assets/selfPortrait.jpg";
 import Switch from "../utility/Switch";
+import { format } from "date-fns";
 
 const Schedule = () => {
   const [meetingMinutes, setMeetingMinutes] = useState<boolean>(false);
@@ -20,6 +21,12 @@ const Schedule = () => {
     | "#E67C73"
     | "#F4511E"
   >("#7986CB");
+  const [date, setDate] = useState<string>(
+    `${format(new Date(), "yyyy-MM-dd")}T${format(new Date(), "HH:mm")}:00.000Z`
+  );
+  console.log({
+    date,
+  });
   return (
     <div className=" h-full card-shadow px-8 pt-4 pb-2 bg-white ml-[17.5rem] rounded-3xl mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem]">Scehdule </h1>
@@ -214,8 +221,7 @@ const Schedule = () => {
             </div>
           </div>
           <div className="w-1/2">
-            
-            <DatePicker />
+            <DatePicker dateChangeStateHandler={setDate} />
             <div className="flex flex-col">
               <h3 className="abel text-[1.25rem] ">
                 Enable Speech Avatar Display

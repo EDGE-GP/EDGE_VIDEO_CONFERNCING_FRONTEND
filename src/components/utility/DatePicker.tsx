@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // import { Menu, Transition } from "@headlessui/react";
 // import { DotsVerticalIcon } from "@heroicons/react/outline";
@@ -29,14 +29,14 @@ const colStartClasses = [
   "col-start-7",
 ];
 
-const DatePicker: React.FC = () => {
+const DatePicker: React.FC<{
+  dateChangeStateHandler: React.Dispatch<React.SetStateAction<string>>;
+}> = ({ dateChangeStateHandler }) => {
   const today = startOfToday();
-
   const [selectedDay, setSelectedDay] = useState<Date>(today); // Set an initial date
   const [currentMonth, setCurrentMonth] = useState<string>(
     format(today, "MMM-yyyy")
   );
-
   const [selectedTime, setSelectedTime] = useState<string>(
     format(new Date(), "HH:mm")
   );
@@ -45,9 +45,6 @@ const DatePicker: React.FC = () => {
   console.log({
     selectedDay,
     selectedTime,
-  });
-  console.log({
-    time: `${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`,
   });
   const days = eachDayOfInterval({
     start: firstDayCurrentMonth,
@@ -69,6 +66,9 @@ const DatePicker: React.FC = () => {
     setSelectedDay(day);
   };
 
+  useEffect(() => {
+    dateChangeStateHandler(`${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`);
+  }, [selectedDay, selectedTime]);
   return (
     <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>
