@@ -2,14 +2,14 @@
 import header from "../../assets/ambition.svg";
 const Stage = () => {
   return (
-    <div className=" h-full card-shadow  pt-4 bg-white ml-[17.5rem] rounded-3xl  mr-[2rem] ">
+    <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem] ml-auto rounded-3xl  mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Stage</h1>
       <h3 className="abel text-[1rem] px-8">
         Edge Stage: Seamlessly Create or Join Meetings for Instant Collaboration
       </h3>
-      <div className=" relative pb-4 h-[85%] px-8 flex justify-center   items-start">
-        <div className="w-[40rem] mt-3">
-          <h1 className="abel text-[2.5rem] text-center capitalize leading-[3rem]">
+      <div className=" relative pb-4 h-[85%]  flex justify-center   items-start">
+        <div className="md:w-[40rem] w-[22rem] mt-3">
+          <h1 className="abel md:text-[2.5rem] text-[1.8rem] text-center capitalize leading-[3rem]">
             empowering connection, connecting you to the world where every hand
             speaks
           </h1>
@@ -19,10 +19,10 @@ const Stage = () => {
               conferencing capabilities for everyone, on any device.
             </h3>
           </div>
-          <div className="flex justify-center items-center  mt-3">
-            <button className="flex gap-x-2 items-center abel h-[2.375rem] mr-4  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-6">
-              <span>Create Instant Meeting</span>
-              <span>
+          <div className="flex md:justify-center  items-center md:flex-row flex-col   mt-3">
+            <button className="flex gap-x-2 items-center label h-[2.375rem] mr-4 text-[.8rem] transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-6">
+              <span className="flex-shrink-0">Create Instant Meeting</span>
+              <span className="flex-shrink-0">
                 <svg
                   width="20"
                   height="20"
@@ -39,7 +39,7 @@ const Stage = () => {
                 </svg>
               </span>
             </button>
-            <div className="mr-3 flex border-2 px-3 rounded-lg border-[#151515] w-[15rem] h-[2.375rem] items-center">
+            <div className="mr-3 flex flex-row  border-2 px-3 rounded-lg border-[#151515] md:w-[15rem] w-[12.9rem] h-[2.375rem] items-center md:mt-auto mt-3">
               <span>
                 <svg
                   width="20"
@@ -65,14 +65,19 @@ const Stage = () => {
               </span>
               <input
                 type="text"
-                className="outline-none bg-transparent px-2 abel"
+                className="outline-none bg-transparent px-2  text-[.8rem]  abel"
                 placeholder="Enter Meeting Code"
               />
+              <button className="abel md:hidden flex md:text-[1.25rem] text-[1rem] text-[#cbcaca]">
+                Join
+              </button>
             </div>
-            <button className="abel text-[1.25rem] text-[#cbcaca]">Join</button>
+            <button className="abel md:flex hidden md:text-[1.25rem] text-[1rem] text-[#cbcaca]">
+              Join
+            </button>
           </div>
-          <div className="w-[40rem] mt-5 flex justify-center">
-            <img src={header} alt="" className="w-[405px] " />
+          <div className="w-[40rem] mt-16 ml-[-8.5rem] md:mt-[5rem] md:ml-auto flex justify-center">
+            <img src={header} alt="" className="md:w-[405px] w-[300px] " />
           </div>
         </div>
         {/* <div className="pt-[2rem] relative">
