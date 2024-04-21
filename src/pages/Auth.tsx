@@ -9,21 +9,12 @@ import Signup from "../components/Auth/Signup";
 import Login from "../components/Auth/Login";
 import { AuthMethod } from "../types/Auth";
 import ResetPassword from "../components/Auth/ResetPassword";
-import { RootState } from "../store";
-import { useSelector } from "react-redux";
 
 const Auth: React.FC = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-
+  const history = useNavigate();
   const { authParam } = useParams();
   const [authMethod, setAuthMethod] = React.useState<AuthMethod>("login");
 
-  const history = useNavigate();
-  useEffect(() => {
-    if (isLoggedIn) {
-      history("/dashboard/meetings");
-    }
-  }, [isLoggedIn, history]);
   useEffect(() => {
     console.log({ authParam });
     if (authParam === "login") {
