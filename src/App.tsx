@@ -13,51 +13,53 @@ import { preloaderActions } from "./store/preloader/preloaderSlice";
 import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
 import { useNavigate } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useNavigate();
-  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  const { isLoading, isError } = useQuery({
+    queryKey: ["validateUser"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.BACKEND_SERVER}/api/v1/users/validate/`,
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(
+        authActions.setUser({
+          user: res.data.user,
+        })
+      );
+      return res.data;
+    },
+    retry: 1,
+  });
+  console.log({
+    isLoading,
+  });
   useEffect(() => {
-    if (location.pathname.includes("dashboard") && !isLoggedIn) {
+    if (isLoading) {
+      dispatch(preloaderActions.setPreloader(true));
+    } else {
+      setTimeout(() => {
+        dispatch(preloaderActions.setPreloader(false));
+      }, 1500);
+    }
+  }, [isLoading, isError, history, dispatch]);
+  useEffect(() => {
+    if (location.pathname.includes("dashboard") && !isLoggedIn && !isLoading) {
       history("/auth/login");
     }
-    if (isLoggedIn && location.pathname.includes("auth")) {
+    if (isLoggedIn && location.pathname.includes("auth") && !isLoading) {
       history("/dashboard/meetings");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, location, history, dispatch, isLoading]);
 
-  useEffect(() => {
-    const validateUser = async () => {
-      try {
-        dispatch(preloaderActions.setPreloader(true));
-        const res = await axios(
-          `${process.env.BACKEND_SERVER}/api/v1/users/validate/`,
-          {
-            withCredentials: true,
-          }
-        );
-        console.log(res);
-        dispatch(
-          authActions.setUser({
-            user: res.data.user,
-          })
-        );
-        setTimeout(() => {
-          dispatch(preloaderActions.setPreloader(false));
-        }, 1500);
-      } catch (err) {
-        console.log(err);
-        console.log("should redirect now");
-        setTimeout(() => {
-          dispatch(preloaderActions.setPreloader(false));
-        }, 1500);
-      }
-    };
-    validateUser();
-  }, [dispatch]);
   const { preloader } = useSelector((state: RootState) => state.preloader);
   console.log({ preloader });
 
