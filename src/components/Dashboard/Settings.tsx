@@ -3,7 +3,6 @@ import { useState } from "react";
 import Switch from "../utility/Switch";
 
 const Settings = () => {
-  const [meetingReminders, setMeetingReminders] = useState(false);
   const [saveConversationsToggle, setSaveConversationsToggle] = useState(false);
   useState(false);
   const [
