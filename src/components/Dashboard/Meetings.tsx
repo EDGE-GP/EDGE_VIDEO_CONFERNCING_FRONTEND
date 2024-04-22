@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Meetings = () => {
   return (
-    <div className=" h-full card-shadow  pt-4 bg-white ml-[17.5rem] rounded-3xl  mr-[2rem] ">
+     <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem]  rounded-3xl  mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Meetings</h1>
       <h3 className="abel text-[1rem] px-8 capitalize">
         Manage your meetings: View past converstations and Edit scheduled
@@ -289,8 +289,8 @@ const Meetings = () => {
         </div>
         <div className="mt-14 w-full">
           <h1 className="mb-4 abel text-[1.5rem] ">Previous Meetings</h1>
-          <div className="w-full flex flex-wrap gap-x-2 gap-y-2">
-            <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
+          <div className="w-full flex flex-wrap gap-x-2 gap-y-2 md:flex-row flex-col">
+            <div className="md:w-[23.15rem] w-[18.2rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
               <div className="flex items-center gap-x-2">
                 <div className="w-6 h-6 rounded-full bg-[#7986CB]"></div>
                 <h1 className="abel text-[1.375rem] ">
@@ -346,7 +346,7 @@ const Meetings = () => {
               </div>
             </div>
 
-            <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
+            <div className="md:w-[23.15rem] w-[18.2rem]  h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
               <div className="flex items-center gap-x-2">
                 <div className="w-6 h-6 rounded-full bg-[#616161]"></div>
                 <h1 className="abel text-[1.375rem] ">Standup Meeting</h1>
@@ -399,7 +399,7 @@ const Meetings = () => {
                 </button>
               </div>
             </div>
-            <div className="w-[22.65rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
+            <div className="md:w-[23.15rem] w-[20rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
               <div className="flex items-center gap-x-2">
                 <div className="w-6 h-6 rounded-full bg-[#F4511E]"></div>
                 <h1 className="abel text-[1.375rem] ">
