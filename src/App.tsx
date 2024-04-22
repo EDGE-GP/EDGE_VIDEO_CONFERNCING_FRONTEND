@@ -19,8 +19,9 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useNavigate();
-
+  const { preloader } = useSelector((state: RootState) => state.preloader);
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  
   const { isLoading, isError } = useQuery({
     queryKey: ["validateUser"],
     queryFn: async () => {
@@ -37,11 +38,8 @@ function App() {
       );
       return res.data;
     },
-    retry: 1,
   });
-  console.log({
-    isLoading,
-  });
+
   useEffect(() => {
     if (isLoading) {
       dispatch(preloaderActions.setPreloader(true));
@@ -60,7 +58,6 @@ function App() {
     }
   }, [isLoggedIn, location, history, dispatch, isLoading]);
 
-  const { preloader } = useSelector((state: RootState) => state.preloader);
   console.log({ preloader });
 
   return (
