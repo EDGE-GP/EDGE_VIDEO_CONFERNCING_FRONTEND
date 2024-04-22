@@ -64,20 +64,31 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
             Reviews
           </button>
         </div>
-        <div className="hidden md:flex flex justify-between items-center gap-x-4">
-          <Link
-            to="/auth/login"
-            className="abel hover:text-gray-300 card-shadow transition-all "
-          >
-            Login
-          </Link>
-          <Link
-            to="/auth/signup"
-            className="abel hover:text-gray-300 card-shadow transition-all "
-          >
-            Sign up
-          </Link>
-        </div>
+        {!isLoggedIn ? (
+          <div className="hidden md:flex flex justify-between items-center gap-x-4">
+            <Link
+              to="/auth/login"
+              className="abel hover:text-gray-300 card-shadow transition-all "
+            >
+              Login
+            </Link>
+            <Link
+              to="/auth/signup"
+              className="abel hover:text-gray-300 card-shadow transition-all "
+            >
+              Sign up
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden md:flex flex justify-between items-center gap-x-4">
+            <Link
+              to="/dashboard/meetings"
+              className="abel hover:text-gray-300 card-shadow transition-all capitalize "
+            >
+              Dashboard
+            </Link>
+          </div>
+        )}
 
         {/* Mobile Toggle Button */}
         <button
