@@ -53,10 +53,7 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
         <div className=" h-full flex items-center ">
           <img src={edgeLogo} className="w-[4rem]" alt="" />
         </div>
-        <div className=" hidden md:flex  justify-between items-center gap-x-8">
-          {/* <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
-            Main
-          </button> */}
+        <div className=" hidden md:flex justify-between items-center gap-x-8  ">
           <button className="abel hover:text-gray-300 card-shadow transition-all capitalize ">
             features
           </button>
@@ -67,7 +64,7 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
             Reviews
           </button>
         </div>
-        <div className="hidden md:flex  justify-between items-center gap-x-4">
+        <div className="hidden md:flex flex justify-between items-center gap-x-4">
           <Link
             to="/auth/login"
             className="abel hover:text-gray-300 card-shadow transition-all "
@@ -159,32 +156,25 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
             >
               Reviews
             </Link>
-          </motion.div>
-        )}
-        {!isLoggedIn ? (
-          <div className="flex justify-between items-center gap-x-4">
+            <Link
+              to="/dashboard"
+              className="abel hover:text-gray-300 card-shadow transition-all capitalize "
+            >
+              Dashboard
+            </Link>
             <Link
               to="/auth/login"
-              className="abel hover:text-gray-300 card-shadow transition-all "
+              className="abel hover:text-gray-300 card-shadow transition-all capitalize "
             >
               Login
             </Link>
             <Link
               to="/auth/signup"
-              className="abel hover:text-gray-300 card-shadow transition-all "
-            >
-              Sign up
-            </Link>
-          </div>
-        ) : (
-          <div className="flex justify-between items-center gap-x-4">
-            <Link
-              to={"/dashboard/meetings"}
               className="abel hover:text-gray-300 card-shadow transition-all capitalize "
             >
-              Dashboard
+              signup
             </Link>
-          </div>
+          </motion.div>
         )}
       </motion.div>
     </motion.div>

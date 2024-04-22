@@ -637,23 +637,24 @@ const LandingPage = () => {
             </h3> */}
               <div className="grid md:grid-cols-2 md:grid-rows-2 gap-y-[rem] gap-x-8  w-full mt-8">
                 <motion.div
-                initial="initial"
-                viewport={{ once: true }}
-                whileInView="animate"
-                variants={{
-                  initial: {
-                    opacity: 0,
-                    y: 50,
-                  },
-                  animate: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.5,
+                  initial="initial"
+                  viewport={{ once: true }}
+                  whileInView="animate"
+                  variants={{
+                    initial: {
+                      opacity: 0,
+                      y: 50,
                     },
-                  },
-                }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards ">
+                    animate: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                      },
+                    },
+                  }}
+                  className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards "
+                >
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <img
                       src={signLanguageIcon}
@@ -674,23 +675,24 @@ const LandingPage = () => {
                   </div>
                 </motion.div>
                 <motion.div
-                initial="initial"
-                viewport={{ once: true }}
-                whileInView="animate"
-                variants={{
-                  initial: {
-                    opacity: 0,
-                    y: 50,
-                  },
-                  animate: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.5,
+                  initial="initial"
+                  viewport={{ once: true }}
+                  whileInView="animate"
+                  variants={{
+                    initial: {
+                      opacity: 0,
+                      y: 50,
                     },
-                  },
-                }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards">
+                    animate: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                      },
+                    },
+                  }}
+                  className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards"
+                >
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <img
                       src={voiceRecognitionIcon}
@@ -710,23 +712,24 @@ const LandingPage = () => {
                   </div>
                 </motion.div>
                 <motion.div
-                initial="initial"
-                viewport={{ once: true }}
-                whileInView="animate"
-                variants={{
-                  initial: {
-                    opacity: 0,
-                    y: 50,
-                  },
-                  animate: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.5,
+                  initial="initial"
+                  viewport={{ once: true }}
+                  whileInView="animate"
+                  variants={{
+                    initial: {
+                      opacity: 0,
+                      y: 50,
                     },
-                  },
-                }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full mt-5 mb-5  marginCards">
+                    animate: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                      },
+                    },
+                  }}
+                  className="col-span-1 row-span-1 flex flex-col h-full w-full mt-5 mb-5  marginCards"
+                >
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <img
                       src={robotIcon}
@@ -747,24 +750,25 @@ const LandingPage = () => {
                   </div>
                 </motion.div>
 
-                <motion.div 
-                initial="initial"
-                viewport={{ once: true }}
-                whileInView="animate"
-                variants={{
-                  initial: {
-                    opacity: 0,
-                    y: 50,
-                  },
-                  animate: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.5,
+                <motion.div
+                  initial="initial"
+                  viewport={{ once: true }}
+                  whileInView="animate"
+                  variants={{
+                    initial: {
+                      opacity: 0,
+                      y: 50,
                     },
-                  },
-                }}
-                className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards">
+                    animate: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                      },
+                    },
+                  }}
+                  className="col-span-1 row-span-1 flex flex-col h-full w-full  mt-5 mb-5  marginCards"
+                >
                   <div className=" flex items-center justify-start gap-x-2 w-full ">
                     <svg
                       className="rotate-90"
