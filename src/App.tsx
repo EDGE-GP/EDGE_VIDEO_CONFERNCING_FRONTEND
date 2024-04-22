@@ -14,6 +14,7 @@ import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
+import Template from "./pages/Template";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
   const history = useNavigate();
   const { preloader } = useSelector((state: RootState) => state.preloader);
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
-  
+
   const { isLoading, isError } = useQuery({
     queryKey: ["validateUser"],
     queryFn: async () => {
@@ -66,6 +67,7 @@ function App() {
       <Preloader />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/Template" element={<Template />}></Route>
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/:section" element={<Dashboard />} />

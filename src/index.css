@@ -203,3 +203,49 @@
 input[type="time"]::-webkit-calendar-picker-indicator {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  .roundedbox{
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-width: 2px;
+}
+.noborder{
+  border: none;
+}
+.marginCards{
+  margin: 1rem;
+}
+
+.sidebar-transform {
+   transition: transform 0.4s ease-out;
+   transform-origin: top left;
+   transform: translateX(-150%);
+   -webkit-transform: translateX(-150%);
+   -moz-transform: translateX(-150%);
+   -ms-transform: translateX(-150%);
+   -o-transform: translateX(-150%);
+   -webkit-transition: transform 0.4s ease-out;
+   -moz-transition: transform 0.4s ease-out;
+   -ms-transition: transform 0.4s ease-out;
+   -o-transition: transform 0.4s ease-out;
+}
+.sidebar-show{
+  sidebar-transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -o-transform: translateX(0%);
+  transition: transform 0.3s ease-in;
+  transform-origin: top left;
+  -webkit-transition: transform 0.3s ease-in;
+  -moz-transition: transform 0.3s ease-in;
+  -ms-transition: transform 0.3s ease-in;
+  -o-transition: transform 0.3s ease-in;
+}
+
+  
+}
