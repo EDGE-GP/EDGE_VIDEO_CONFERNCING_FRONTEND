@@ -65,7 +65,7 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
           </button>
         </div>
         {!isLoggedIn ? (
-          <div className="hidden md:flex flex justify-between items-center gap-x-4">
+          <div className="hidden md:flex  justify-between items-center gap-x-4">
             <Link
               to="/auth/login"
               className="abel hover:text-gray-300 card-shadow transition-all "
@@ -80,7 +80,7 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
             </Link>
           </div>
         ) : (
-          <div className="hidden md:flex flex justify-between items-center gap-x-4">
+          <div className="hidden md:flex  justify-between items-center gap-x-4">
             <Link
               to="/dashboard/meetings"
               className="abel hover:text-gray-300 card-shadow transition-all capitalize "

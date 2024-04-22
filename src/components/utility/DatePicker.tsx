@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-// import { Menu, Transition } from "@headlessui/react";
-// import { DotsVerticalIcon } from "@heroicons/react/outline";
-// import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import {
   add,
   eachDayOfInterval,
@@ -68,7 +64,7 @@ const DatePicker: React.FC<{
 
   useEffect(() => {
     dateChangeStateHandler(`${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`);
-  }, [selectedDay, selectedTime]);
+  }, [selectedDay, selectedTime, dateChangeStateHandler]);
   return (
     <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>
