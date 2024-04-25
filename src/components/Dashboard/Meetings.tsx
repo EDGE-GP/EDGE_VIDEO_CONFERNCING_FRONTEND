@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 const Meetings = () => {
   return (
      <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem]  rounded-3xl  mr-[2rem] ">
-      <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Meetings</h1>
+      <h1 className="abel text-[3rem] leading-[3.5rem] px-8 mt-4 md:mt-auto ">Meetings</h1>
       <h3 className="abel text-[1rem] px-8 capitalize">
         Manage your meetings: View past converstations and Edit scheduled
         Meetings
       </h3>
       <div className="h-[85%] rounded-3xl  pb-4 mt-3 overflow-y-scroll px-8">
-        <div className=" w-full">
+        <div className=" w-full ">
           <h1 className="mb-4 abel text-[1.5rem] ">Upcoming Meetings</h1>
           <div className="w-full flex flex-wrap gap-x-2 gap-y-2">
             <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
@@ -247,7 +247,7 @@ const Meetings = () => {
                 </button>
               </div>
             </div>
-            <div className="w-[22.65rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-between py-3 items-start">
+            <div className="w-[22.65rem] h-[11.5rem] md:mt-auto mt-5  md:mb-auto mb-5 card-shadow-2  rounded-2xl px-4 flex flex-col justify-between py-3 items-start">
               <div>
                 <div className="flex items-center gap-x-2">
                   <h1 className="abel text-[1.375rem] ">
@@ -259,7 +259,7 @@ const Meetings = () => {
                 </h1>
               </div>
 
-              <div className="mt-1 w-full flex justify-end items-center">
+              <div className="w-full mt-1 flex justify-end items-center">
                 <Link
                   to="/dashboard/schedule"
                   className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6"
@@ -290,7 +290,7 @@ const Meetings = () => {
         <div className="mt-14 w-full">
           <h1 className="mb-4 abel text-[1.5rem] ">Previous Meetings</h1>
           <div className="w-full flex flex-wrap gap-x-2 gap-y-2 md:flex-row flex-col">
-            <div className="md:w-[23.15rem] w-[18.2rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
+            <div className="md:w-[23.15rem] w-[18rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
               <div className="flex items-center gap-x-2">
                 <div className="w-6 h-6 rounded-full bg-[#7986CB]"></div>
                 <h1 className="abel text-[1.375rem] ">
@@ -346,7 +346,7 @@ const Meetings = () => {
               </div>
             </div>
 
-            <div className="md:w-[23.15rem] w-[18.2rem]  h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
+            <div className="md:w-[23.15rem] w-[18rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
               <div className="flex items-center gap-x-2">
                 <div className="w-6 h-6 rounded-full bg-[#616161]"></div>
                 <h1 className="abel text-[1.375rem] ">Standup Meeting</h1>
@@ -399,7 +399,7 @@ const Meetings = () => {
                 </button>
               </div>
             </div>
-            <div className="md:w-[23.15rem] w-[20rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
+            <div className="md:w-[23.15rem] w-[18rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-center items-start">
               <div className="flex items-center gap-x-2">
                 <div className="w-6 h-6 rounded-full bg-[#F4511E]"></div>
                 <h1 className="abel text-[1.375rem] ">

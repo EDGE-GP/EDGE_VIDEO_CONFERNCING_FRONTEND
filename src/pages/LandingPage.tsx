@@ -30,9 +30,9 @@ const LandingPage = () => {
       <Navbar intersected={!isInView} />
       <div
         ref={rootElement}
-        className="md:pt-[4rem] pt-[8rem]  flex container flex-col md:flex-row  md:px-24 px-4 bg-white    justify-between background-pattern  border-[#212121] relative w-screen h-screen  items-center"
+        className="md:pt-[4rem] pt-[1rem]  flex container flex-col md:flex-row  md:px-24 px-4 bg-white    justify-between background-pattern  border-[#212121] relative w-screen h-screen  items-center"
       >
-        <div className="flex flex-col md:w-1/2  w-full h-full justify-center items-center md:items-start  pt-12 md:text-start text-center ">
+        <div className="flex flex-col md:w-1/2  w-full h-full justify-center items-center md:items-start  md:pt-12 pt-2 md:text-start text-center ">
           <h1 className="text-[2rem] md:text-[4rem] abel leading-[5.8rem]] md:w-auto h-[2rem] md:h-[5.8rem] ">
             <Typewriter
               words={["Uniting The World", "Where Every Hand Speaks"]}
@@ -44,10 +44,10 @@ const LandingPage = () => {
               deleteSpeed={40}
             />
           </h1>
-          <h1 className="text-[2rem] md:text-[4rem] abel md:leading-[5.8rem] leading-[3.3rem] pt-2">
+          <h1 className="text-[2rem] md:text-[4rem] abel md:leading-[5.8rem] leading-[3.3rem] pt-2 md:mb-auto mb-[4rem]">
             Empowering Connections Amplifying Voices
           </h1>
-          <div className="w-full flex justify-start md:gap-x-6 gap-x-4 md:mt-4 mt-8">
+          <div className="w-full flex justify-start md:gap-x-6 gap-x-4 md:mt-4 ">
             <button
               onClick={() => {
                 history("/dashboard");
@@ -67,6 +67,7 @@ const LandingPage = () => {
                 height={12}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="#000000"
+                className="md:block hidden"
               >
                 <g id="SVGRepo_iconCarrier">
                   <g
@@ -97,7 +98,7 @@ const LandingPage = () => {
             </button>
             <a
               href="#"
-              className="abel flex gap-x-2 text-[#212121] underline-offset-[6px] font-semibold h-[2.5rem]  items-center"
+              className="abel flex gap-x-2 text-[#212121] underline-offset-[6px] font-semibold h-[2.5rem]  items-center "
             >
               <svg
                 fill="#000000"
@@ -107,6 +108,7 @@ const LandingPage = () => {
                 id="Layer_1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
+                className=""
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g
@@ -133,7 +135,9 @@ const LandingPage = () => {
             </p>
           </div>
         </div>
-        <motion.div className="md:w-1/2 w-3/4 mt-2 flex pl-2 h-full relative justify-center items-center  ">
+        <motion.div
+        
+        className="md:w-1/2 w-3/4 mt-2 md:flex pl-2 h-full relative justify-center items-center hidden  ">
           <span className="bottom-[3rem] rotate-180 right-[6.8rem] absolute">
             <svg
               width="60"
@@ -141,6 +145,7 @@ const LandingPage = () => {
               viewBox="0 0 75 76"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="md:block hidden"
             >
               <path
                 fillRule="evenodd"
@@ -240,7 +245,7 @@ const LandingPage = () => {
               />
             </svg>
           </span>
-          <img src={background} className="h-full w-full" alt="" />
+          <img src={background} className="h-full w-full md:block hidden" alt="" />
         </motion.div>
       </div>
       <motion.div
@@ -260,7 +265,7 @@ const LandingPage = () => {
             },
           },
         }}
-        className="md:px-24 px-4 pt-[3rem]  border-[#212121] relative w-screen  justify-between "
+        className="md:px-24 px-4 pt-[3rem]   relative w-screen  justify-between "
       >
         <h1 className="md:text-[3rem] text-[2rem] abel md:max-w-[60%] w-full md:leading-[4rem]">
           Building Bridges Aiming to Advance Community Communication
@@ -268,24 +273,23 @@ const LandingPage = () => {
         <div className="flex w-full md:flex-row flex-col-reverse justify-between gap-x- mt-8 items-center">
           <motion.div
             initial="initial"
-            viewport={{ once: true }}
-            whileInView="animate"
-            variants={{
-              initial: {
-                opacity: 0,
-                y: 50,
-              },
-              animate: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.5,
-                },
-              },
-            }}
-            className="relative  md:w-[40%] w-[90%] mt-6"
-          >
-            <span className="bottom-3 rotate-180 right-0 absolute">
+        viewport={{ once: true }}
+        whileInView="animate"
+        variants={{
+          initial: {
+            opacity: 0,
+            y: 50,
+          },
+          animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.5,
+            },
+          },
+        }}
+          className="relative  md:w-[40%] w-[90%] mt-6  md:mb-auto mb-8">
+            <span className="bottom-3 rotate-180 right-0 absolute md:block hidden">
               <svg
                 width="60"
                 height="60"
@@ -420,23 +424,23 @@ const LandingPage = () => {
               />
             </motion.div>
             <motion.div
-              initial="initial"
-              viewport={{ once: true }}
-              whileInView="animate"
-              variants={{
-                initial: {
-                  opacity: 0,
-                  y: 50,
-                },
-                animate: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                  },
-                },
-              }}
-              className={`md:px-4 md:py-5 px-5 py-6 m-2 md:m-0 col-span-1 row-span-1 border-[#212121] bg-[#212121] text-white bg-[#] md:border-t-2 md:border-l-2 md:rounded-tl-[20px]  roundedbox  h-[12rem] md:h-auto  flex flex-col`}
+                      initial="initial"
+                      viewport={{ once: true }}
+                      whileInView="animate"
+                      variants={{
+                        initial: {
+                          opacity: 0,
+                          y: 50,
+                        },
+                        animate: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.5,
+                          },
+                        },
+                      }}
+              className={`md:px-4 md:py-5 px-6 py-6 m-2 md:m-0 col-span-1 row-span-1 border-[#212121] bg-[#212121] text-white bg-[#] md:border-t-2 md:border-l-2 md:rounded-tl-[20px]  roundedbox  h-[12rem] md:h-auto  flex flex-col`}
             >
               <h1 className="text-xl abel font-semibold">
                 Clear Communication Channels
@@ -951,25 +955,25 @@ const LandingPage = () => {
         {/*  */}
 
         <div className="w-full md:px-24 px-4">
-          <div className="gap-x-20 flex justify-between items-start  w-full md:flex-row flex-col ">
-            <motion.div
-              className="relative w-full "
-              initial="initial"
-              viewport={{ once: true }}
-              whileInView="animate"
-              variants={{
-                initial: {
-                  opacity: 0,
-                  y: 50,
+          <div className="gap-x-20 flex justify-between items-start  w-full md:flex-row flex-col md:m-auto mt-[6rem] ">
+            <motion.div className="relative w-full "
+            
+            initial="initial"
+            viewport={{ once: true }}
+            whileInView="animate"
+            variants={{
+              initial: {
+                opacity: 0,
+                y: 50,
+              },
+              animate: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.5,
                 },
-                animate: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                  },
-                },
-              }}
+              },
+            }}
             >
               <h1 className="text-[3rem] md:text-[4rem]  abel max-w-[80%] leading-[5.5rem]">
                 User Feedback
@@ -1006,6 +1010,7 @@ const LandingPage = () => {
                       viewBox="0 0 75 76"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="md:block hidden"
                     >
                       <path
                         fillRule="evenodd"
@@ -1105,7 +1110,7 @@ const LandingPage = () => {
                       />
                     </svg>
                   </span>
-                  <img src={csort} className="w-full" alt="" />
+                  <img src={csort} className="w-full md:mt-auto mt-10" alt="" />
                 </div>
                 <div className="md:w-[45rem] md:h-[28rem] grid md:grid-cols-3 grid-rows-2 grid-cols-1">
                   <motion.div
@@ -1491,7 +1496,7 @@ const LandingPage = () => {
                       <h1 className="abel font-semibold text-[4rem] leading-[4rem]">
                         +181
                       </h1>
-                      <div className="w-full flex justify-center pl-8">
+                      <div className="w-full flex justify-center pl-8 mb-8">
                         <h1 className="abel font-semibold text-[2rem] ">
                           Reviews
                         </h1>
