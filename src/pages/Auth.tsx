@@ -10,8 +10,6 @@ import Login from "../components/Auth/Login";
 import { AuthMethod } from "../types/Auth";
 import ResetPassword from "../components/Auth/ResetPassword";
 
-import { Link } from "react-router-dom";
-
 const Auth: React.FC = () => {
   const history = useNavigate();
   const { authParam } = useParams();
@@ -35,10 +33,10 @@ const Auth: React.FC = () => {
 
   return (
     <>
-      <div className=" lg:flex h-screen w-full justify-center items-center overflow-y-hidden   Abel">
-        <div className="mx-auto rounded-lg lg:max-w-[980px] xl:max-w-[1024px] flex flex-col md:flex-row justify-center items-center card-shadow">
-          <div className="min-w-[50%]  max-w-[50%] bg-[#0E0B0E] h-[40rem] rounded-l-lg relative md:flex hidden flex-col items-center justify-between z-10 ">
-            <div className="w-full md:block hidden h-[40rem] absolute rounded-l-lg  z-1  grayscale opacity-[0.3] ">
+      <div className="hidden lg:flex h-screen w-full justify-center items-center overflow-y-hidden  Abel">
+        <div className="mx-auto rounded-lg lg:max-w-[980px] xl:max-w-[1024px] flex justify-center items-center card-shadow">
+          <div className="min-w-[50%] max-w-[50%] bg-[#0E0B0E] h-[40rem] rounded-l-lg relative flex flex-col items-center justify-between z-10 ">
+            <div className="w-full h-[40rem] absolute rounded-l-lg  z-1  grayscale opacity-[0.3] ">
               <img
                 src={loginPattern}
                 alt=""
@@ -106,41 +104,12 @@ const Auth: React.FC = () => {
               </div>
             </div>
 
-          
-
             <h3 className="w-[64%] absolute bottom-[8%] text-[13px] capitalize left-1/2 translate-x-[-50%] opacity-100 text-white text-center tracking-wider">
               Join Edge for effortless communication with intuitive two way sign
               language support and seamless video calls
             </h3>
           </div>
-          <div className="md:hidden flex justify-around w-[80%] mt-[6rem]">
-            <button
-             onClick={() => {
-              history("/auth/signup");
-            }}
-              className={`mb-8 text-4xl  text-center abel ${
-                authMethod === "signup"
-                  ? "border-b-2 border-black text-black"
-                  : "text-black/60 hover:text-black"
-              } py-2 cursor-pointer`}
-            >
-              Sign up
-            </button> 
-             <button
-            onClick={() => {
-              history("/auth/login");
-            }}
-              className={`mb-8 text-4xl text-center abel ${
-                authMethod === "login"
-                  ? "border-b-2 border-black text-black"
-                  : "text-black/60 hover:text-black"
-              } py-2 cursor-pointer`}
-            >
-              Login
-            </button> 
-          </div>
-          <AnimatePresence mode="wait" >
-        
+          <AnimatePresence mode="wait">
             {authMethod === "login" && (
               <motion.div
                 key="login"
@@ -148,7 +117,7 @@ const Auth: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="md:w-[50%] lg:px-[4.25rem] xl:px-[4.5rem] bg-white md:h-[40rem] transition duration-[.2] h-[33rem] rounded-r-lg "
+                className="w-[50%] lg:px-[4.25rem] xl:px-[4.5rem] bg-white h-[40rem] rounded-r-lg "
               >
                 <Login />
               </motion.div>
@@ -161,7 +130,7 @@ const Auth: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="md:w-[50%] w-[80%]  lg:px-[4.25rem] xl:px-[4.5rem]  transition duration-[.2]  bg-white md:h-[40rem] h-[45rrem] rounded-r-lg"
+                className="w-[50%] lg:px-[4.25rem] xl:px-[4.5rem] bg-white h-[40rem] rounded-r-lg "
               >
                 <Signup />
               </motion.div>
@@ -173,7 +142,7 @@ const Auth: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="md:w-[50%] w-[80%]  lg:px-[4.25rem] xl:px-[4.5rem] bg-white h-[40rem] rounded-r-lg "
+                className="w-[50%] lg:px-[4.25rem] xl:px-[4.5rem] bg-white h-[40rem] rounded-r-lg "
               >
                 <ForgotPassword />
               </motion.div>
