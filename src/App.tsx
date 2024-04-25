@@ -14,8 +14,10 @@ import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
+
 import Template from "./pages/Template";
 import MinAuthDummy from "./components/Auth/MinAuthDummy";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -68,7 +70,6 @@ function App() {
       <Preloader />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/Template" element={<Template />}></Route>
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/:section" element={<Dashboard />} />
