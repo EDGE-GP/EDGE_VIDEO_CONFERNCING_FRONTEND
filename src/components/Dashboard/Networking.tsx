@@ -3,110 +3,21 @@ import tempProfileImage from "../../assets/selfPortrait.jpg";
 import dummyAccount1 from "../../assets/account4.png";
 import dummyAccount2 from "../../assets/account6.png";
 import dummyAccount3 from "../../assets/account3.png";
-import { useState } from "react";
-import DropDownAddFriend from "./DropDownAddFriend";
-import DropDownNotifications from "./DropDownNotifactions";
 
 const Networking = () => {
-  const [friendDropdownOpen, setFriendDropdownOpen] = useState(false);
-  const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false);
-
-  const toggleFriendDropdown = () => {
-      setFriendDropdownOpen(!friendDropdownOpen);
-      if (notificationDropdownOpen) {
-          setNotificationDropdownOpen(false);
-      }
-  };
-
-  const toggleNotificationDropdown = () => {
-      setNotificationDropdownOpen(!notificationDropdownOpen);
-      if (friendDropdownOpen) {
-          setFriendDropdownOpen(false);
-      }
-  };
-
-
-
   return (
-    <div className=" h-full md:grid md:grid-cols-6 md:grid-rows-2 md:ml-[17.5rem] md:gap-y-4 md:gap-x-4 rounded-2xl  mr-[2rem] flex flex-col ">
+    <div className=" h-full grid grid-cols-6 grid-rows-2 ml-[17.5rem] gap-y-4 gap-x-4 rounded-2xl  mr-[2rem] ">
       {/* meeting header */}
-   
-      <div className=" rounded-2xl w-full md:mb-auto  col-span-4 h-full bg-white card-shadow px-4 pt-[.35rem] ">
-      <div className="md:hidden flex flex-row justify-end mt-7 space-x-4 sm:hidden">
-    <DropDownAddFriend isOpen={friendDropdownOpen} toggleDropdown={toggleFriendDropdown} />
-    <DropDownNotifications isOpen={notificationDropdownOpen} toggleDropdown={toggleNotificationDropdown} />
-</div>
-        <h3 className="abel text-[1.3rem] mb-2 mt-3">Meeting Invitations</h3>
-        <div className="flex flex-col gap-y-2 md:h-[17.5em] w- overflow-y-scroll px-2">
+      <div className=" rounded-2xl w-full col-span-4 h-full bg-white card-shadow px-4 pt-3 ">
+        <h3 className="abel text-[1.3rem] mb-2">Meeting Invitations</h3>
+        <div className="flex flex-col gap-y-2 h-[17.5em] overflow-y-scroll px-2">
           <div className="flex justify-between items-center bg-[#F7F7F7] rounded-2xl px-4 py-3">
             <div className="flex flex-col gap-y-">
-              <div className="flex gap-x-2 items-center m-2">
+              <div className="flex gap-x-2 items-center">
                 <div className="w-6 h-6 rounded-full bg-[#616161] "></div>
-                <div className="flex gap-x- md:flex-row md:item-center flex-col items-start">
+                <div className="flex gap-x- items-center">
                   <h3 className="abel  text-lg">Standup Meeting</h3>
-                  <span className="mx-1 text-lg md:block hidden abel">-</span>
-                   <h1 className="abel text-lg md:bolck">
-                    Thursday, 11<sub className="align-super">th</sub> April 2024
-                  </h1>
-                </div>
-                
-              </div>
-
-             
-              <h1 className="abel text-[1rem] ">HIAK-WUIA-MKLN</h1>
-              <div className="flex flex-wrap ml-">
-                <img
-                  className="w-[2rem] object-cover h-[2rem] rounded-full"
-                  src={tempProfileImage}
-                  alt=""
-                />
-                <img
-                  className="w-[2rem] object-cover  h-[2rem] translate-x-[-1rem] rounded-full"
-                  src={dummyAccount1}
-                  alt=""
-                />
-                <img
-                  className="w-[2rem] object-cover h-[2rem] translate-x-[-2rem] rounded-full"
-                  src={dummyAccount2}
-                  alt=""
-                />
-                <img
-                  className="w-[2rem] object-cover h-[2rem] translate-x-[-3rem] rounded-full"
-                  src={dummyAccount3}
-                  alt=""
-                />
-              </div>
-
-              <h1 className="abel text-md md:w-auto w-[18rem] text-[#a3a3a3]">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Repudiandae, ipsum.
-              </h1>
-              <div className="md:hidden flex items-end ml-[9.5rem] mt-2 gap-x-3 h-full ">
-              <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
-              </button>
-              <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
-                Accept
-              </button>
-            </div>
-            </div>
-            <div className="md:flex hidden items-end gap-x-3 h-full ">
-              <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
-              </button>
-              <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
-                Accept
-              </button>
-            </div>
-            
-          </div>
-          <div className="flex justify-between mt-3 mb-3 md:mt-auto md:mb-auto items-center bg-[#F7F7F7] rounded-2xl px-4 py-3">
-            <div className="flex flex-col gap-y-">
-              <div className="flex gap-x-2  items-center">
-                <div className="w-6 h-6 rounded-full bg-[#616161] "></div>
-                <div className="flex gap-x- md:items-center md:flex-row flex-col ">
-                  <h3 className="abel  text-lg">Standup Meeting</h3>
-                  <span className="mx-1 text-lg abel md:block hidden">-</span>
+                  <span className="mx-1 text-lg abel">-</span>
                   <h1 className="abel text-lg">
                     Thursday, 11<sub className="align-super">th</sub> April 2024
                   </h1>
@@ -135,11 +46,13 @@ const Networking = () => {
                   alt=""
                 />
               </div>
-              <h1 className="abel text-md md:w-auto w-[18rem] text-[#a3a3a3]">
+
+              <h1 className="abel text-md text-[#a3a3a3]">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Repudiandae, ipsum.
               </h1>
-              <div className="md:hidden flex ml-[9.5rem] mt-2 items-end gap-x-3 h-full ">
+            </div>
+            <div className="flex items-end gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
                 Delete
               </button>
@@ -147,8 +60,48 @@ const Networking = () => {
                 Accept
               </button>
             </div>
+          </div>
+          <div className="flex justify-between items-center bg-[#F7F7F7] rounded-2xl px-4 py-3">
+            <div className="flex flex-col gap-y-">
+              <div className="flex gap-x-2 items-center">
+                <div className="w-6 h-6 rounded-full bg-[#616161] "></div>
+                <div className="flex gap-x- items-center">
+                  <h3 className="abel  text-lg">Standup Meeting</h3>
+                  <span className="mx-1 text-lg abel">-</span>
+                  <h1 className="abel text-lg">
+                    Thursday, 11<sub className="align-super">th</sub> April 2024
+                  </h1>
+                </div>
+              </div>
+              <h1 className="abel text-[1rem] ">HIAK-WUIA-MKLN</h1>
+              <div className="flex flex-wrap ml-">
+                <img
+                  className="w-[2rem] object-cover h-[2rem] rounded-full"
+                  src={tempProfileImage}
+                  alt=""
+                />
+                <img
+                  className="w-[2rem] object-cover  h-[2rem] translate-x-[-1rem] rounded-full"
+                  src={dummyAccount1}
+                  alt=""
+                />
+                <img
+                  className="w-[2rem] object-cover h-[2rem] translate-x-[-2rem] rounded-full"
+                  src={dummyAccount2}
+                  alt=""
+                />
+                <img
+                  className="w-[2rem] object-cover h-[2rem] translate-x-[-3rem] rounded-full"
+                  src={dummyAccount3}
+                  alt=""
+                />
+              </div>
+              <h1 className="abel text-md text-[#a3a3a3]">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Repudiandae, ipsum.
+              </h1>
             </div>
-            <div className="md:flex hidden items-end gap-x-3 h-full ">
+            <div className="flex items-end gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
                 Delete
               </button>
@@ -159,8 +112,7 @@ const Networking = () => {
           </div>
         </div>
       </div>
-
-      <div className="w-full md:block hidden col-span-2 mt-3 mb-3 md:mt-auto md:mb-auto row-span-2 h-full px-4 py-3 rounded-2xl card-shadow bg-white">
+      <div className="w-full col-span-2 row-span-2 h-full px-4 py-3 rounded-2xl card-shadow bg-white">
         <h3 className="abel text-[1.3rem] mb-2">Notifications</h3>
         <div className="flex flex-col gap-y-2 h-[94.5%] overflow-y-scroll">
           <div className="flex flex-col   justify-between w-full px-3 py-3 rounded-2xl bg-[#F7F7F7]">
@@ -291,16 +243,16 @@ const Networking = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-2 w-full px-4 pt-3 rounded-2xl mt-5 h-full bg-white card-shadow">
+      <div className="col-span-2 w-full px-4 pt-3 rounded-2xl h-full bg-white card-shadow">
         <h3 className="abel text-[1.3rem] mb-">Friends</h3>
-        <div className="md:h-[2.5rem]  placeholder:capitalize mb-2  w-full flex overflow-y-scroll bg-[#F8F8FA] rounded-lg">
+        <div className="h-[2.5rem] placeholder:capitalize mb-2  w-full flex bg-[#F8F8FA] rounded-lg">
           <input
             type="text"
             className="w-full  roudned-full abel px-3 outline-none text-[14px] bg-transparent"
             placeholder="Search for friends and users to add"
           />
         </div>
-        <div className="flex flex-col px-2 gap-y-2 md:h-[15rem] h-[18vh] overflow-y-scroll">
+        <div className="flex flex-col px-2 gap-y-2 h-[15rem] overflow-y-scroll">
           <div className="flex justify-between ">
             <div className="flex justify-start items-center gap-x-2">
               <img
@@ -432,7 +384,7 @@ const Networking = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-2 w-full px-4 pt-3 md:block hidden rounded-2xl h-full bg-white card-shadow">
+      <div className="col-span-2 w-full px-4 pt-3 rounded-2xl h-full bg-white card-shadow">
         <h3 className="abel text-[1.3rem] mb-2">Friend Requests</h3>
         <div className="flex flex-col px-2 gap-y-2 h-[17.5em] overflow-y-scroll">
           <div className="flex justify-between ">
@@ -497,7 +449,6 @@ const Networking = () => {
         </div> */}
     </div>
   );
-  
 };
 
 export default Networking;

@@ -15,10 +15,6 @@ import { authActions } from "./store/auth/authSlice";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
-import Template from "./pages/Template";
-import MinAuthDummy from "./components/Auth/MinAuthDummy";
-
-
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -77,8 +73,6 @@ function App() {
           path="/dashboard/"
           element={<Navigate to="/dashboard/meetings" replace />}
         />
-  
-
       </Routes>
     </>
   );

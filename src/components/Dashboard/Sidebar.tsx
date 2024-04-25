@@ -5,20 +5,9 @@ import { useDispatch } from "react-redux";
 import { preloaderActions } from "../../store/preloader/preloaderSlice";
 import axios from "axios";
 import { authActions } from "../../store/auth/authSlice";
-
-
-import { AnimatePresence } from "framer-motion";
-
-
-interface SidebarProps {
-  sideVisibality: boolean;
-}
-const Sidebar:React.FC<SidebarProps> = ({sideVisibality }) => {
-
 import { AnimatePresence } from "framer-motion";
 
 const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
-
   const dispatch = useDispatch();
   const history = useNavigate();
   const location = useLocation();
@@ -47,36 +36,24 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
     }
   };
   return (
-
-    
- <AnimatePresence mode="wait">
-    <div className={`fixed top-[4rem] md:top-[auto] z-[60] text-white px-4 py-4 md:h-[92%] h-[93%] w-[15.5rem] rounded-3xl translate-x-0 bg-[#151515] gap-y-2 flex  flex-col justify-between ${sideVisibality ? ' sidebar-transform ' : 'sidebar-show '}`}>
-      <div className="flex flex-col gap-y-2">
-        <button
-          onClick={() => {
-            dispatch(preloaderActions.setPreloader(true));
-            setTimeout(() => {
-              history("/");
-            }, 300);
-            setTimeout(() => {
-              dispatch(preloaderActions.setPreloader(false));
-            }, 1300);
-          }}
-          className="w-full flex justify-center items-center"
-        >
-          <img src={edgeLogo} className="w-[10rem] h-[5.5rem]" alt="" />
-        </button>
-        <Link
-          to="/dashboard/meetings"
-          className="w-full flex justify-center items-center mt- cursor-pointer "
-        >
-          <div
-            className={`flex items-center gap-2 rounded-[11px]  w-full h-[40px]  ${
-              location.pathname.includes("meetings")
-                ? "  bg-white text-black sidebar-active font-semibold"
-                : "hover:bg-[#191919] text-white sidebar-inactive"
-            }  px-3 sidebar-link  ease`}
-
+    <AnimatePresence mode="wait">
+      <div
+        className={`fixed top-[4rem] md:top-[auto] z-40 text-white px-4 py-4 md:h-[92%] h-[93%] w-[15.5rem] rounded-3xl translate-x-0 bg-[#151515] gap-y-2 flex  flex-col justify-between ${
+          sideVisibality ? " sidebar-transform " : "sidebar-show "
+        }`}
+      >
+        <div className="flex flex-col gap-y-2">
+          <button
+            onClick={() => {
+              dispatch(preloaderActions.setPreloader(true));
+              setTimeout(() => {
+                history("/");
+              }, 300);
+              setTimeout(() => {
+                dispatch(preloaderActions.setPreloader(false));
+              }, 1300);
+            }}
+            className="w-full flex justify-center items-center"
           >
             <img src={edgeLogo} className="w-[10rem] h-[5.5rem]" alt="" />
           </button>
