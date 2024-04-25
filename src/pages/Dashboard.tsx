@@ -48,80 +48,6 @@ const Dashboard = () => {
         <div className=" h-full flex items-center mt-[.6rem] mr-3 ">
           <img src={edgeLogo} className="w-[4rem]" alt="" />
         </div>
-</div>
-    <div className="w-screen bg-[#F7F7F7] pl-[2rem] h-screen overflow-hidden items-center mt-[4rem] md:mt-auto  flex justify-between ">
-  
-      <Sidebar sideVisibality={SideBar}/>
-      <div className="h-[92%]  w-full">
-   
-        <AnimatePresence mode="wait">
-     
-          {section === "meetings" && (
-            <motion.div
-              key="meetings"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1 }}
-            >
-              <div className="h-[92vh] w-full">
-                <Meetings />
-              </div>
-            </motion.div>
-          )}
-          {section === "stage" && (
-            <motion.div
-              key="stage"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1 }}
-            >
-              <div className="h-[92vh]">
-                {params.get("meetingId") ? <StageMeeting /> : <Stage />}
-              </div>
-            </motion.div>
-          )}
-          {section === "schedule" && (
-            <motion.div
-              key="schedule"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1 }}
-            >
-              <div className="md:h-[92vh] ">
-                <Schedule />
-              </div>
-            </motion.div>
-          )}
-          {section === "conversations" && (
-            <motion.div
-              key="conversations"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1 }}
-            >
-              <div className="h-[92vh]">
-                <Conversations />
-              </div>
-            </motion.div>
-          )}
-          {section === "networking" && (
-            <motion.div
-              key="networking"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1 }}
-            >
-              <div className="h-[92vh]">
-                <Networking />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
       <div className="w-screen bg-[#F7F7F7] pl-[2rem] h-screen overflow-hidden items-center mt-[4rem] md:mt-auto  flex justify-between ">
         <Sidebar sideVisibality={SideBar} />
@@ -208,8 +134,7 @@ const Dashboard = () => {
           </AnimatePresence>
         </div>
       </div>
-      </div>
-  </>
+    </>
   );
 };
 

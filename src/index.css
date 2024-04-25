@@ -247,19 +247,5 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   -o-transition: transform 0.3s ease-in;
 }
 
-
-.dropdown-menu {
-  visibility: hidden; /* Hide dropdown by default */
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
-  transition-delay: 0s, 0.5s; /* Delay the transition of visibility and opacity */
-}
-
-.dropdown:hover .dropdown-menu {
-  visibility: visible; /* Make dropdown visible on hover */
-  opacity: 1;
-  transition-delay: 0s, 0s; /* Remove delay when showing dropdown */
-}
-
   
 }

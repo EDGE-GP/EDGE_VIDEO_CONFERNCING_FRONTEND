@@ -20,17 +20,12 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
     <motion.div
       initial={false}
       animate={{
-        paddingTop: intersected||isMobileMenuOpen ? 0 : "1.2rem",
-        paddingRight: intersected ||isMobileMenuOpen? 0 : "3rem",
-        paddingLeft: intersected ||isMobileMenuOpen? 0 : "3rem",
-        borderTopLeftRadius: intersected ||isMobileMenuOpen? 0 : "0.875rem",
-        borderTopRightRadius: intersected||isMobileMenuOpen ? 0 : "0.875rem",
-
-        opacity: intersected||isMobileMenuOpen ? 0.99 : 1,
-
-        
-
-        
+        paddingTop: intersected ? 0 : "1.2rem",
+        paddingRight: intersected ? 0 : "3rem",
+        paddingLeft: intersected ? 0 : "3rem",
+        borderTopLeftRadius: intersected ? 0 : "0.875rem",
+        borderTopRightRadius: intersected ? 0 : "0.875rem",
+        opacity: intersected ? 0.99 : 1,
       }}
       transition={{
         duration: 0.1,
@@ -40,13 +35,13 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
       <motion.div
         initial={false}
         animate={{
-          borderTopLeftRadius: intersected||isMobileMenuOpen ? 0 : "9999px",
-          borderBottomLeftRadius: intersected||isMobileMenuOpen? 0 : "9999px",
-          borderTopRightRadius: intersected||isMobileMenuOpen ? 0 : "9999px",
-          borderBottomRightRadius: intersected||isMobileMenuOpen ? 0 : "9999px",
-          paddingLeft: intersected||isMobileMenuOpen ? "4.5rem" : "1.5rem",
-          paddingRight: intersected||isMobileMenuOpen ? "4.5rem" : "1.5rem",
-          height: intersected||isMobileMenuOpen ? "4rem" : "3.5rem",
+          borderTopLeftRadius: intersected ? 0 : "9999px",
+          borderBottomLeftRadius: intersected ? 0 : "9999px",
+          borderTopRightRadius: intersected ? 0 : "9999px",
+          borderBottomRightRadius: intersected ? 0 : "9999px",
+          paddingLeft: intersected ? "4.5rem" : "2.5rem",
+          paddingRight: intersected ? "4.5rem" : "2.5rem",
+          height: intersected ? "4rem" : "3.5rem",
         }}
         transition={{
           duration: 0.1,
@@ -135,24 +130,25 @@ const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div 
-          initial={false}
-          animate={{
-            borderTopLeftRadius: intersected||isMobileMenuOpen ? 0 : "20px",
-            borderBottomLeftRadius: intersected||isMobileMenuOpen ? 0 : "20px",
-            borderTopRightRadius: intersected||isMobileMenuOpen ? 0 : "20px",
-            borderBottomRightRadius: intersected||isMobileMenuOpen ? 0 : "20px",
-            paddingLeft: "0",
-            paddingRight: "0",
-            height: "16rem",
-            width: intersected||isMobileMenuOpen ? "100%" : "calc(100% - 6.4rem)", // Assuming the navbar is centered similarly
-            marginLeft: intersected||isMobileMenuOpen ? "0" : "3.2rem",
-            marginTop: intersected||isMobileMenuOpen ? "0" : "1.2rem",
-          }}
-          transition={{
-            duration: 0.3,
-          }}
-          className="md:hidden flex flex-col items-center gap-y-4 text-white absolute top-16 left-0 w-full bg-black py-4 px-6">
+          <motion.div
+            initial={false}
+            animate={{
+              borderTopLeftRadius: intersected ? 0 : "20px",
+              borderBottomLeftRadius: intersected ? 0 : "20px",
+              borderTopRightRadius: intersected ? 0 : "20px",
+              borderBottomRightRadius: intersected ? 0 : "20px",
+              paddingLeft: "0",
+              paddingRight: "0",
+              height: "16rem",
+              width: intersected ? "100%" : "calc(100% - 6.4rem)", // Assuming the navbar is centered similarly
+              marginLeft: intersected ? "0" : "3.2rem",
+              marginTop: intersected ? "0" : "1.2rem",
+            }}
+            transition={{
+              duration: 0.1,
+            }}
+            className="md:hidden flex flex-col items-center gap-y-4 text-white absolute top-16 left-0 w-full bg-black py-4 px-6"
+          >
             <Link
               to="/features"
               className="abel hover:text-gray-300 card-shadow transition-all capitalize "
