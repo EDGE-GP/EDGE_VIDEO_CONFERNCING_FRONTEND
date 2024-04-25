@@ -64,6 +64,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-3 items-start text-start justify-center">
+      <div>
       <h1 className="text-3xl text-black font-bold tracking-[0.225rem] text-start mb-2 Abel ">
         Forgot Password
       </h1>
@@ -112,7 +113,7 @@ const ForgotPassword = () => {
         >
           {!loading ? "Submit" : <CircularLoading button={true} />}
         </button>
-      </form>
+      </form></div>
     </div>
   );
 };

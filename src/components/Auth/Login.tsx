@@ -90,10 +90,12 @@ const Login = () => {
     error: "Password must be between 6 and 16 characters",
   });
   return (
-    <div className="w-full h-full flex flex-col gap-3 items-start justify-center text-start ">
-      <h1 className="text-3xl text-black font-bold tracking-[0.225rem] text-start mb-2 Abel ">
-        Login
-      </h1>
+    <div className="w-full h-full  flex flex-col gap-3 items-start justify-center text-start ">
+    <div className="flex justify-center md:justify-start w-full"> {/* Wrapper div for centering */}
+        <h1 className="text-3xl text-black font-bold tracking-[0.225rem] md:text-start  mb-2 Abel">
+            Login
+        </h1>
+    </div>
       <h3 className="text-lg text-blackish Abel mb-2  tracking-wide">
         Welcome back! please fill in your credentials!
       </h3>
