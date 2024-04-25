@@ -1,12 +1,14 @@
 import { useState } from "react";
-import DatePicker from "../utility/DatePicker";
+
 import dummyAccount1 from "../../assets/account4.png";
 import dummyAccount2 from "../../assets/account6.png";
 import dummyAccount3 from "../../assets/account3.png";
 import tempProfileImage from "../../assets/selfPortrait.jpg";
 import Switch from "../utility/Switch";
+
 import { format } from "date-fns";
 
+import DatePicker from "../utility/DatePicker";
 const Schedule = () => {
   const [meetingMinutes, setMeetingMinutes] = useState<boolean>(false);
   const [signInterpretedToggle, setSignInterpreterToggle] =
@@ -28,15 +30,13 @@ const Schedule = () => {
     date,
   });
   return (
-    <div className=" h-full card-shadow px-8 pt-4 pb-2 bg-white ml-[17.5rem] rounded-3xl mr-[2rem] ">
-      <h1 className="abel text-[3rem] leading-[3.5rem]">Scehdule </h1>
-      <h3 className="abel text-[1rem]">
-        Take the Lead: Start Planning Your Meetings Today!
-      </h3>
-      <div className="h-[85%] pb-4 mt-4 flex flex-col overflow-y-scroll justify-between">
-        <div className="flex justify-between  w-full ">
-          <div className="w-1/2 pr-[4.5rem]">
-            <div className="flex flex-col gap-y-4">
+    <div className="h-full card-shadow px-8 pt-4 pb-2 bg-white md:ml-[17.5rem] ml-[rem] md:mt-auto  rounded-3xl mr-[2rem] overflow-hidden">
+    <h1 className="abel text-[3rem] leading-[3.5rem] mt-4 md:mt-auto">Schedule</h1>
+    <h3 className="abel text-[1rem]">Take the Lead: Start Planning Your Meetings Today!</h3>
+    <div className="md:h-[85vh] h-[65vh] pb-4 mt-4 flex flex-col overflow-y-auto justify-between">
+    <div className="flex justify-between w-full">
+      <div className="md:w-1/2 pr-[4.5rem]">
+        <div className="flex flex-col gap-y-4">
               <div>
                 <h3 className="abel text-[1.25rem] ">Title</h3>
                 <input
@@ -220,9 +220,10 @@ const Schedule = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/2">
-            <DatePicker dateChangeStateHandler={setDate} />
-            <div className="flex flex-col">
+          <div className="md:w-1/2 md:block hidden ">
+            
+            <DatePicker  />
+            <div className="flex flex-col ">
               <h3 className="abel text-[1.25rem] ">
                 Enable Speech Avatar Display
               </h3>
@@ -236,8 +237,29 @@ const Schedule = () => {
                 </div>
               </div>
             </div>
+            
           </div>
+          
         </div>
+        <div className="md:hidden block mt-7 mb-4  ">
+            
+            <DatePicker />
+            <div className="flex flex-col mt-20 md:mt-auto">
+              <h3 className="abel text-[1.25rem] ">
+                Enable Speech Avatar Display
+              </h3>
+              <div className="w-full flex justify-between items-center">
+                <h3 className="abel text-[0.9rem] ">
+                  Every interpreted word will be displayed to deaf users via a
+                  3d-model sign gestures
+                </h3>
+                <div>
+                  <Switch selected={avatarToggle} setSelect={setAvatarToggle} />
+                </div>
+              </div>
+            </div>
+            
+          </div>
         <div className="flex justify-end items-center gap-x-4">
           <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all font-semibold bg-transparent border-2 border-[#151515] duration-200 text-black rounded-[8px] card-shadow px-6">
             <span>Reset</span>

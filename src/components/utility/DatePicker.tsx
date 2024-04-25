@@ -70,10 +70,10 @@ const DatePicker: React.FC<{
     dateChangeStateHandler(`${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`);
   }, [selectedDay, selectedTime]);
   return (
-    <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
+    <div className="abel bg-white w-full  md:h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>
-      <div className="w-full flex items-start justify-between gap-x- ">
-        <div className=" w-[65%] h-full">
+      <div className="w-full flex flex-col md:flex-row items-start justify-between gap-x- ">
+        <div className=" md:w-[65%] h-full">
           <div className=" md:divide-x md:divide-gray-200">
             <div className="">
               <div className="flex w-full justify-between items-center mb-4">
@@ -167,7 +167,7 @@ const DatePicker: React.FC<{
             </div>
           </div>
         </div>
-        <div className="w-[40%]  pl-8 flex  flex-col h-full gap-y-4">
+        <div className="md:w-[40%] w-[100%]  md:pl-8 flex mb-3 md:mt-auto mt-5  flex-col h-full gap-y-4">
           <div className="w-full flex items-start pl-2 border-b-[1px] border-[#D3D3D3] h-8 ">
             <span className="text-[#666666] font-[500] text-[16px] loew">
               {format(selectedDay, "MMM dd, yyyy")}

@@ -5,10 +5,14 @@ import { useDispatch } from "react-redux";
 import { preloaderActions } from "../../store/preloader/preloaderSlice";
 import axios from "axios";
 import { authActions } from "../../store/auth/authSlice";
-;
+
 import { AnimatePresence } from "framer-motion";
 
-const Sidebar = ({sideVisibality }) => {
+
+interface SidebarProps {
+  sideVisibality: boolean;
+}
+const Sidebar:React.FC<SidebarProps> = ({sideVisibality }) => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const location = useLocation();
@@ -39,7 +43,7 @@ const Sidebar = ({sideVisibality }) => {
   return (
     
  <AnimatePresence mode="wait">
-    <div className={`fixed top-[4rem] md:top-[auto] z-40 text-white px-4 py-4 md:h-[92%] h-[93%] w-[15.5rem] rounded-3xl translate-x-0 bg-[#151515] gap-y-2 flex  flex-col justify-between ${sideVisibality ? ' sidebar-transform ' : 'sidebar-show '}`}>
+    <div className={`fixed top-[4rem] md:top-[auto] z-[60] text-white px-4 py-4 md:h-[92%] h-[93%] w-[15.5rem] rounded-3xl translate-x-0 bg-[#151515] gap-y-2 flex  flex-col justify-between ${sideVisibality ? ' sidebar-transform ' : 'sidebar-show '}`}>
       <div className="flex flex-col gap-y-2">
         <button
           onClick={() => {
