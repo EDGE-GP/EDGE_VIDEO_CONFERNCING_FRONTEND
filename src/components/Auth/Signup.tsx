@@ -121,10 +121,12 @@ const Signup = () => {
     }
   };
   return (
-    <div className="w-full h-full flex flex-col gap-0 items-start justify-center text-start">
-      <h1 className="text-3xl text-black font-bold tracking-[0.2rem] text-start mb-2 Abel ">
-        Sign up
-      </h1>
+    <div className="w-full md:h-full h-[70vh]   flex flex-col gap-3 items-start justify-center text-start ">
+    <div className="flex justify-center md:justify-start w-full"> 
+        <h1 className="text-3xl text-black font-bold tracking-[0.225rem] md:text-start  mb-2 Abel">
+            Sign up
+        </h1>
+    </div>
       <h3 className="text-lg text-blackish Abel mb-2  tracking-wide">
         Join us today! Fill in your details to create an account.
       </h3>
