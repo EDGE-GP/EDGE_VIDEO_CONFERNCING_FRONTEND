@@ -11,6 +11,8 @@ import {
   startOfToday,
   isPast,
 } from "date-fns";
+import { useDispatch } from "react-redux";
+import { scheduleActions } from "../../store/schedule/scheduleSlice";
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -25,9 +27,8 @@ const colStartClasses = [
   "col-start-7",
 ];
 
-const DatePicker: React.FC<{
-  dateChangeStateHandler: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ dateChangeStateHandler }) => {
+const DatePicker = () => {
+  const dispatch = useDispatch();
   const today = startOfToday();
   const [selectedDay, setSelectedDay] = useState<Date>(today); // Set an initial date
   const [currentMonth, setCurrentMonth] = useState<string>(
@@ -37,11 +38,6 @@ const DatePicker: React.FC<{
     format(new Date(), "HH:mm")
   );
   const firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
-  //make a date object with the selected day and time;
-  console.log({
-    selectedDay,
-    selectedTime,
-  });
   const days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
@@ -63,8 +59,12 @@ const DatePicker: React.FC<{
   };
 
   useEffect(() => {
-    dateChangeStateHandler(`${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`);
-  }, [selectedDay, selectedTime, dateChangeStateHandler]);
+    dispatch(
+      scheduleActions.setDate(
+        `${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`
+      )
+    );
+  }, [selectedDay, selectedTime, dispatch]);
   return (
     <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>

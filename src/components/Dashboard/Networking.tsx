@@ -54,7 +54,7 @@ const Networking = () => {
             </div>
             <div className="flex items-end gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
+                Reject
               </button>
               <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
                 Accept
@@ -103,7 +103,7 @@ const Networking = () => {
             </div>
             <div className="flex items-end gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
+                Reject
               </button>
               <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
                 Accept
@@ -398,7 +398,7 @@ const Networking = () => {
             </div>
             <div className="flex items-center gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
+                Reject
               </button>
               <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
                 Accept
@@ -416,7 +416,7 @@ const Networking = () => {
             </div>
             <div className="flex items-center gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
+                Reject
               </button>
               <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
                 Accept
@@ -434,7 +434,7 @@ const Networking = () => {
             </div>
             <div className="flex items-center gap-x-3 h-full ">
               <button className="abel text-[1rem] font-semibold text-red-500 hover:text-[#DF6962] transition-all">
-                Delete
+                Reject
               </button>
               <button className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
                 Accept
