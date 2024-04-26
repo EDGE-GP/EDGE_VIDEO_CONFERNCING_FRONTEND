@@ -1,16 +1,14 @@
 import React from "react";
 const Switch: React.FC<{
   selected: boolean;
-  setSelect: React.Dispatch<React.SetStateAction<boolean>>;
+  toggle: () => void;
   disabled?: boolean;
-}> = ({ selected, setSelect, disabled }) => {
+}> = ({ selected, toggle, disabled }) => {
   return (
     <>
       {!disabled ? (
         <div
-          onClick={() => {
-            setSelect((prevState) => !prevState);
-          }}
+          onClick={toggle}
           className={`cursor-pointer relative  border-[1px] border-[#bbbbbb]  px-[1px]  transition-all duration-200  w-[2.25rem] h-[1.2rem]  ${
             selected && !disabled
               ? "bg-black  border-black"

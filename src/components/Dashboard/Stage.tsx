@@ -21,7 +21,9 @@ const Stage = () => {
           </div>
           <div className="flex md:justify-center  items-center md:flex-row flex-col   mt-3">
             <button className="flex gap-x-2 items-center label h-[2.375rem] mr-4 text-[.8rem] transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-6">
-              <span className="flex-shrink-0">Create Instant Meeting</span>
+              <span className="flex-shrink-0 abel text-[1rem]">
+                Create Instant Meeting
+              </span>
               <span className="flex-shrink-0">
                 <svg
                   width="20"
@@ -65,7 +67,7 @@ const Stage = () => {
               </span>
               <input
                 type="text"
-                className="outline-none bg-transparent px-2  text-[.8rem]  abel"
+                className="outline-none bg-transparent px-2  text-[1rem]  abel"
                 placeholder="Enter Meeting Code"
               />
               <button className="abel md:hidden flex md:text-[1.25rem] text-[1rem] text-[#cbcaca]">
@@ -76,7 +78,7 @@ const Stage = () => {
               Join
             </button>
           </div>
-          <div className="w-[40rem] mt-16 ml-[-8.5rem] md:mt-[5rem] md:ml-auto flex justify-center">
+          <div className="w-[40rem] mt-16 ml-[-8.5rem] md:mt-6 md:ml-auto flex justify-center">
             <img src={header} alt="" className="md:w-[405px] w-[300px] " />
           </div>
         </div>

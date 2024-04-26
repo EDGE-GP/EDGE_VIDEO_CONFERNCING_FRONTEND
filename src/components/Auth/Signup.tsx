@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth/authSlice";
 
+
 const Signup = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);

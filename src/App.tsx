@@ -36,8 +36,11 @@ function App() {
           user: res.data.user,
         })
       );
+      console.log(res);
       return res.data;
     },
+    retry: false,
+    staleTime: Infinity,
   });
 
   useEffect(() => {
