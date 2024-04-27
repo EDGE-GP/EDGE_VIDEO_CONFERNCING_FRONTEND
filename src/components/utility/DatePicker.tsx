@@ -10,7 +10,6 @@ import {
   parse,
   startOfToday,
   isPast,
-  parseISO,
 } from "date-fns";
 import { useDispatch } from "react-redux";
 import { scheduleActions } from "../../store/schedule/scheduleSlice";
@@ -69,12 +68,14 @@ const DatePicker: React.FC<{
   };
 
   useEffect(() => {
-    dispatch(
-      scheduleActions.setDate(
-        `${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`
-      )
+    const combinedDateTime = new Date(
+      selectedDay.getFullYear(),
+      selectedDay.getMonth(),
+      selectedDay.getDate(),
+      parseInt(selectedTime.split(":")[0]), // Hours
+      parseInt(selectedTime.split(":")[1]) // Minutes
     );
-   
+    dispatch(scheduleActions.setDate(combinedDateTime.toISOString()));
   }, [selectedDay, selectedTime, dispatch]);
   useEffect(() => {
     if (success) {
@@ -82,7 +83,7 @@ const DatePicker: React.FC<{
       setSelectedTime(format(new Date(), "HH:mm"));
       resetSuccess();
     }
-  }, [success, today]);
+  }, [success, today, resetSuccess]);
   return (
     <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>

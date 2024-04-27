@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "../utility/DatePicker";
 import Switch from "../utility/Switch";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios, { isAxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { IUser } from "../../types/Auth";
 import { motion, AnimatePresence } from "framer-motion";
 import CircularLoading from "../UI/CircularLoading";
@@ -11,21 +11,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useDispatch } from "react-redux";
 import { scheduleActions } from "../../store/schedule/scheduleSlice";
-import { ActivityFlagEnum } from "../../types/Meeting";
 import defaultProfileImage from "../../assets/default.jpg";
-import { error } from "console";
 import { notify } from "../../utils/Toaster/notify";
-import { startOfDay, startOfToday } from "date-fns";
+import { addMinutes, addYears, isAfter, isBefore, parseISO } from "date-fns";
 import { useNavigate } from "react-router";
 
 const Schedule = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const queryClient = useQueryClient();
-  const timezoneOffset = -(new Date().getTimezoneOffset() / 60); // Convert to hours and invert for GMT
-  console.log({
-    timezoneOffset,
-  });
+
   const {
     title,
     description,
@@ -48,24 +43,33 @@ const Schedule = () => {
   } = useMutation({
     mutationKey: ["scheduleMeeting"],
     mutationFn: async () => {
-      const res = await axios.post(
-        `${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`,
-        {
-          title,
-          description,
-          startTime,
-          activityFlag,
-          enableAvatar,
-          enableInterpreter,
-          saveConversation,
-          language,
-          participants: participants.map((participant) => participant.id),
-          timezoneOffset,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      console.log({
+        startTime: new Date(startTime),
+        dateToCompare: addMinutes(new Date(), 15),
+      });
+      if (!isAfter(new Date(startTime), addMinutes(new Date(), 15))) {
+        throw new Error("Start time can't be less than 15 minutes from now");
+      }
+      if (!isBefore(new Date(startTime), addYears(new Date(), 1))){
+        throw new Error("Start time can't be more than one year from now")
+      }
+        const res = await axios.post(
+          `${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`,
+          {
+            title,
+            description,
+            startTime,
+            activityFlag,
+            enableAvatar,
+            enableInterpreter,
+            saveConversation,
+            language,
+            participants: participants.map((participant) => participant.id),
+          },
+          {
+            withCredentials: true,
+          }
+        );
       dispatch(scheduleActions.emptyInput());
       setParticipantsSearchTerm("");
       setToggleParticipantsSelection(false);
@@ -77,7 +81,7 @@ const Schedule = () => {
       notify("Meeting created successfully", "success", 3000);
       history("/dashboard/meetings");
     },
-    onError: (error) => {
+    onError: (error: Error | AxiosError) => {
       console.log(error);
       if (isAxiosError(error)) {
         if (error.response?.data.details) {
@@ -89,6 +93,8 @@ const Schedule = () => {
         } else {
           notify("Something went wrong", "error", 3000);
         }
+      } else {
+        notify(error.message, "error", 3000);
       }
     },
   });
