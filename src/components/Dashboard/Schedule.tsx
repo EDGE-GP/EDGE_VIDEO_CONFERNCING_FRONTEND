@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DatePicker from "../utility/DatePicker";
-import dummyAccount1 from "../../assets/account4.png";
-import dummyAccount2 from "../../assets/account6.png";
-import dummyAccount3 from "../../assets/account3.png";
-import tempProfileImage from "../../assets/selfPortrait.jpg";
 import Switch from "../utility/Switch";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import axios, { isAxiosError } from "axios";
 import { IUser } from "../../types/Auth";
 import { motion, AnimatePresence } from "framer-motion";
 import CircularLoading from "../UI/CircularLoading";
@@ -17,10 +13,19 @@ import { useDispatch } from "react-redux";
 import { scheduleActions } from "../../store/schedule/scheduleSlice";
 import { ActivityFlagEnum } from "../../types/Meeting";
 import defaultProfileImage from "../../assets/default.jpg";
+import { error } from "console";
+import { notify } from "../../utils/Toaster/notify";
+import { startOfDay, startOfToday } from "date-fns";
+import { useNavigate } from "react-router";
 
 const Schedule = () => {
   const dispatch = useDispatch();
+  const history = useNavigate();
   const queryClient = useQueryClient();
+  const timezoneOffset = -(new Date().getTimezoneOffset() / 60); // Convert to hours and invert for GMT
+  console.log({
+    timezoneOffset,
+  });
   const {
     title,
     description,
@@ -30,7 +35,63 @@ const Schedule = () => {
     enableInterpreter,
     language,
     saveConversation,
+    startTime,
   } = useSelector((state: RootState) => state.schedule);
+  console.log({
+    startTime,
+  });
+  const {
+    isPending: scheduleLoading,
+    mutateAsync: scheduleSubmitHandler,
+    reset,
+    isSuccess,
+  } = useMutation({
+    mutationKey: ["scheduleMeeting"],
+    mutationFn: async () => {
+      const res = await axios.post(
+        `${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`,
+        {
+          title,
+          description,
+          startTime,
+          activityFlag,
+          enableAvatar,
+          enableInterpreter,
+          saveConversation,
+          language,
+          participants: participants.map((participant) => participant.id),
+          timezoneOffset,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(scheduleActions.emptyInput());
+      setParticipantsSearchTerm("");
+      setToggleParticipantsSelection(false);
+      history("/dashboard/meetings");
+      console.log(res);
+      return res.data;
+    },
+    onSuccess: () => {
+      notify("Meeting created successfully", "success", 3000);
+      history("/dashboard/meetings");
+    },
+    onError: (error) => {
+      console.log(error);
+      if (isAxiosError(error)) {
+        if (error.response?.data.details) {
+          error?.response?.data?.details.forEach(
+            (error: { message: string }) => {
+              notify(error.message, "error", 3000);
+            }
+          );
+        } else {
+          notify("Something went wrong", "error", 3000);
+        }
+      }
+    },
+  });
 
   const [participantsSearchTerm, setParticipantsSearchTerm] =
     useState<string>("");
@@ -43,7 +104,6 @@ const Schedule = () => {
     queryKey: ["fetchParticipants"],
     queryFn: async () => {
       if (participantsSearchTerm.trim().length === 0) {
-        setToggleParticipantsSelection(false);
         return [];
       }
       const res = await axios.get(
@@ -64,19 +124,6 @@ const Schedule = () => {
     participants,
   });
 
-  // const { isLoading, error, isSuccess } = useMutation({
-  //   mutationKey: ["scheduleMeeting"],
-  //   mutationFn: async () => {
-  //    try{
-  //     const res = await axios(`${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`)
-  //    }catch(error){
-  //     isAxiosError(error){
-
-  //     }
-  //    }
-  //   },
-  // });
-
   useEffect(() => {
     const timer = setTimeout(() => {
       queryClient.invalidateQueries({
@@ -85,10 +132,34 @@ const Schedule = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, [participantsSearchTerm, queryClient]);
-  console.log({
-    filteredParticipantsSearch,
-    fetchParticipantsLoading,
-  });
+  useEffect(() => {
+    if (participants.length === 0 && filteredParticipantsSearch.length === 0) {
+      setToggleParticipantsSelection(false);
+    }
+  }, [participants, filteredParticipantsSearch]);
+  useEffect(() => {
+    const handleCloseParticipantsSelectionOnEscape = (
+      event: KeyboardEvent
+    ): void => {
+      if (event.key === "Escape") {
+        if (toggleParticipantsSelection) {
+          setToggleParticipantsSelection(false);
+        }
+      }
+    };
+
+    document.addEventListener(
+      "keydown",
+      handleCloseParticipantsSelectionOnEscape
+    );
+    return () => {
+      document.removeEventListener(
+        "keydown",
+        handleCloseParticipantsSelectionOnEscape
+      );
+    };
+  }, []); // Empty dependency array ensures the effect runs only once when component mounts
+
   return (
     <div className=" h-full card-shadow  pt-4 pb-2 bg-white ml-[17.5rem] rounded-3xl mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8">Scehdule </h1>
@@ -96,7 +167,7 @@ const Schedule = () => {
         Take the Lead: Start Planning Your Meetings Today!
       </h3>
       <div className="h-[85%] pb-4 mt-4 flex flex-col px-8 overflow-y-scroll justify-between">
-        <div className="flex justify-between  w-full ">
+        <div className="flex justify-between h-full w-full ">
           <div className="w-1/2 pr-[4.5rem]">
             <div className="flex flex-col gap-y-4">
               <div>
@@ -138,22 +209,42 @@ const Schedule = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute w-full  h-[15rem] top-[4.5rem] py-5 px-4 z-[100] rounded-xl bg-white drop-shadow-xl left-0 "
+                        className="absolute w-full  h-[15rem] top-[4.5rem] py-5 px-4 z-[100] rounded-xl bg-white card-shadow left-0 "
                       >
                         <div className="h-full flex flex-col gap-y-2 overflow-y-scroll w-full ">
-                          {filteredParticipantsSearch.map(
-                            (participantSearchItem) => (
+                          {fetchParticipantsLoading ? (
+                            <CircularLoading button />
+                          ) : filteredParticipantsSearch.length === 0 &&
+                            participants.length > 0 ? (
+                            participants.map((participant) => (
                               <ParticipantSearchSelection
-                                photo={participantSearchItem.photo}
-                                name={participantSearchItem.name}
-                                email={participantSearchItem.email}
+                                photo={participant.photo}
+                                name={participant.name}
+                                email={participant.email}
                                 selected={participants.some(
                                   (participant) =>
-                                    participant.id === participantSearchItem.id
+                                    participant.id === participant.id
                                 )}
-                                id={participantSearchItem.id}
-                                key={participantSearchItem.id}
+                                id={participant.id}
+                                key={participant.id}
                               />
+                            ))
+                          ) : (
+                            filteredParticipantsSearch.map(
+                              (participantSearchItem) => (
+                                <ParticipantSearchSelection
+                                  photo={participantSearchItem.photo}
+                                  name={participantSearchItem.name}
+                                  email={participantSearchItem.email}
+                                  selected={participants.some(
+                                    (participant) =>
+                                      participant.id ===
+                                      participantSearchItem.id
+                                  )}
+                                  id={participantSearchItem.id}
+                                  key={participantSearchItem.id}
+                                />
+                              )
                             )
                           )}
                         </div>
@@ -165,6 +256,11 @@ const Schedule = () => {
                 <div className="border-black border-b-2 mb-1 py-1 px-2 flex justify-between items-center">
                   <input
                     value={participantsSearchTerm}
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") {
+                        setToggleParticipantsSelection(false);
+                      }
+                    }}
                     onFocus={() => {
                       if (filteredParticipantsSearch.length > 0) {
                         setToggleParticipantsSelection(true);
@@ -186,7 +282,12 @@ const Schedule = () => {
                     </div>
                   )}
                 </div>
-                <div className="flex mt-3 flex-wrap ">
+                <div
+                  className="flex mt-3 flex-wrap cursor-pointer"
+                  onClick={() => {
+                    setToggleParticipantsSelection(true);
+                  }}
+                >
                   {participants.map((participant, index) => (
                     <img
                       style={{ transform: `translateX(-${index}rem)` }}
@@ -230,8 +331,13 @@ const Schedule = () => {
                     <div>
                       <Switch
                         selected={enableInterpreter}
+                        disabled={language === "English"}
                         toggle={() => {
-                          dispatch(scheduleActions.toggleEnableInterpreter());
+                          dispatch(
+                            scheduleActions.toggleEnableInterpreter(
+                              !enableInterpreter
+                            )
+                          );
                         }}
                       />
                     </div>
@@ -243,6 +349,9 @@ const Schedule = () => {
                     <button
                       onClick={() => {
                         dispatch(scheduleActions.setLanguage("English"));
+                        dispatch(
+                          scheduleActions.toggleEnableInterpreter(false)
+                        );
                       }}
                       className={`abel md:flex transition-all hidden md:text-[1rem] font-semibold text-[1rem] ${
                         language === "English"
@@ -273,102 +382,78 @@ const Schedule = () => {
                   <div className="flex flex-wrap gap-x-">
                     <div
                       className={`${
-                        activityFlag === ActivityFlagEnum["#7986CB"] &&
+                        activityFlag === "#7986CB" &&
                         "border-2 border-[#7986CB]  "
                       } w-8 h-8 flex justify-center rounded-full items-center`}
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#7986CB"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#7986CB"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#7986CB]"
                       ></button>
                     </div>
                     <div
                       className={`${
-                        activityFlag === ActivityFlagEnum["#8E24AA"] &&
+                        activityFlag === "#8E24AA" &&
                         "border-2 border-[#8E24AA]  "
                       } w-8 h-8  flex justify-center rounded-full items-center`}
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#8E24AA"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#8E24AA"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#8E24AA]"
                       ></button>
                     </div>
                     <div
                       className={`${
-                        activityFlag === ActivityFlagEnum["#616161"] &&
+                        activityFlag === "#616161" &&
                         "border-2 border-[#616161]  "
                       } w-8 h-8  flex justify-center rounded-full items-center`}
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#616161"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#616161"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#616161]"
                       ></button>
                     </div>
                     <div
                       className={`${
-                        activityFlag === ActivityFlagEnum["#039BE5"] &&
+                        activityFlag === "#039BE5" &&
                         "border-2 border-[#039BE5]  "
                       } w-8 h-8  flex justify-center rounded-full items-center`}
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#039BE5"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#039BE5"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#039BE5]"
                       ></button>
                     </div>
                     <div
                       className={`${
-                        activityFlag === ActivityFlagEnum["#33B679"] &&
+                        activityFlag === "#33B679" &&
                         "border-2 border-[#33B679]  "
                       } w-8 h-8  flex justify-center rounded-full items-center`}
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#33B679"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#33B679"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#33B679]"
                       ></button>
                     </div>
                     <div
                       className={`${
-                        activityFlag === ActivityFlagEnum["#E67C73"] &&
+                        activityFlag === "#E67C73" &&
                         "border-2 border-[#E67C73]  "
                       } w-8 h-8  flex justify-center rounded-full items-center`}
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#E67C73"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#E67C73"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#E67C73]"
                       ></button>
@@ -381,11 +466,7 @@ const Schedule = () => {
                     >
                       <button
                         onClick={() => {
-                          dispatch(
-                            scheduleActions.setActivityFlag(
-                              ActivityFlagEnum["#F4511E"]
-                            )
-                          );
+                          dispatch(scheduleActions.setActivityFlag("#F4511E"));
                         }}
                         className="w-5 h-5 rounded-full bg-[#F4511E]"
                       ></button>
@@ -396,8 +477,8 @@ const Schedule = () => {
             </div>
           </div>
           <div className="w-1/2 h-full flex flex-col justify-between">
-            <div className="">
-              <DatePicker />
+            <div className="h-full w-full">
+              <DatePicker resetSuccess={reset} success={isSuccess} />
               <div className="flex flex-col">
                 <h3 className="abel text-[1.25rem] ">
                   Enable Speech Avatar Display
@@ -422,25 +503,36 @@ const Schedule = () => {
               <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all font-semibold bg-transparent border-2 border-[#151515] duration-200 text-black rounded-[8px] card-shadow px-6">
                 <span>Reset</span>
               </button>
-              <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-[8px] card-shadow px-6">
-                <span>Schedule Meeting</span>
-                <span>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 12H12M12 12H18M12 12V18M12 12V6"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
+              <button
+                onClick={() => {
+                  scheduleSubmitHandler();
+                }}
+                className="abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-[8px] card-shadow w-[11rem]"
+              >
+                {scheduleLoading ? (
+                  <CircularLoading button />
+                ) : (
+                  <div className="w-full flex gap-x-1 items-center justify-center">
+                    <span>Schedule Meeting</span>
+                    <span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6 12H12M12 12H18M12 12V18M12 12V6"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                )}
               </button>
             </div>
           </div>

@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ActivityFlagEnum, IMeetingSchedule } from "../../types/Meeting";
-import { format, setDate } from "date-fns";
+import { format } from "date-fns";
 import { IUser } from "../../types/Auth";
 
 const initialState: IMeetingSchedule = {
   title: "",
   description: "",
-  activityFlag: ActivityFlagEnum["#7986CB"],
+  activityFlag: "#7986CB",
   enableAvatar: false,
   enableInterpreter: false,
   language: "Arabic",
@@ -41,8 +41,13 @@ const scheduleSlice = createSlice({
     toggleSaveConversation: (state) => {
       state.saveConversation = !state.saveConversation;
     },
-    toggleEnableInterpreter: (state) => {
-      state.enableInterpreter = !state.enableInterpreter;
+    toggleEnableInterpreter: (
+      state,
+      action: {
+        payload: boolean;
+      }
+    ) => {
+      state.enableInterpreter = action.payload;
     },
     toggleEnableAvatar: (state) => {
       state.enableAvatar = !state.enableAvatar;
@@ -50,7 +55,14 @@ const scheduleSlice = createSlice({
     setActivityFlag: (
       state,
       action: {
-        payload: ActivityFlagEnum;
+        payload:
+          | "#7986CB"
+          | "#8E24AA"
+          | "#616161"
+          | "#039BE5"
+          | "#33B679"
+          | "#E67C73"
+          | "#F4511E";
       }
     ) => {
       state.activityFlag = action.payload;
@@ -77,6 +89,11 @@ const scheduleSlice = createSlice({
         payload: IUser;
       }
     ) => {
+      const isParticipant = state.participants.some(
+        (participant) => participant.id === action.payload.id
+      );
+      if (isParticipant) return;
+
       state.participants.push(action.payload);
     },
     removeMeetingParticipant: (
@@ -86,9 +103,24 @@ const scheduleSlice = createSlice({
       }
     ) => {
       console.log(action.payload);
+
       state.participants = state.participants.filter(
         (participant) => participant.id !== action.payload
       );
+    },
+    emptyInput: (state) => {
+      state.activityFlag = "#7986CB";
+      state.description = "";
+      state.enableAvatar = false;
+      state.enableInterpreter = false;
+      state.saveConversation = false;
+      state.language = "Arabic";
+      state.participants = [];
+      state.title = "";
+      state.startTime = `${format(new Date(), "yyyy-MM-dd")}T${format(
+        new Date(),
+        "HH:mm"
+      )}:00.000Z`;
     },
   },
 });
