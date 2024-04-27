@@ -1,14 +1,5 @@
 import { IUser } from "./Auth";
 
-export enum ActivityFlagEnum {
-  "#7986CB",
-  "#8E24AA",
-  "#616161",
-  "#039BE5",
-  "#33B679",
-  "#E67C73",
-  "#F4511E",
-}
 export interface IMeeting {
   title: string;
   description: string;
@@ -28,7 +19,7 @@ export interface IMeetingSchedule {
   description: string;
   participants: IUser[];
   language: "English" | "Arabic";
-  activityFlag: ActivityFlagEnum;
+  activityFlag: "#7986CB"| "#8E24AA"| "#616161"| "#039BE5"| "#33B679"| "#E67C73"| "#F4511E";
   startTime: string;
   saveConversation: boolean;
   enableInterpreter: boolean;
