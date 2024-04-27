@@ -128,7 +128,9 @@ const Settings = () => {
             </h3>
             <Switch
               selected={sendEmailNotificationsToggle}
-              setSelect={setSendEmailNotificationsToggle}
+              toggle={() => {
+                setSendEmailNotificationsToggle((prevState) => !prevState);
+              }}
             />
           </div>
           <div className="flex justify-between items-center ">
@@ -137,7 +139,9 @@ const Settings = () => {
             </h3>
             <Switch
               selected={snedMRemindersViaEmailToggle}
-              setSelect={setSendMRemindersViaEmailToggle}
+              toggle={() => {
+                setSendMRemindersViaEmailToggle((prevState) => !prevState);
+              }}
             />
           </div>
           <div className="flex justify-between items-center ">
@@ -146,7 +150,11 @@ const Settings = () => {
             </h3>
             <Switch
               selected={hideFromMeetingConversationsToggle}
-              setSelect={setHideFromMeetingConversationsToggle}
+              toggle={() => {
+                setHideFromMeetingConversationsToggle(
+                  (prevState) => !prevState
+                );
+              }}
             />
           </div>
         </div>
@@ -197,7 +205,9 @@ const Settings = () => {
             </h3>
             <Switch
               selected={saveConversationsToggle}
-              setSelect={setSaveConversationsToggle}
+              toggle={() => {
+                setSaveConversationsToggle((prevState) => !prevState);
+              }}
             />
           </div>
           <div className="flex justify-between items-center ">
@@ -207,7 +217,11 @@ const Settings = () => {
             </h3>
             <Switch
               selected={saveConversationsNotAttendedToggle}
-              setSelect={setSaveConversationsNotAttendedToggle}
+              toggle={() => {
+                setSaveConversationsNotAttendedToggle(
+                  (prevState) => !prevState
+                );
+              }}
             />
           </div>
           <div className="flex justify-between items-center ">
@@ -216,7 +230,9 @@ const Settings = () => {
             </h3>
             <Switch
               selected={defaultVideoOnToggle}
-              setSelect={setDefaultVideoOnToggle}
+              toggle={() => {
+                setDefaultVideoOnToggle((prevState) => !prevState);
+              }}
             />
           </div>
           <div className="flex justify-between items-center ">
@@ -225,7 +241,9 @@ const Settings = () => {
             </h3>
             <Switch
               selected={defaultAudioOnToggle}
-              setSelect={setDefaultAudioOnToggle}
+              toggle={() => {
+                setDefaultAudioOnToggle((prevState) => !prevState);
+              }}
             />
           </div>
         </div>

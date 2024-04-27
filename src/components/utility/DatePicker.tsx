@@ -10,7 +10,12 @@ import {
   parse,
   startOfToday,
   isPast,
+  parseISO,
 } from "date-fns";
+import { useDispatch } from "react-redux";
+import { scheduleActions } from "../../store/schedule/scheduleSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -26,22 +31,23 @@ const colStartClasses = [
 ];
 
 const DatePicker: React.FC<{
-  dateChangeStateHandler: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ dateChangeStateHandler }) => {
+  success: boolean;
+  resetSuccess: () => void;
+}> = ({ success, resetSuccess }) => {
+  const { startTime } = useSelector((state: RootState) => state.schedule);
+  const dispatch = useDispatch();
   const today = startOfToday();
+  console.log({
+    today,
+  });
   const [selectedDay, setSelectedDay] = useState<Date>(today); // Set an initial date
   const [currentMonth, setCurrentMonth] = useState<string>(
-    format(today, "MMM-yyyy")
+    format(startTime, "MMM-yyyy")
   );
   const [selectedTime, setSelectedTime] = useState<string>(
     format(new Date(), "HH:mm")
   );
   const firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
-  //make a date object with the selected day and time;
-  console.log({
-    selectedDay,
-    selectedTime,
-  });
   const days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
@@ -63,8 +69,20 @@ const DatePicker: React.FC<{
   };
 
   useEffect(() => {
-    dateChangeStateHandler(`${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`);
-  }, [selectedDay, selectedTime, dateChangeStateHandler]);
+    dispatch(
+      scheduleActions.setDate(
+        `${format(selectedDay, "yyyy-MM-dd")}T${selectedTime}:00.000Z`
+      )
+    );
+   
+  }, [selectedDay, selectedTime, dispatch]);
+  useEffect(() => {
+    if (success) {
+      setSelectedDay(today);
+      setSelectedTime(format(new Date(), "HH:mm"));
+      resetSuccess();
+    }
+  }, [success, today]);
   return (
     <div className="abel bg-white w-full  h-[22.8rem] flex flex-col  ">
       <h1 className="text-[#151515] mb- text-[1.25rem]">Pick date & time</h1>
