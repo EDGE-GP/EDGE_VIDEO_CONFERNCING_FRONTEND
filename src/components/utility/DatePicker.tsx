@@ -12,9 +12,9 @@ import {
   isPast,
 } from "date-fns";
 import { useDispatch } from "react-redux";
-import { scheduleActions } from "../../store/schedule/scheduleSlice";
+import { scheduleActions } from "@/store/schedule/scheduleSlice";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@/store";
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -72,8 +72,8 @@ const DatePicker: React.FC<{
       selectedDay.getFullYear(),
       selectedDay.getMonth(),
       selectedDay.getDate(),
-      parseInt(selectedTime.split(":")[0]), // Hours
-      parseInt(selectedTime.split(":")[1]) // Minutes
+      parseInt(selectedTime.split(":")[0]) || 0,
+      parseInt(selectedTime.split(":")[1]) || 0
     );
     dispatch(scheduleActions.setDate(combinedDateTime.toISOString()));
   }, [selectedDay, selectedTime, dispatch]);
@@ -201,6 +201,9 @@ const DatePicker: React.FC<{
               type="time"
               name="time"
               className="h-full w-full outline-none appearance-none bg-transparent text-[#666666] font-[500] text-[16px] loew"
+              onKeyDown={(e) => {
+                if (e.key === "backspace") return e.preventDefault();
+              }}
               onChange={(e) => {
                 e.preventDefault();
                 setSelectedTime(e.target.value);

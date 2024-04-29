@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ActivityFlagEnum, IMeetingSchedule } from "../../types/Meeting";
+import { ActivityFlagEnum, IMeetingSchedule } from "@/types/Meeting";
 import { format } from "date-fns";
-import { IUser } from "../../types/Auth";
+import { IUser } from "@/types/Auth";
 
 const initialState: IMeetingSchedule = {
   title: "",

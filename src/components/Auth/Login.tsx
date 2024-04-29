@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import CircularLoading from "../UI/CircularLoading";
-import useForm from "../../hooks/useForm";
+import CircularLoading from "@/components/ui/CircularLoading";
+import useForm from "@/hooks/useForm";
 import { Link } from "react-router-dom";
 import axios, { isAxiosError } from "axios";
-import { notify } from "../../utils/Toaster/notify";
+import { notify } from "@/utils/Toaster/notify";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../store/auth/authSlice";
+import { authActions } from "@/store/auth/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Login = () => {
       setTimeout(() => {
         dispatch(
           authActions.setUser({
-            user: res.data.user,
+            user: res.data.data.user,
           })
         );
         toast.remove();

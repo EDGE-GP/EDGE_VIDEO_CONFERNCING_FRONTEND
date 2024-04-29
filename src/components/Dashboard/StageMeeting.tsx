@@ -1,7 +1,7 @@
 // import illustration_404 from "../../assets/404.svg";
-import tempProfileImage from "../../assets/selfPortrait.jpg";
-import dummyAccount1 from "../../assets/account4.png";
-import dummyAccount2 from "../../assets/account6.png";
+import tempProfileImage from "@/assets/selfPortrait.jpg";
+import dummyAccount1 from "@/assets/account4.png";
+import dummyAccount2 from "@/assets/account6.png";
 const StageMeeting = () => {
   return (
     <div className=" h-full   flex gap-x-6 ml-[17.5rem] rounded-2xl  mr-[2rem] ">

@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import loginImg from "../assets/edge.png";
 import loginPattern from "../assets/pattern.png";
 import { motion, AnimatePresence } from "framer-motion";
-import ForgotPassword from "../components/Auth/ForgotPassword";
-import Signup from "../components/Auth/Signup";
-import Login from "../components/Auth/Login";
+import ForgotPassword from "../components/auth/ForgotPassword";
+import Signup from "../components/auth/Signup";
+import Login from "../components/auth/Login";
 import { AuthMethod } from "../types/Auth";
-import ResetPassword from "../components/Auth/ResetPassword";
+import ResetPassword from "../components/auth/ResetPassword";
 
 const Auth: React.FC = () => {
   const history = useNavigate();

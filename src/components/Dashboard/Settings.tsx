@@ -1,6 +1,6 @@
-import tempProfileImage from "../../assets/selfPortrait.jpg";
+import tempProfileImage from "@/assets/selfPortrait.jpg";
 import { useState } from "react";
-import Switch from "../utility/Switch";
+import Switch from "@/components/utility/Switch";
 
 const Settings = () => {
   const [saveConversationsToggle, setSaveConversationsToggle] = useState(false);

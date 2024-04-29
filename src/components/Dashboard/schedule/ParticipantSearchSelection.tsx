@@ -1,8 +1,8 @@
 import React from "react";
-import { IUser } from "../../types/Auth";
-import defaultProfileImage from "../../assets/default.jpg";
+import { IUser } from "@/types/Auth";
+import defaultProfileImage from "@/assets/default.jpg";
 import { useDispatch } from "react-redux";
-import { scheduleActions } from "../../store/schedule/scheduleSlice";
+import { scheduleActions } from "@/store/schedule/scheduleSlice";
 interface IParticipantSearchSelection extends IUser {
   selected: boolean;
 }

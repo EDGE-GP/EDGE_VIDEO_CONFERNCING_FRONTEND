@@ -1,8 +1,8 @@
 // import illustration_404 from "../../assets/404.svg";
-import dummyAccount1 from "../../assets/account4.png";
-import dummyAccount2 from "../../assets/account6.png";
-import dummyAccount3 from "../../assets/account3.png";
-import tempProfileImage from "../../assets/selfPortrait.jpg";
+import dummyAccount1 from "@/assets/account4.png";
+import dummyAccount2 from "@/assets/account6.png";
+import dummyAccount3 from "@/assets/account3.png";
+import tempProfileImage from "@/assets/selfPortrait.jpg";
 import { Link } from "react-router-dom";
 
 const Meetings = () => {

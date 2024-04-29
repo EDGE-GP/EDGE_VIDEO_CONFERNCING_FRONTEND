@@ -1,7 +1,7 @@
-import tempProfileImage from "../../assets/selfPortrait.jpg";
-import dummyAccount1 from "../../assets/account4.png";
-import dummyAccount2 from "../../assets/account6.png";
-import dummyAccount3 from "../../assets/account3.png";
+import tempProfileImage from "@/assets/selfPortrait.jpg";
+import dummyAccount1 from "@/assets/account4.png";
+import dummyAccount2 from "@/assets/account6.png";
+import dummyAccount3 from "@/assets/account3.png";
 const Conversations = () => {
   return (
     <div className=" h-full card-shadow  pt-4 bg-white ml-[17.5rem] rounded-3xl  mr-[2rem] ">

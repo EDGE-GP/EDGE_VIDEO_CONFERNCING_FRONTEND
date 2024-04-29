@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from "./Preloader.module.css";
+import classes from "@/components/ui/Preloader.module.css";
 import preloaderImg from "../../assets/edge.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";

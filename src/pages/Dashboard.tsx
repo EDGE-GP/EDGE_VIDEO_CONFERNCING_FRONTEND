@@ -1,15 +1,15 @@
-import Meetings from "../components/Dashboard/Meetings";
-import Schedule from "../components/Dashboard/Schedule";
-import Sidebar from "../components/Dashboard/Sidebar";
+import Meetings from "@/components/dashboard/Meetings";
+import Schedule from "@/components/dashboard/Schedule";
+import Sidebar from "@/components/dashboard/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useParams } from "react-router";
-import StageMeeting from "../components/Dashboard/StageMeeting";
-import Stage from "../components/Dashboard/Stage";
-import Conversations from "../components/Dashboard/Conversations";
-import Networking from "../components/Dashboard/Networking";
-import Settings from "../components/Dashboard/Settings";
+import StageMeeting from "@/components/dashboard/StageMeeting";
+import Stage from "@/components/dashboard/Stage";
+import Conversations from "@/components/dashboard/Conversations";
+import Networking from "@/components/dashboard/Networking";
+import Settings from "@/components/dashboard/Settings";
 
-import edgeLogo from "../assets/edge.png";
+import edgeLogo from "@/assets/edge.png";
 import { useState } from "react";
 const Dashboard = () => {
   const location = useLocation();

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CircularLoading from "../UI/CircularLoading";
-import useForm from "../../hooks/useForm";
+import CircularLoading from "@/components/ui/CircularLoading";
+import useForm from "@/hooks/useForm";
 import axios, { AxiosError } from "axios";
-import { notify } from "../../utils/Toaster/notify";
+import { notify } from "@/utils/Toaster/notify";
 import toast from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
 
@@ -59,11 +59,7 @@ const ResetPassword = () => {
       console.log(res);
       setLoading(false);
       toast.remove();
-      notify(
-        "Password reset successfully",
-        "success",
-        Infinity
-      );
+      notify("Password reset successfully", "success", Infinity);
     } catch (err: AxiosError) {
       console.log(err);
       console.log(err.response?.data?.message || "Something went wrong");

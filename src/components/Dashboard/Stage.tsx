@@ -1,5 +1,5 @@
 // import illustration_404 from "../../assets/404.svg";
-import header from "../../assets/ambition.svg";
+import header from "@/assets/ambition.svg";
 const Stage = () => {
   return (
     <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem] ml-auto rounded-3xl  mr-[2rem] ">

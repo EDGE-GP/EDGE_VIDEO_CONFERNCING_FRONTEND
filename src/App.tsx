@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Auth from "./pages/Auth";
-import Preloader from "./components/UI/Preloader";
+import Preloader from "./components/ui/Preloader";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
@@ -33,7 +33,7 @@ function App() {
       );
       dispatch(
         authActions.setUser({
-          user: res.data.user,
+          user: res.data.data.user,
         })
       );
       console.log(res);

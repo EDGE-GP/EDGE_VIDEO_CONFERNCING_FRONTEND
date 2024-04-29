@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CircularLoading from "../UI/CircularLoading";
+import CircularLoading from "../ui/CircularLoading";
 import useForm from "../../hooks/useForm";
 import axios, { AxiosError } from "axios";
 import { notify } from "../../utils/Toaster/notify";

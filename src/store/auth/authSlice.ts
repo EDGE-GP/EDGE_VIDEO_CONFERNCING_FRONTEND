@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IAuth, IUser } from "../../types/Auth";
+import { IAuth, IUser } from "@/types/Auth";
 
 const initialState: IAuth = {
   isLoggedIn: false,
@@ -16,6 +16,9 @@ const authSlice = createSlice({
         payload: { user: IUser };
       }
     ) => {
+      console.log({
+        user: action.payload.user,
+      });
       state.isLoggedIn = true;
       state.user = action.payload.user;
     },

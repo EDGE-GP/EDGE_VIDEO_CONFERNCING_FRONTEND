@@ -1,9 +1,9 @@
 import React from "react";
-import edgeLogo from "../../assets/edge.png";
+import edgeLogo from "@/assets/edge.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@/store";
 import { useState } from "react";
 
 const Navbar: React.FC<{ intersected: boolean }> = ({ intersected }) => {

@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import DatePicker from "../utility/DatePicker";
-import Switch from "../utility/Switch";
+import Switch from "@/components/utility/Switch";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError, isAxiosError } from "axios";
-import { IUser } from "../../types/Auth";
+import { IUser } from "@/types/Auth";
 import { motion, AnimatePresence } from "framer-motion";
-import CircularLoading from "../UI/CircularLoading";
-import ParticipantSearchSelection from "../Schedule/ParticipantSearchSelection";
+import CircularLoading from "@/components/ui/CircularLoading";
+import ParticipantSearchSelection from "@/components/dashboard/schedule/ParticipantSearchSelection";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@/store";
 import { useDispatch } from "react-redux";
-import { scheduleActions } from "../../store/schedule/scheduleSlice";
-import defaultProfileImage from "../../assets/default.jpg";
-import { notify } from "../../utils/Toaster/notify";
-import { addMinutes, addYears, isAfter, isBefore, parseISO } from "date-fns";
+import { scheduleActions } from "@/store/schedule/scheduleSlice";
+import { notify } from "@/utils/Toaster/notify";
+import { addMinutes, addYears, isAfter, isBefore } from "date-fns";
 import { useNavigate } from "react-router";
+import ParticipantsPreview from "@/components/dashboard/ParticipantsPreview";
 
 const Schedule = () => {
   const dispatch = useDispatch();
@@ -50,26 +50,26 @@ const Schedule = () => {
       if (!isAfter(new Date(startTime), addMinutes(new Date(), 15))) {
         throw new Error("Start time can't be less than 15 minutes from now");
       }
-      if (!isBefore(new Date(startTime), addYears(new Date(), 1))){
-        throw new Error("Start time can't be more than one year from now")
+      if (!isBefore(new Date(startTime), addYears(new Date(), 1))) {
+        throw new Error("Start time can't be more than one year from now");
       }
-        const res = await axios.post(
-          `${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`,
-          {
-            title,
-            description,
-            startTime,
-            activityFlag,
-            enableAvatar,
-            enableInterpreter,
-            saveConversation,
-            language,
-            participants: participants.map((participant) => participant.id),
-          },
-          {
-            withCredentials: true,
-          }
-        );
+      const res = await axios.post(
+        `${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`,
+        {
+          title,
+          description,
+          startTime,
+          activityFlag,
+          enableAvatar,
+          enableInterpreter,
+          saveConversation,
+          language,
+          participants: participants.map((participant) => participant.id),
+        },
+        {
+          withCredentials: true,
+        }
+      );
       dispatch(scheduleActions.emptyInput());
       setParticipantsSearchTerm("");
       setToggleParticipantsSelection(false);
@@ -295,16 +295,18 @@ const Schedule = () => {
                   }}
                 >
                   {participants.map((participant, index) => (
-                    <img
-                      style={{ transform: `translateX(-${index}rem)` }}
+                    <ParticipantsPreview
                       key={participant.id}
-                      className={`w-[2.5rem] object-cover h-[2.5rem] rounded-full`}
-                      src={participant.photo || defaultProfileImage}
-                      alt=""
+                      name={participant.name}
+                      email={participant.email}
+                      id={participant.id}
+                      photo={participant.photo}
+                      index={index}
                     />
                   ))}
                 </div>
               </div>
+
               <div>
                 <div className="flex flex-col mb-3 ">
                   <h3 className="abel text-[1.25rem] ">
@@ -349,7 +351,7 @@ const Schedule = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mb-1">
+                <div className="">
                   <h3 className="abel text-[1.25rem]">Pick Language</h3>
                   <div className="flex w-full gap-x-3 items-center justify-start px-1">
                     <button
@@ -382,7 +384,7 @@ const Schedule = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="abel text-[1.25rem] mb-1">
+                  <h3 className="abel text-[1.25rem] mb-">
                     Pick Activity Flag
                   </h3>
                   <div className="flex flex-wrap gap-x-">

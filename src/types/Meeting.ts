@@ -1,4 +1,4 @@
-import { IUser } from "./Auth";
+import { IUser } from "@/types/Auth";
 
 export interface IMeeting {
   title: string;
@@ -19,9 +19,22 @@ export interface IMeetingSchedule {
   description: string;
   participants: IUser[];
   language: "English" | "Arabic";
-  activityFlag: "#7986CB"| "#8E24AA"| "#616161"| "#039BE5"| "#33B679"| "#E67C73"| "#F4511E";
+  activityFlag:
+    | "#7986CB"
+    | "#8E24AA"
+    | "#616161"
+    | "#039BE5"
+    | "#33B679"
+    | "#E67C73"
+    | "#F4511E";
   startTime: string;
   saveConversation: boolean;
   enableInterpreter: boolean;
   enableAvatar: boolean;
+}
+
+export interface IMeetingInvitation {
+  id: string;
+  meeting: IMeeting;
+  status: "pending" | "accepted" | "rejected";
 }

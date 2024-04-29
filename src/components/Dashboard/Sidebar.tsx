@@ -1,16 +1,19 @@
-import edgeLogo from "../../assets/edge.png";
-import tempProfileImage from "../../assets/selfPortrait.jpg";
+import edgeLogo from "@/assets/edge.png";
+import tempProfileImage from "@/assets/default.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { preloaderActions } from "../../store/preloader/preloaderSlice";
+import { preloaderActions } from "@/store/preloader/preloaderSlice";
 import axios from "axios";
-import { authActions } from "../../store/auth/authSlice";
+import { authActions } from "@/store/auth/authSlice";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const location = useLocation();
+  const { user } = useSelector((state: RootState) => state.auth);
   console.log({ location });
   const logoutUser = async () => {
     try {
@@ -264,15 +267,15 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
           <div className="h-[3rem] w-full  flex justify-start items-center gap-x-2">
             <div className="w-[2.5rem] h-[3rem] flex justify-center items-center">
               <img
-                src={tempProfileImage}
+                src={user?.photo || tempProfileImage}
                 className="h-[2.5rem] w-[2.5rem] rounded-full"
                 alt=""
               />
             </div>
             <div className="flex flex-col items-start w-[62%] justify-center h-full">
-              <span className="text-[16px] abel">Ibrahim Askar </span>
+              <span className="text-[16px] abel">{user?.name}</span>
               <span className="text-[11px] abel w-full text-ellipsis overflow-hidden whitespace-nowrap">
-                ibrahemhani2014@gmail.com
+                {user?.email}
               </span>
             </div>
             <button onClick={logoutUser}>

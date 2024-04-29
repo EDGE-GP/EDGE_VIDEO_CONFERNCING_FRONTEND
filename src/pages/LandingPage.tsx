@@ -1,22 +1,22 @@
 import { useRef, useState } from "react";
-import Navbar from "../components/LandingPage/Navbar";
+import Navbar from "@/components/landingPage/Navbar";
 import { Typewriter } from "react-simple-typewriter";
-import background from "../assets/header.svg";
-import edgeLogo from "../assets/edge.png";
+import background from "@/assets/header.svg";
+import edgeLogo from "@/assets/edge.png";
 import { useInView } from "framer-motion";
-import robotIcon from "../assets/robot.png";
+import robotIcon from "@/assets/robot.png";
 import signLanguageIcon from "../assets/sign.png";
 import voiceRecognitionIcon from "../assets/voice-recognition.png";
 import { motion } from "framer-motion";
-import startUp from "../assets/startup_2.svg";
-import ambition from "../assets/ambition.svg";
-import measure from "../assets/airmeasure.jpg";
-import csort from "../assets/csort.svg";
-import dummyAccount1 from "../assets/account4.png";
-import dummyAccount2 from "../assets/account6.png";
-import dummyAccount3 from "../assets/account7.jpg";
-import dummyAccount4 from "../assets/account5.png";
-import dummyAccount5 from "../assets/account3.png";
+import startUp from "@/assets/startup_2.svg";
+import ambition from "@/assets/ambition.svg";
+import measure from "@/assets/airmeasure.jpg";
+import csort from "@/assets/csort.svg";
+import dummyAccount1 from "@/assets/account4.png";
+import dummyAccount2 from "@/assets/account6.png";
+import dummyAccount3 from "@/assets/account7.jpg";
+import dummyAccount4 from "@/assets/account5.png";
+import dummyAccount5 from "@/assets/account3.png";
 import { useNavigate } from "react-router";
 
 const LandingPage = () => {
