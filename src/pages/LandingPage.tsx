@@ -30,10 +30,10 @@ const LandingPage = () => {
       <Navbar intersected={!isInView} />
       <div
         ref={rootElement}
-        className="md:pt-[4rem] pt-[8rem]  flex container flex-col md:flex-row  md:px-24 px-4 bg-white    justify-between background-pattern  border-[#212121] relative w-screen h-screen  items-center"
+        className="md:pt-[4rem] pt-[8rem]  flex md:px-24 mx-auto flex-col md:flex-row   px-4  bg-white    justify-between background-pattern  border-[#212121] relative w-screen h-screen  items-center"
       >
         <div className="flex flex-col md:w-1/2  w-full h-full justify-center items-center md:items-start  pt-12 md:text-start text-center ">
-          <h1 className="text-[2rem] md:text-[4rem] abel leading-[5.8rem]] md:w-auto h-[2rem] md:h-[5.8rem] ">
+          <h1 className="text-[2rem] md:text-[4rem] abel leading-[5.8rem] md:w-auto h-[2rem] md:h-[5.8rem] ">
             <Typewriter
               words={["Uniting The World", "Where Every Hand Speaks"]}
               loop

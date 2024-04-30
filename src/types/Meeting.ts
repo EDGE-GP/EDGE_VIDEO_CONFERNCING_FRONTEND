@@ -12,7 +12,7 @@ export interface IMeeting {
   saveConversation: boolean;
   enableInterpreter: boolean;
   enableAvatar: boolean;
-  organizer: IUser;
+  organizerId: string;
 }
 export interface IMeetingSchedule {
   title: string;

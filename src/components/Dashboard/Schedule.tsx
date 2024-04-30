@@ -77,7 +77,10 @@ const Schedule = () => {
       console.log(res);
       return res.data;
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["fetchMeetings"],
+      });
       notify("Meeting created successfully", "success", 3000);
       history("/dashboard/meetings");
     },

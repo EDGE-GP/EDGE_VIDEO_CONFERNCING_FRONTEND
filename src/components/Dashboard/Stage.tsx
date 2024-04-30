@@ -78,8 +78,8 @@ const Stage = () => {
               Join
             </button>
           </div>
-          <div className="w-[40rem] mt-16 ml-[-8.5rem] md:mt-6 md:ml-auto flex justify-center">
-            <img src={header} alt="" className="md:w-[405px] w-[300px] " />
+          <div className="w-[40rem] mt-16 ml-[-8.5rem] md:mt-4 md:ml-auto flex justify-center">
+            <img src={header} alt="" className="md:w-[385px] w-[300px] " />
           </div>
         </div>
         {/* <div className="pt-[2rem] relative">

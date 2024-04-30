@@ -17,6 +17,7 @@ const MeetingParticipantInvitations: React.FC<IMeetingInvitation> = ({
   const { user } = useSelector((state: RootState) => state.auth);
   const startTime = new Date(meeting.startTime);
   const formattedDate = format(startTime, "iiii, do MMMM yyyy");
+
   const { mutateAsync: mutateMeetingInvitationRequest, isPending } =
     useMutation({
       mutationKey: ["handleMeetingInvitation"],
@@ -62,7 +63,9 @@ const MeetingParticipantInvitations: React.FC<IMeetingInvitation> = ({
         }
       },
     });
-
+  console.log({
+    meeting,
+  });
   return (
     <div className="flex justify-between items-center bg-[#F7F7F7] rounded-2xl px-4 py-3">
       <div className="flex flex-col gap-y-">
@@ -89,12 +92,13 @@ const MeetingParticipantInvitations: React.FC<IMeetingInvitation> = ({
               name={participant.name}
               photo={participant.photo}
               key={participant.id}
+              organizer={participant.id === meeting.organizerId}
             />
           ))}
         </div>
       </div>
 
-      {isPast(startTime) ? (
+      {isPast(startTime) && status === "pending" ? (
         <div className="flex items-end gap-x-3 h-full ">
           <div className="abel text-[1rem] font-semibold text-[#161616] hover:text-[#333333]">
             Expired
