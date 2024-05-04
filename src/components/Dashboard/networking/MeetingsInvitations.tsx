@@ -10,7 +10,7 @@ const MeetingsInvitations = () => {
   const {
     isLoading,
     isError,
-    data: meetingInvitations,
+    data: meetingInvitations = [],
   } = useQuery<IMeetingInvitation[]>({
     queryKey: ["UserMeetingInvitations", user?.id],
     queryFn: async () => {
@@ -38,7 +38,7 @@ const MeetingsInvitations = () => {
           <div className="w-full h-full flex justify-center items-center">
             <CircularLoading button={false} />
           </div>
-        ) : meetingInvitations && meetingInvitations.length > 0 ? (
+        ) : meetingInvitations.length > 0 ? (
           meetingInvitations?.map((invitation) => (
             <MeetingParticipantInvitations
               key={invitation.id}

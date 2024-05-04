@@ -1,4 +1,4 @@
-import { IUser } from "@/types/Auth";
+import { IUser } from "@/types/User";
 import React from "react";
 import defaultProfileImage from "@/assets/default.jpg";
 import {

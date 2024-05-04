@@ -1,17 +1,13 @@
 import illustration_404 from "../../assets/404.svg";
-import dummyAccount1 from "@/assets/account4.png";
-import dummyAccount2 from "@/assets/account6.png";
-import dummyAccount3 from "@/assets/account3.png";
-import tempProfileImage from "@/assets/selfPortrait.jpg";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import ScheduledMeetings from "./meetings/ScheduledMeetings";
 import { isPast } from "date-fns";
 import { IMeeting } from "@/types/Meeting";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import CircularLoading from "../ui/CircularLoading";
+import CircularLoading from "@/components/ui/CircularLoading";
+import MeetingPreview from "@/components/dashboard/meetings/MeetingPreview";
 
 const Meetings = () => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -30,6 +26,7 @@ const Meetings = () => {
       );
       return res.data.data.meetings ?? [];
     },
+    retry: 1,
   });
   console.log({
     meetings,
@@ -55,10 +52,10 @@ const Meetings = () => {
               {meetings.map(
                 (meeting) =>
                   !isPast(new Date(meeting.startTime)) && (
-                    <ScheduledMeetings {...meeting} key={meeting.id} />
+                    <MeetingPreview {...meeting} key={meeting.id} />
                   )
               )}
-              <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-between py-3 items-start">
+              <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col justify-between py-4 items-start">
                 <div>
                   <div className="flex items-center gap-x-2">
                     <h1 className="abel text-[1.375rem] ">
@@ -104,7 +101,7 @@ const Meetings = () => {
               {meetings.map(
                 (meeting) =>
                   isPast(new Date(meeting.startTime)) && (
-                    <ScheduledMeetings {...meeting} key={meeting.id} />
+                    <MeetingPreview {...meeting} key={meeting.id} />
                   )
               )}
             </div>

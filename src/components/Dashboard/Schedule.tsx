@@ -3,7 +3,7 @@ import DatePicker from "../utility/DatePicker";
 import Switch from "@/components/utility/Switch";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError, isAxiosError } from "axios";
-import { IUser } from "@/types/Auth";
+import { IUser } from "@/types/User";
 import { motion, AnimatePresence } from "framer-motion";
 import CircularLoading from "@/components/ui/CircularLoading";
 import ParticipantSearchSelection from "@/components/dashboard/schedule/ParticipantSearchSelection";
@@ -20,7 +20,7 @@ const Schedule = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const queryClient = useQueryClient();
-
+  const { user } = useSelector((state: RootState) => state.auth);
   const {
     title,
     description,
@@ -53,7 +53,7 @@ const Schedule = () => {
       if (!isBefore(new Date(startTime), addYears(new Date(), 1))) {
         throw new Error("Start time can't be more than one year from now");
       }
-      const res = await axios.post(
+      await axios.post(
         `${process.env.BACKEND_SERVER}/api/v1/meetings/schedule`,
         {
           title,
@@ -70,17 +70,14 @@ const Schedule = () => {
           withCredentials: true,
         }
       );
-      dispatch(scheduleActions.emptyInput());
-      setParticipantsSearchTerm("");
-      setToggleParticipantsSelection(false);
-      history("/dashboard/meetings");
-      console.log(res);
-      return res.data;
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ["fetchMeetings"],
+        queryKey: ["fetchMeetings", user?.id],
       });
+      dispatch(scheduleActions.emptyInput());
+      setParticipantsSearchTerm("");
+      setToggleParticipantsSelection(false);
       notify("Meeting created successfully", "success", 3000);
       history("/dashboard/meetings");
     },
@@ -305,6 +302,7 @@ const Schedule = () => {
                       id={participant.id}
                       photo={participant.photo}
                       index={index}
+                      organizer={false}
                     />
                   ))}
                 </div>

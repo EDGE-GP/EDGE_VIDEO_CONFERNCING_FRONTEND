@@ -4,12 +4,7 @@ export type AuthMethod =
   | "forgot-password"
   | "reset-password";
 
-export interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  photo: string | null;
-}
+
 
 export interface IAuth {
   isLoggedIn: boolean;

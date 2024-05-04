@@ -1,5 +1,5 @@
 import React from "react";
-import { IUser } from "@/types/Auth";
+import { IUser } from "@/types/User";
 import defaultProfileImage from "@/assets/default.jpg";
 import { useDispatch } from "react-redux";
 import { scheduleActions } from "@/store/schedule/scheduleSlice";

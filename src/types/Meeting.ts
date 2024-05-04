@@ -1,4 +1,4 @@
-import { IUser } from "@/types/Auth";
+import { IUser } from "@/types/User";
 
 export interface IMeeting {
   title: string;

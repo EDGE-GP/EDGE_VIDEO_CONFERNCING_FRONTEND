@@ -37,9 +37,14 @@ const MeetingParticipantInvitations: React.FC<IMeetingInvitation> = ({
       },
       onSuccess: async (status) => {
         console.log("Invitation handled");
-        await queryClient.invalidateQueries({
-          queryKey: ["UserMeetingInvitations", user?.id],
-        });
+        await Promise.all([
+          queryClient.invalidateQueries({
+            queryKey: ["UserMeetingInvitations", user?.id],
+          }),
+          await queryClient.invalidateQueries({
+            queryKey: ["fetchMeetings", user?.id],
+          }),
+        ]);
         notify(
           `Meeting invitation request ${status} successfully`,
           "success",
