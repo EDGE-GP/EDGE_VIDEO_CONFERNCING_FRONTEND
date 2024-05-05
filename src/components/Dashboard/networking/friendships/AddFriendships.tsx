@@ -1,102 +1,69 @@
 import dummyAccount1 from "@/assets/account4.png";
 import dummyAccount2 from "@/assets/account6.png";
+import { RootState } from "@/store";
+import { IUser } from "@/types/User";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import AddFriendPreview from "./preview/AddFriendPreview";
+import CircularLoading from "@/components/ui/CircularLoading";
 const AddFriendships = () => {
+  const queryClient = useQueryClient();
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const { user } = useSelector((state: RootState) => state.auth);
+  const {
+    data: users = [],
+    isLoading,
+    isFetching,
+  } = useQuery<IUser[]>({
+    queryKey: ["addFriendships", user?.id],
+    queryFn: async () => {
+      if (searchTerm.trim().length === 0) return [];
+
+      const res = await axios.get(
+        `${process.env.BACKEND_SERVER}/api/v1/users/friendships/add/search/${searchTerm}`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+      return res.data.data.users ?? [];
+    },
+    retry: 1,
+  });
+  console.log({
+    users,
+    isFetching,
+  });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      queryClient.invalidateQueries({
+        queryKey: ["addFriendships"],
+      });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm, queryClient]);
   return (
-    <div>
-      <div className="h-[2.5rem] placeholder:capitalize mb-2  w-full flex bg-[#F8F8FA] rounded-lg">
+    <div className="h-[17.5rem]">
+      <div className="h-[2.5rem] placeholder:capitalize px-3 justify-between items-center mb-2  w-full flex bg-[#F8F8FA] rounded-lg">
         <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
-          className="w-full  roudned-full abel px-3 outline-none text-[14px] bg-transparent"
+          className="w-full  roudned-full abel  outline-none text-[14px] bg-transparent"
           placeholder="Search for users to add"
         />
+        {isFetching && (
+          <div className="w-8">
+            <CircularLoading button />
+          </div>
+        )}
       </div>
-      <div className="flex flex-col px-2 gap-y-2 h-[15rem] overflow-y-scroll">
-        <div className="flex justify-between ">
-          <div className="flex justify-start items-center gap-x-2">
-            <img
-              className="w-[2.rem] object-cover h-[2.5rem] rounded-full"
-              src={dummyAccount1}
-              alt=""
-            />
-            <h1 className="text-[1.1rem] abel">Feyd Rutha</h1>
-          </div>
-          <div className="flex items-center gap-x-2">
-            <button>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 12.9996C12.5523 12.9996 13 12.5519 13 11.9996C13 11.4473 12.5523 10.9996 12 10.9996C11.4477 10.9996 11 11.4473 11 11.9996C11 12.5519 11.4477 12.9996 12 12.9996Z"
-                  stroke="#151515"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 5.99963C12.5523 5.99963 13 5.55192 13 4.99963C13 4.44735 12.5523 3.99963 12 3.99963C11.4477 3.99963 11 4.44735 11 4.99963C11 5.55192 11.4477 5.99963 12 5.99963Z"
-                  stroke="#151515"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 19.9996C12.5523 19.9996 13 19.5519 13 18.9996C13 18.4473 12.5523 17.9996 12 17.9996C11.4477 17.9996 11 18.4473 11 18.9996C11 19.5519 11.4477 19.9996 12 19.9996Z"
-                  stroke="#151515"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-between ">
-          <div className="flex justify-start items-center gap-x-2">
-            <img
-              className="w-[2.rem] object-cover h-[2.5rem] rounded-full"
-              src={dummyAccount2}
-              alt=""
-            />
-            <h1 className="text-[1.1rem] abel">Paul Atreides</h1>
-          </div>
-          <div className="flex items-center gap-x-2">
-            <button>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 12.9996C12.5523 12.9996 13 12.5519 13 11.9996C13 11.4473 12.5523 10.9996 12 10.9996C11.4477 10.9996 11 11.4473 11 11.9996C11 12.5519 11.4477 12.9996 12 12.9996Z"
-                  stroke="#151515"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 5.99963C12.5523 5.99963 13 5.55192 13 4.99963C13 4.44735 12.5523 3.99963 12 3.99963C11.4477 3.99963 11 4.44735 11 4.99963C11 5.55192 11.4477 5.99963 12 5.99963Z"
-                  stroke="#151515"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 19.9996C12.5523 19.9996 13 19.5519 13 18.9996C13 18.4473 12.5523 17.9996 12 17.9996C11.4477 17.9996 11 18.4473 11 18.9996C11 19.5519 11.4477 19.9996 12 19.9996Z"
-                  stroke="#151515"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div className="flex flex-col px-2 gap-y-1 h-[14.5rem] overflow-y-scroll">
+        {users.map((user) => (
+          <AddFriendPreview key={user.id} {...user} />
+        ))}
       </div>
     </div>
   );

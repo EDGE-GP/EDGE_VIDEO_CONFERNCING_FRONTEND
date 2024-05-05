@@ -13,7 +13,7 @@ const FriendshipPreview: React.FC<IFriendship> = ({ status, id, user }) => {
     mutationKey: ["deleteFriendRequest", id],
     mutationFn: async () => {
       const res = await axios.delete(
-        `${process.env.BACKEND_SERVER}/api/v1/users/friendship/${id}`,
+        `${process.env.BACKEND_SERVER}/api/v1/users/friendships/${id}`,
         {
           withCredentials: true,
         }
@@ -29,14 +29,17 @@ const FriendshipPreview: React.FC<IFriendship> = ({ status, id, user }) => {
     },
   });
   return (
-    <div className="flex justify-between min-h-[3rem]">
+    <div className="flex justify-between min-h-[3.25rem]">
       <div className="flex justify-start items-center gap-x-2">
         <img
-          className="w-[2.5rem] object-cover h-[2.5rem] rounded-full"
+          className="w-[2.5rem] object-cover h-[2.5rem] rounded-full "
           src={user.photo || defaultProfileImage}
           alt=""
         />
-        <h1 className="text-[1.1rem] abel">{user.name}</h1>
+        <div className="flex flex-col">
+          <h1 className="text-[1.1rem] abel leading-4">{user.name}</h1>
+          <h1 className="text-[0.9rem] abel">{user.email}</h1>
+        </div>
       </div>
       <div className="flex items-center gap-x-2">
         {status === "pending" ? (

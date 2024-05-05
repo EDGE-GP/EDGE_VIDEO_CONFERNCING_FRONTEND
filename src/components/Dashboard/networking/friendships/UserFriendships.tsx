@@ -11,6 +11,7 @@ const UserFriendships = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const [friendshipsSearchTerm, setFriendshipsSearchTerm] =
     useState<string>("");
+  const [searchLoadingInit, setSearchLoadingInit] = useState<boolean>(false);
   const {
     data: friendships = [],
     isLoading,
@@ -19,7 +20,9 @@ const UserFriendships = () => {
     queryKey: ["friendships", user?.id],
     queryFn: async () => {
       const res = await axios(
-        `${process.env.BACKEND_SERVER}/api/v1/users/friendships?searchTerm=${friendshipsSearchTerm}`,
+        `${process.env.BACKEND_SERVER}/api/v1/users/friendships?searchTerm=${
+          friendshipsSearchTerm || ""
+        }`,
         {
           withCredentials: true,
         }
@@ -43,7 +46,7 @@ const UserFriendships = () => {
     return () => clearTimeout(timer);
   }, [friendshipsSearchTerm, queryClient]);
   return (
-    <div className="h-[16.75rem]">
+    <div className="h-[17.5rem]">
       {isLoading ? (
         <div className="h-full flex justify-center items-center">
           <CircularLoading button />
@@ -53,18 +56,21 @@ const UserFriendships = () => {
           <div className="h-[2.5rem] placeholder:capitalize mb-2 px-3  w-full  bg-[#F8F8FA] rounded-lg flex justify-between">
             <input
               value={friendshipsSearchTerm}
-              onChange={(e) => setFriendshipsSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setFriendshipsSearchTerm(e.target.value);
+                setSearchLoadingInit(true);
+              }}
               type="text"
               className="w-full  roudned-full abel  outline-none text-[14px] bg-transparent"
-              placeholder="Search your friendships"
+              placeholder="Search your friendships via name or email"
             />
-            {isFetching && (
+            {isFetching  && (
               <div className="w-8">
                 <CircularLoading button />
               </div>
             )}
           </div>
-          <div className="flex flex-col px-2 gap-y-2 h-[13.7rem] overflow-y-scroll">
+          <div className="flex flex-col px-2 gap-y-1 h-[14.5rem] overflow-y-scroll">
             {friendships.map((friendship) => (
               <FriendshipPreview key={friendship.id} {...friendship} />
             ))}

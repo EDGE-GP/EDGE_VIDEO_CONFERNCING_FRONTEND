@@ -25,6 +25,7 @@ const MeetingsInvitations = () => {
     },
     retry: 1,
   });
+
   console.log({
     isLoading,
     isError,
