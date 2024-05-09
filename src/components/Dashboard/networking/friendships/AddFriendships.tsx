@@ -1,5 +1,3 @@
-import dummyAccount1 from "@/assets/account4.png";
-import dummyAccount2 from "@/assets/account6.png";
 import { RootState } from "@/store";
 import { IUser } from "@/types/User";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -14,7 +12,6 @@ const AddFriendships = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const {
     data: users = [],
-    isLoading,
     isFetching,
   } = useQuery<IUser[]>({
     queryKey: ["addFriendships", user?.id],
@@ -52,7 +49,7 @@ const AddFriendships = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
           className="w-full  roudned-full abel  outline-none text-[14px] bg-transparent"
-          placeholder="Search for users to add"
+          placeholder="Search for friendships to make via name or email"
         />
         {isFetching && (
           <div className="w-8">

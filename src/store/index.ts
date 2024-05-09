@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import auth from "./auth/authSlice";
-import preloader from "./preloader/preloaderSlice";
-import schedule from "./schedule/scheduleSlice";
+import auth from "@//store/auth/authSlice";
+import preloader from "@//store/preloader/preloaderSlice";
+import schedule from "@//store/schedule/scheduleSlice";
+import notifications from "@//store/notifications/notificationsSlice";
 const rootReducer = combineReducers({
   auth,
   preloader,
   schedule,
+  notifications,
 });
 
 const store = configureStore({

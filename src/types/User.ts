@@ -10,3 +10,19 @@ export interface IFriendship {
   status: "pending" | "accepted" | "rejected" | "deleted";
   user: IUser;
 }
+
+export interface INotification {
+  id: string;
+  type:
+    | "meetingInvitation"
+    | "meetingReminder"
+    | "meetingUpdated"
+    | "meetingCanceled"
+    | "friendshipRequest"
+    | "friendshipAccepted"
+    | "friendshipRejected";
+  message: string;
+  read: boolean;
+  user: IUser;
+  createdAt: string;
+}

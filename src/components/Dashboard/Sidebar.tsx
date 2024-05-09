@@ -14,6 +14,7 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
   const history = useNavigate();
   const location = useLocation();
   const { user } = useSelector((state: RootState) => state.auth);
+  const { panner } = useSelector((state: RootState) => state.notifications);
   console.log({ location });
   const logoutUser = async () => {
     try {
@@ -154,8 +155,10 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
           </Link>
           <Link
             to="/dashboard/networking"
-            className="w-full flex justify-center items-center cursor-pointer "
+            className="w-full flex justify-center items-center cursor-pointer relative"
           >
+            {/* panner */}
+
             <div
               className={`flex items-center gap-2 rounded-[11px]  w-full h-[40px]  ${
                 location.pathname.includes("networking")
@@ -183,7 +186,9 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
                   />
                 </svg>
               </div>
-              <h3 className="abel   text-[16px] text-center">Networking</h3>
+              <h3 className="abel   text-[16px] text-center">
+                Networking ({panner})
+              </h3>
             </div>
           </Link>
           <Link

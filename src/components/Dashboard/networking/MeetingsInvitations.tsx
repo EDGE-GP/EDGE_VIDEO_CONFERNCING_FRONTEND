@@ -37,7 +37,7 @@ const MeetingsInvitations = () => {
       <div className="flex flex-col gap-y-2 h-[17em] overflow-y-scroll px-2">
         {isLoading ? (
           <div className="w-full h-full flex justify-center items-center">
-            <CircularLoading button={false} />
+            <CircularLoading button />
           </div>
         ) : meetingInvitations.length > 0 ? (
           meetingInvitations?.map((invitation) => (

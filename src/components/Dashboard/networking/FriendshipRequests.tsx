@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import tempProfileImage from "@/assets/selfPortrait.jpg";
-import dummyAccount1 from "@/assets/account4.png";
-import dummyAccount2 from "@/assets/account6.png";
+import { useEffect, useState } from "react";
 import CircularLoading from "@/components/ui/CircularLoading";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { IFriendship } from "@/types/User";
@@ -33,6 +30,7 @@ const FriendshipRequests = () => {
     },
     refetchOnWindowFocus: false,
     retry: 1,
+    
   });
 
   console.log({
@@ -61,7 +59,7 @@ const FriendshipRequests = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 type="text"
                 className="w-full  roudned-full abel  outline-none text-[14px] bg-transparent"
-                placeholder="Search for users to add"
+                placeholder="Filter your friendships requests via name or email"
               />
 
               {isFetching && (

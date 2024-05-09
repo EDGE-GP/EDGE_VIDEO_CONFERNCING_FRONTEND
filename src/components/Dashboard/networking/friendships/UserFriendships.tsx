@@ -11,7 +11,6 @@ const UserFriendships = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const [friendshipsSearchTerm, setFriendshipsSearchTerm] =
     useState<string>("");
-  const [searchLoadingInit, setSearchLoadingInit] = useState<boolean>(false);
   const {
     data: friendships = [],
     isLoading,
@@ -31,6 +30,7 @@ const UserFriendships = () => {
       return res.data.data.friendships;
     },
     refetchOnWindowFocus: false,
+    retry: 1,
   });
 
   console.log({
@@ -58,13 +58,12 @@ const UserFriendships = () => {
               value={friendshipsSearchTerm}
               onChange={(e) => {
                 setFriendshipsSearchTerm(e.target.value);
-                setSearchLoadingInit(true);
               }}
               type="text"
               className="w-full  roudned-full abel  outline-none text-[14px] bg-transparent"
-              placeholder="Search your friendships via name or email"
+              placeholder="Filter your friendships via name or email"
             />
-            {isFetching  && (
+            {isFetching && (
               <div className="w-8">
                 <CircularLoading button />
               </div>

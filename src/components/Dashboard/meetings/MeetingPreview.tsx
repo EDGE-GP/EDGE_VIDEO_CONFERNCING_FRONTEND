@@ -3,21 +3,19 @@ import React from "react";
 import { IMeeting } from "@/types/Meeting";
 import { format, isPast } from "date-fns";
 import ParticipantsPreview from "@/components/dashboard/ParticipantsPreview";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const MeetingPreview: React.FC<IMeeting> = ({
-  id,
-  language,
   participants,
   startTime,
   conferenceId,
   description,
   activityFlag,
-  enableAvatar,
-  enableInterpreter,
   organizerId,
-  saveConversation,
   title,
 }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
   const formattedDate = format(new Date(startTime), "iiii, do MMMM yyyy");
   return (
     <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col py-4 justify-between items-start">
@@ -54,7 +52,7 @@ const MeetingPreview: React.FC<IMeeting> = ({
             />
           ))}
         </div>
-        {isPast(new Date(startTime)) ? (
+        {isPast(new Date(startTime)) && (
           <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6">
             <span>View Conversation</span>
             <span>
@@ -74,7 +72,8 @@ const MeetingPreview: React.FC<IMeeting> = ({
               </svg>
             </span>
           </button>
-        ) : (
+        )}
+        {!isPast(new Date(startTime)) && user?.id === organizerId && (
           <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6">
             <span>Edit Meeting</span>
             <span>
