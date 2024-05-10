@@ -28,7 +28,8 @@ const notificationSlice = createSlice({
         payload: { notification: INotification };
       }
     ) => {
-      state.notifications.push(action.payload.notification);
+      console.log('Pushing notification')
+      state.notifications.unshift(action.payload.notification);
       state.panner = state.panner + 1;
     },
     setNotificationPanner: (

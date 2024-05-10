@@ -18,11 +18,13 @@ export interface INotification {
     | "meetingReminder"
     | "meetingUpdated"
     | "meetingCanceled"
+    | "meetingInvitationAccepted"
+    | "meetingInvitationRejected"
     | "friendshipRequest"
-    | "friendshipAccepted"
-    | "friendshipRejected";
+    | "friendshipAccepted";
   message: string;
   read: boolean;
   user: IUser;
+  badge: string | null;
   createdAt: string;
 }

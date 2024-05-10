@@ -14,15 +14,18 @@ import { preloaderActions } from "./store/preloader/preloaderSlice";
 import axios from "axios";
 import { authActions } from "./store/auth/authSlice";
 import { useNavigate } from "react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { notificationsActions } from "./store/notifications/notificationsSlice";
+import { notify } from "./utils/Toaster/notify";
+import { INotification } from "./types/User";
 
 function App() {
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useNavigate();
   const { preloader } = useSelector((state: RootState) => state.preloader);
-  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.auth);
 
   const { isLoading, isError } = useQuery({
     queryKey: ["validateUser"],
@@ -45,7 +48,10 @@ function App() {
     staleTime: Infinity,
   });
 
-  const { isFetching: notificationsFetchingTrigger } = useQuery({
+  const {
+    isFetching: notificationsFetchingTrigger,
+    data: initialNotifications,
+  } = useQuery({
     queryKey: ["fetchNotifications"],
     queryFn: async () => {
       const res = await axios(
@@ -98,13 +104,50 @@ function App() {
   useEffect(() => {
     if (!isLoggedIn) return;
 
-    const socket = io(`${process.env.BACKEND_SERVER}`);
+    const socket = io(`${process.env.BACKEND_SERVER}`, {
+      query: {
+        id: user?.id,
+      },
+    });
 
     socket.on("connect", () => {
       console.log("Connected to Socket.IO server");
     });
     //TODO: establish notifications subscription in here based on the upcoming connection invalidate queries
-
+    socket.on("notification", async (notification: INotification) => {
+      console.log("Received notification:", notification);
+      if (notification.type === "meetingInvitation") {
+        await queryClient.invalidateQueries({
+          queryKey: ["UserMeetingInvitations"],
+        });
+        notify(notification.message, "success", 3000);
+      }
+      if (notification.type === "meetingInvitationAccepted") {
+        await queryClient.invalidateQueries({
+          queryKey: ["fetchMeetings"],
+        });
+        notify(notification.message, "success", 3000);
+      }
+      if (notification.type === "friendshipAccepted") {
+        await queryClient.invalidateQueries({
+          queryKey: ["friendships"],
+        });
+        notify(notification.message, "success", 3000);
+      }
+      if (notification.type === "friendshipRequest") {
+        await queryClient.invalidateQueries({
+          queryKey: ["friendshipRequests"],
+        });
+        notify(notification.message, "success", 3000);
+      }
+      if (notification.type === "meetingInvitationRejected") {
+        await queryClient.invalidateQueries({
+          queryKey: ["friendshipRequests"],
+        });
+        notify(notification.message, "inform", 3000);
+      }
+      dispatch(notificationsActions.pushNotification({ notification }));
+    });
     socket.on("disconnect", () => {
       console.log("Disconnected from Socket.IO server");
     });
@@ -112,7 +155,7 @@ function App() {
     return () => {
       socket.disconnect();
     };
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user, queryClient, dispatch]);
   return (
     <>
       <Toaster position="top-center" gutter={8} reverseOrder={true} />

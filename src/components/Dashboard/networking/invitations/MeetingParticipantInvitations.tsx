@@ -68,9 +68,6 @@ const MeetingParticipantInvitations: React.FC<IMeetingInvitation> = ({
         }
       },
     });
-  console.log({
-    meeting,
-  });
   return (
     <div className="flex justify-between items-center bg-[#F7F7F7] rounded-2xl px-4 py-3">
       <div className="flex flex-col gap-y-">

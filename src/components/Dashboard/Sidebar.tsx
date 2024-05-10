@@ -187,7 +187,7 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
                 </svg>
               </div>
               <h3 className="abel   text-[16px] text-center">
-                Networking ({panner})
+                Networking {panner > 0 && `(${panner})`}
               </h3>
             </div>
           </Link>
