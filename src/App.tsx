@@ -50,7 +50,6 @@ function App() {
 
   const {
     isFetching: notificationsFetchingTrigger,
-    data: initialNotifications,
   } = useQuery({
     queryKey: ["fetchNotifications"],
     queryFn: async () => {
