@@ -35,7 +35,7 @@ const Settings = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0_1_20890)">
+                  <g clipPath="url(#clip0_1_20890)">
                     <path
                       d="M16.9999 7.00004L6.99994 17"
                       stroke="#212121"

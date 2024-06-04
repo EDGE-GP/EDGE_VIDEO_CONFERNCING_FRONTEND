@@ -2,7 +2,7 @@ import Meetings from "@/components/dashboard/Meetings";
 import Schedule from "@/components/dashboard/Schedule";
 import Sidebar from "@/components/dashboard/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, useParams } from "react-router";
+import { Route, Routes } from "react-router";
 import StageMeeting from "@/components/dashboard/StageMeeting";
 import Stage from "@/components/dashboard/Stage";
 import Conversations from "@/components/dashboard/Conversations";
@@ -12,9 +12,6 @@ import Settings from "@/components/dashboard/Settings";
 import edgeLogo from "@/assets/edge.png";
 import { useState } from "react";
 const Dashboard = () => {
-  const location = useLocation();
-  const { section } = useParams();
-  const params = new URLSearchParams(location.search);
   const [SideBar, setSideBar] = useState(false);
 
   return (
@@ -53,84 +50,127 @@ const Dashboard = () => {
         <Sidebar sideVisibality={SideBar} />
         <div className="h-[92%] w-full">
           <AnimatePresence mode="wait">
-            {section === "meetings" && (
-              <motion.div
-                key="meetings"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1 }}
-              >
-                <div className="h-[92vh] w-full">
-                  <Meetings />
-                </div>
-              </motion.div>
-            )}
-            {section === "stage" && (
-              <motion.div
-                key="stage"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1 }}
-              >
-                <div className="h-[92vh]">
-                  {params.get("meetingId") ? <StageMeeting /> : <Stage />}
-                </div>
-              </motion.div>
-            )}
-            {section === "schedule" && (
-              <motion.div
-                key="schedule"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1 }}
-              >
-                <div className="h-[92vh]">
-                  <Schedule />
-                </div>
-              </motion.div>
-            )}
-            {section === "conversations" && (
-              <motion.div
-                key="conversations"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1 }}
-              >
-                <div className="h-[92vh]">
-                  <Conversations />
-                </div>
-              </motion.div>
-            )}
-            {section === "networking" && (
-              <motion.div
-                key="networking"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1 }}
-              >
-                <div className="h-[92vh]">
-                  <Networking />
-                </div>
-              </motion.div>
-            )}
-            {section === "settings" && (
-              <motion.div
-                key="settings"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.1 }}
-              >
-                <div className="h-[92vh]">
-                  <Settings />
-                </div>
-              </motion.div>
-            )}
+            <Routes>
+              <Route
+                path="meetings"
+                element={
+                  <motion.div
+                    key="meetings"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <div className="h-[92vh] w-full">
+                      <Meetings />
+                    </div>
+                  </motion.div>
+                }
+              />
+              <Route
+                path="stage/*"
+                element={
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <motion.div
+                          key="stage"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.1 }}
+                        >
+                          <div className="h-[92vh] w-full">
+                            <Stage />
+                          </div>
+                        </motion.div>
+                      }
+                    />
+                    <Route
+                      path="/:conferenceId"
+                      element={
+                        <motion.div
+                          key="stageMeeting"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.1 }}
+                        >
+                          <div className="h-[92vh] w-full">
+                            <StageMeeting />
+                          </div>
+                        </motion.div>
+                      }
+                    />
+                  </Routes>
+                }
+              />
+              <Route
+                path="schedule"
+                element={
+                  <motion.div
+                    key="schedule"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <div className="h-[92vh]">
+                      <Schedule />
+                    </div>
+                  </motion.div>
+                }
+              />
+              <Route
+                path="conversations"
+                element={
+                  <motion.div
+                    key="conversations"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <div className="h-[92vh]">
+                      <Conversations />
+                    </div>
+                  </motion.div>
+                }
+              />
+              <Route
+                path="networking"
+                element={
+                  <motion.div
+                    key="networking"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <div className="h-[92vh]">
+                      <Networking />
+                    </div>
+                  </motion.div>
+                }
+              />
+              <Route
+                path="settings"
+                element={
+                  <motion.div
+                    key="settings"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <div className="h-[92vh]">
+                      <Settings />
+                    </div>
+                  </motion.div>
+                }
+              />
+            </Routes>
           </AnimatePresence>
         </div>
       </div>

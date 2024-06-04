@@ -6,8 +6,8 @@ import tempProfileImage from "../assets/selfPortrait.jpg";
 import { Link } from "react-router-dom";
 import header from "../assets/ambition.svg";
 const Template: React.FC = () => {
-    return (
-      <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem] ml-auto rounded-3xl  mr-[2rem] ">
+  return (
+    <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem] ml-auto rounded-3xl  mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Stage</h1>
       <h3 className="abel text-[1rem] px-8">
         Edge Stage: Seamlessly Create or Join Meetings for Instant Collaboration
@@ -53,7 +53,7 @@ const Template: React.FC = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0_3_5065)">
+                  <g clipPath="url(#clip0_3_5065)">
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -74,7 +74,9 @@ const Template: React.FC = () => {
                 placeholder="Enter Meeting Code"
               />
             </div>
-            <button className="abel md:text-[1.25rem] text-[1rem] text-[#cbcaca]">Join</button>
+            <button className="abel md:text-[1.25rem] text-[1rem] text-[#cbcaca]">
+              Join
+            </button>
           </div>
           <div className="w-[40rem] mt-5 flex justify-center">
             <img src={header} alt="" className="md:w-[405px] w-[300px] " />
@@ -119,7 +121,7 @@ const Template: React.FC = () => {
           </h1>
         </div> */}
     </div>
-    );
+  );
 };
 
 export default Template;

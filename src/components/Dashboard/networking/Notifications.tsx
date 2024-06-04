@@ -3,10 +3,12 @@ import { RootState } from "@/store";
 import NotificationPreview from "./notifications/NotificationPreview";
 import CircularLoading from "@/components/ui/CircularLoading";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 const Notifications = () => {
   const { notifications, isNotificationsFetching } = useSelector(
     (state: RootState) => state.notifications
   );
+
   useEffect(() => {
     console.log({ notifications });
   }, [notifications]);

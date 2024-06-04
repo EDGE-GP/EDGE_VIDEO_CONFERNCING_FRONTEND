@@ -2,7 +2,12 @@
 import tempProfileImage from "@/assets/selfPortrait.jpg";
 import dummyAccount1 from "@/assets/account4.png";
 import dummyAccount2 from "@/assets/account6.png";
+
 const StageMeeting = () => {
+  // const useClient = intializeClient();
+  // const client = useClient();
+  // const useMicrophoneAndCameraTracks = createMicrophoneAndCameraTracks();
+  // const { ready, tracks } = useMicrophoneAndCameraTracks();
   return (
     <div className=" h-full   flex gap-x-6 ml-[17.5rem] rounded-2xl  mr-[2rem] ">
       <div className="w-[75%] h-full">

@@ -18,6 +18,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { notificationsActions } from "./store/notifications/notificationsSlice";
 import { notify } from "./utils/Toaster/notify";
 import { INotification } from "./types/User";
+import { socketActions } from "./store/socket/socketSlice";
 
 function App() {
   const queryClient = useQueryClient();
@@ -48,9 +49,7 @@ function App() {
     staleTime: Infinity,
   });
 
-  const {
-    isFetching: notificationsFetchingTrigger,
-  } = useQuery({
+  const { isFetching: notificationsFetchingTrigger } = useQuery({
     queryKey: ["fetchNotifications"],
     queryFn: async () => {
       const res = await axios(
@@ -108,6 +107,7 @@ function App() {
         id: user?.id,
       },
     });
+    dispatch(socketActions.setSocket({socket}));
 
     socket.on("connect", () => {
       console.log("Connected to Socket.IO server");
@@ -163,7 +163,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
-        <Route path="/dashboard/:section" element={<Dashboard />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
         <Route
           path="/dashboard/"
           element={<Navigate to="/dashboard/meetings" replace />}

@@ -1,10 +1,14 @@
 // import illustration_404 from "../../assets/404.svg";
 import header from "@/assets/ambition.svg";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import CircularLoading from "../ui/CircularLoading";
 import { useDispatch } from "react-redux";
+import { meetingActions } from "@/store/meeting/meetingSlice";
+import { notify } from "@/utils/Toaster/notify";
+import { useNavigate } from "react-router";
 const Stage = () => {
+  const history = useNavigate();
   const dispatch = useDispatch();
   const { mutateAsync: createInstantMeeting, isPending } = useMutation({
     mutationKey: ["createInstantMeeting"],
@@ -27,9 +31,27 @@ const Stage = () => {
         }
       );
       console.log(res);
+      return res.data.data.meeting;
     },
-    onSuccess: () => {
-      // dispatch()
+    onSuccess: (meeting) => {
+      dispatch(meetingActions.setMeeting(meeting));
+      history(`/dashboard/stage/${meeting.id}`);
+    },
+    onError: (error: Error | AxiosError) => {
+      console.log(error);
+      if (isAxiosError(error)) {
+        if (error.response?.data.details) {
+          error?.response?.data?.details.forEach(
+            (error: { message: string }) => {
+              notify(error.message, "error", 3000);
+            }
+          );
+        } else {
+          notify("Something went wrong", "error", 3000);
+        }
+      } else {
+        notify(error.message, "error", 3000);
+      }
     },
   });
   return (
@@ -55,7 +77,7 @@ const Stage = () => {
               onClick={() => {
                 createInstantMeeting();
               }}
-              className="flex gap-x-2 items-center label h-[2.375rem] mr-4 text-[.8rem] transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-6"
+              className="flex gap-x-2 items-center label h-[2.375rem] mr-4 text-[.8rem] transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-3 w-[13.5rem] justify-center"
             >
               {isPending ? (
                 <CircularLoading button />
@@ -92,7 +114,7 @@ const Stage = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0_3_5065)">
+                  <g clipPath="url(#clip0_3_5065)">
                     <path
                       fillRule="evenodd"
                       clipRule="evenodd"
@@ -112,11 +134,19 @@ const Stage = () => {
                 className="outline-none bg-transparent px-2  text-[1rem]  abel"
                 placeholder="Enter Meeting Code"
               />
-              <button className="abel md:hidden flex md:text-[1.25rem] text-[1rem] text-[#cbcaca]">
+              <button
+                onClick={() => {}}
+                className="abel md:hidden flex md:text-[1.25rem] text-[1rem] text-[#cbcaca]"
+              >
                 Join
               </button>
             </div>
-            <button className="abel md:flex hidden md:text-[1.25rem] text-[1rem] text-[#cbcaca]">
+            <button
+              onClick={() => {
+                history("/dashboard/stage/KTBF-MOAH-YTKZ");
+              }}
+              className="abel md:flex hidden md:text-[1.25rem] text-[1rem] text-[#cbcaca]"
+            >
               Join
             </button>
           </div>
