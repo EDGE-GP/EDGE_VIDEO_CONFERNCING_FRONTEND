@@ -3,6 +3,10 @@ export interface IUser {
   name: string;
   email: string;
   photo: string | null;
+  bio?: string;
+  location?: string;
+  notifyEmail?: boolean;
+  remindersViaEmail?: boolean;
 }
 
 export interface IFriendship {

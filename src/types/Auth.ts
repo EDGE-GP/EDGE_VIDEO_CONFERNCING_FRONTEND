@@ -1,3 +1,5 @@
+import { IUser } from "./User";
+
 export type AuthMethod =
   | "login"
   | "signup"
