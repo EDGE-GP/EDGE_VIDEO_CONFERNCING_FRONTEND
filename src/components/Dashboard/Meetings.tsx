@@ -31,7 +31,6 @@ const Meetings = () => {
   console.log({
     meetings,
     isLoading,
-    isError,
   });
   return (
     <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem]  rounded-3xl  mr-[2rem] ">

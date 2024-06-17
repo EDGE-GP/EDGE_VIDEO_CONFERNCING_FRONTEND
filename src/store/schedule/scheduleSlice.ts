@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  IMeetingSchedule } from "@/types/Meeting";
+import { IMeetingSchedule } from "@/types/Meeting";
 import { format } from "date-fns";
 import { IUser } from "@/types/User";
 
@@ -12,6 +12,7 @@ const initialState: IMeetingSchedule = {
   language: "Arabic",
   participants: [],
   saveConversation: false,
+  privacyStatus: "public",
   startTime: `${format(new Date(), "yyyy-MM-dd")}T${format(
     new Date(),
     "HH:mm"
@@ -82,6 +83,14 @@ const scheduleSlice = createSlice({
       }
     ) => {
       state.language = action.payload;
+    },
+    setPrivacyStatus: (
+      state,
+      action: {
+        payload: "public" | "private";
+      }
+    ) => {
+      state.privacyStatus = action.payload;
     },
     addMeetingParticipant: (
       state,

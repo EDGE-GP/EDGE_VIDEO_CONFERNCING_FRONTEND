@@ -7,10 +7,19 @@ import { useDispatch } from "react-redux";
 import { meetingActions } from "@/store/meeting/meetingSlice";
 import { notify } from "@/utils/Toaster/notify";
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { IMeeting } from "@/types/Meeting";
+import CreateInstantMeetingModal from "./meetings/CreateInstantMeetingModal";
+import { start } from "repl";
 const Stage = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
-  const { mutateAsync: createInstantMeeting, isPending } = useMutation({
+  const [conferenceId, setConferenceId] = useState<string>("");
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const {
+    mutateAsync: createInstantMeeting,
+    isPending: isCreateInstantMeetingPending,
+  } = useMutation({
     mutationKey: ["createInstantMeeting"],
     mutationFn: async () => {
       const res = await axios.post(
@@ -54,6 +63,47 @@ const Stage = () => {
       }
     },
   });
+  const { isPending: isJoinMeetingPending, mutateAsync: joinMeeting } =
+    useMutation<IMeeting>({
+      mutationKey: ["joinMeeting"],
+      mutationFn: async () => {
+        const res = await axios.post(
+          `${process.env.BACKEND_SERVER}/api/v1/meetings/join`,
+          {
+            conferenceId,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(res);
+        console.log({ date: new Date(res.data.data.meeting.startTime) });
+        return res.data.data.meeting;
+      },
+      onSuccess: (meeting) => {
+        notify(`you can join ${meeting.title}`, "success", 3000);
+        //TODO: redirect to zego meeting or create one
+      },
+      onError: (error: Error | AxiosError) => {
+        console.log(error);
+        if (isAxiosError(error)) {
+          if (error.response?.data.details) {
+            error?.response?.data?.details.forEach(
+              (error: { message: string }) => {
+                notify(error.message, "error", 3000);
+              }
+            );
+          } else {
+            notify(error.response?.data.message, "error", 3000);
+          }
+        } else {
+          notify("Something went wrong", "error", 3000);
+        }
+      },
+    });
+  useEffect(() => {
+    setDisabled(/^[A-Z]{4}-[A-Z]{4}-[A-Z]{4}$/.test(conferenceId.trim()));
+  }, [conferenceId]);
   return (
     <div className=" h-full card-shadow  pt-4 bg-white md:ml-[17.5rem] ml-auto rounded-3xl  mr-[2rem] ">
       <h1 className="abel text-[3rem] leading-[3.5rem] px-8 ">Stage</h1>
@@ -73,38 +123,7 @@ const Stage = () => {
             </h3>
           </div>
           <div className="flex md:justify-center  items-center md:flex-row flex-col   mt-3">
-            <button
-              onClick={() => {
-                createInstantMeeting();
-              }}
-              className="flex gap-x-2 items-center label h-[2.375rem] mr-4 text-[.8rem] transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-lg card-shadow px-3 w-[13.5rem] justify-center"
-            >
-              {isPending ? (
-                <CircularLoading button />
-              ) : (
-                <>
-                  <span className="flex-shrink-0 abel text-[1rem]">
-                    Create Instant Meeting
-                  </span>
-                  <span className="flex-shrink-0">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M14 1.75C14 1.33579 14.3358 1 14.75 1H18.25C18.6642 1 19 1.33579 19 1.75V5.25C19 5.66421 18.6642 6 18.25 6C17.8358 6 17.5 5.66421 17.5 5.25V3.56066L11.5303 9.53033C11.2374 9.82322 10.7626 9.82322 10.4697 9.53033C10.1768 9.23744 10.1768 8.76256 10.4697 8.46967L16.4393 2.5H14.75C14.3358 2.5 14 2.16421 14 1.75ZM1 4.75C1 3.23122 2.23122 2 3.75 2H9C9.41421 2 9.75 2.33579 9.75 2.75C9.75 3.16421 9.41421 3.5 9 3.5H3.75C3.05964 3.5 2.5 4.05964 2.5 4.75V16.25C2.5 16.9404 3.05964 17.5 3.75 17.5H15.25C15.9404 17.5 16.5 16.9404 16.5 16.25V11C16.5 10.5858 16.8358 10.25 17.25 10.25C17.6642 10.25 18 10.5858 18 11V16.25C18 17.7688 16.7688 19 15.25 19H3.75C2.23122 19 1 17.7688 1 16.25V4.75Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </span>
-                </>
-              )}
-            </button>
+            <CreateInstantMeetingModal />
             <div className="mr-3 flex flex-row  border-2 px-3 rounded-lg border-[#151515] md:w-[15rem] w-[12.9rem] h-[2.375rem] items-center md:mt-auto mt-3">
               <span>
                 <svg
@@ -131,23 +150,31 @@ const Stage = () => {
               </span>
               <input
                 type="text"
+                value={conferenceId}
+                onChange={(e) => setConferenceId(e.target.value)}
                 className="outline-none bg-transparent px-2  text-[1rem]  abel"
                 placeholder="Enter Meeting Code"
               />
               <button
                 onClick={() => {}}
-                className="abel md:hidden flex md:text-[1.25rem] text-[1rem] text-[#cbcaca]"
+                className={`abel md:hidden flex md:text-[1.25rem] text-[1rem] ${
+                  conferenceId.trim().length > 0
+                    ? "text-[#151515]"
+                    : "text-[#cbcaca]"
+                } `}
               >
                 Join
               </button>
             </div>
             <button
               onClick={() => {
-                history("/dashboard/stage/KTBF-MOAH-YTKZ");
+                joinMeeting();
               }}
-              className="abel md:flex hidden md:text-[1.25rem] text-[1rem] text-[#cbcaca]"
+              className={`abel md:flex hidden md:text-[1.25rem] w-[2rem] text-[1rem] ${
+                disabled ? "text-[#151515] font-semibold" : " text-[#cbcaca]"
+              }`}
             >
-              Join
+              {isJoinMeetingPending ? <CircularLoading button /> : "Join"}
             </button>
           </div>
           <div className="w-[40rem] mt-16 ml-[-8.5rem] md:mt-4 md:ml-auto flex justify-center">

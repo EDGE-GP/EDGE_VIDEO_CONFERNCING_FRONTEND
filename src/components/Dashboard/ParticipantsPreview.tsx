@@ -16,7 +16,7 @@ interface IParticipantSelection extends IUser {
 const ParticipantsPreview: React.FC<IParticipantSelection> = ({
   name,
   email,
-  photo,
+  avatar,
   index,
   organizer,
 }) => {
@@ -27,7 +27,7 @@ const ParticipantsPreview: React.FC<IParticipantSelection> = ({
           style={{ transform: `translateX(-${index * 0.7}rem)` }}
           className={`w-[2rem] object-cover h-[2rem] rounded-full`}
         >
-          <AvatarImage src={photo || defaultProfileImage} />
+          <AvatarImage src={avatar || defaultProfileImage} />
           <AvatarFallback className="bg-[#e8e8e9]">
             {name[0].toUpperCase()}
           </AvatarFallback>
@@ -40,7 +40,7 @@ const ParticipantsPreview: React.FC<IParticipantSelection> = ({
           <div className="flex w-full items-center h-full gap-x-3">
             <div className="h-[3rem] w-[3rem]">
               <img
-                src={photo || defaultProfileImage}
+                src={avatar || defaultProfileImage}
                 className="h-full w-full rounded-full"
                 alt=""
               />

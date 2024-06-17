@@ -272,7 +272,7 @@ const Sidebar: React.FC<{ sideVisibality: boolean }> = ({ sideVisibality }) => {
           <div className="h-[3rem] w-full  flex justify-start items-center gap-x-2">
             <div className="w-[2.5rem] h-[3rem] flex justify-center items-center">
               <img
-                src={user?.photo || tempProfileImage}
+                src={user?.avatar || tempProfileImage}
                 className="h-[2.5rem] w-[2.5rem] rounded-full"
                 alt=""
               />

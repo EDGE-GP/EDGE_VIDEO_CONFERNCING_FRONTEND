@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import CircularLoading from "@/components/ui/CircularLoading";
 import useForm from "@/hooks/useForm";
-import axios, { isAxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { notify } from "@/utils/Toaster/notify";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { authActions } from "@/store/auth/authSlice";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
-  const dispatch = useDispatch();
+  const history = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -88,36 +87,35 @@ const Signup = () => {
       console.log(res);
       setLoading(false);
       toast.remove();
-      notify("Signup successful", "success", Infinity);
+      history("/auth/login");
+      notify(res.data.message, "success", Infinity);
       setDisabled(true);
-      setTimeout(() => {
-        toast.remove();
-        dispatch(
-          authActions.setUser({
-            user: res.data.user,
-          })
-        );
-      }, 2000);
+      // setTimeout(() => {
+      //   toast.remove();
+      //   dispatch(
+      //     authActions.setUser({
+      //       user: res.data.user,
+      //     })
+      //   );
+      // }, 2000);
       //   setTimeout(() => {
       //     history("/");
       //     setLoading(true);
       //   }, 1500);
-    } catch (err) {
-      if (isAxiosError(err)) {
-        notify(
-          err.response?.data?.message || "Something went wrong",
-          "error",
-          Infinity
-        );
+    } catch (error: Error | AxiosError | unknown) {
+      if (isAxiosError(error)) {
+        if (error.response?.data.details) {
+          error?.response?.data?.details.forEach(
+            (error: { message: string }) => {
+              notify(error.message, "error", 3000);
+            }
+          );
+        } else {
+          notify(error.response?.data.message, "error", 3000);
+        }
       } else {
-        notify("Something went wrong", "error", Infinity);
+        notify("Something went wrong", "error", 3000);
       }
-      setLoading(false);
-
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 4000);
     }
   };
   return (

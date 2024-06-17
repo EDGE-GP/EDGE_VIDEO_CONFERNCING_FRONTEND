@@ -19,6 +19,7 @@ import { notificationsActions } from "./store/notifications/notificationsSlice";
 import { notify } from "./utils/Toaster/notify";
 import { INotification } from "./types/User";
 import { socketActions } from "./store/socket/socketSlice";
+import Model from "./pages/Model";
 
 function App() {
   const queryClient = useQueryClient();
@@ -31,6 +32,7 @@ function App() {
   const { isLoading, isError } = useQuery({
     queryKey: ["validateUser"],
     queryFn: async () => {
+      // if (location.pathname.includes("activate")) return;
       const res = await axios.get(
         `${process.env.BACKEND_SERVER}/api/v1/users/validate/`,
         {
@@ -107,7 +109,7 @@ function App() {
         id: user?.id,
       },
     });
-    dispatch(socketActions.setSocket({socket}));
+    dispatch(socketActions.setSocket({ socket }));
 
     socket.on("connect", () => {
       console.log("Connected to Socket.IO server");
@@ -164,6 +166,7 @@ function App() {
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/model" element={<Model />} />
         <Route
           path="/dashboard/"
           element={<Navigate to="/dashboard/meetings" replace />}

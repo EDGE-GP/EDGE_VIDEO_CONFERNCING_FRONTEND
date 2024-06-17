@@ -2,7 +2,7 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  photo: string | null;
+  avatar: string | null;
   bio?: string;
   location?: string;
   notifyEmail?: boolean;

@@ -9,6 +9,7 @@ import Signup from "../components/auth/Signup";
 import Login from "../components/auth/Login";
 import { AuthMethod } from "../types/Auth";
 import ResetPassword from "../components/auth/ResetPassword";
+import Activate from "@/components/auth/Activate";
 
 const Auth: React.FC = () => {
   const history = useNavigate();
@@ -25,6 +26,8 @@ const Auth: React.FC = () => {
       setAuthMethod("forgot-password");
     } else if (authParam === "reset-password") {
       setAuthMethod("reset-password");
+    } else if (authParam === "activate") {
+      setAuthMethod("activate");
     }
   }, [authParam, history]);
   console.log({
@@ -66,7 +69,8 @@ const Auth: React.FC = () => {
                     className={`w-[9.4rem] ${
                       authMethod === "login" ||
                       authMethod === "forgot-password" ||
-                      authMethod === "reset-password"
+                      authMethod === "reset-password" ||
+                      authMethod === "activate"
                         ? "bg-white text-black btn-effect font-semibold "
                         : " text-white bg-[#0E0B0E]"
                     } text-center  rounded-l-[2rem] py-4   z-100 mb-[2rem]`}
@@ -157,6 +161,18 @@ const Auth: React.FC = () => {
                 className="w-[50%] lg:px-[4.25rem] xl:px-[4.5rem] bg-white h-[40rem] rounded-r-lg "
               >
                 <ResetPassword />
+              </motion.div>
+            )}
+            {authMethod === "activate" && (
+              <motion.div
+                key="activate"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-[50%] lg:px-[4.25rem] xl:px-[4.5rem] bg-white h-[40rem] rounded-r-lg "
+              >
+                <Activate />
               </motion.div>
             )}
           </AnimatePresence>

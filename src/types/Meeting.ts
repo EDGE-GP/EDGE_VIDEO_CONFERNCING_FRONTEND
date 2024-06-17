@@ -19,6 +19,7 @@ export interface IMeetingSchedule {
   description: string;
   participants: IUser[];
   language: "English" | "Arabic";
+  privacyStatus: "private" | "public";
   activityFlag:
     | "#7986CB"
     | "#8E24AA"

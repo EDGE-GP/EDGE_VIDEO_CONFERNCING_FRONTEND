@@ -31,6 +31,7 @@ const Schedule = () => {
     language,
     saveConversation,
     startTime,
+    privacyStatus,
   } = useSelector((state: RootState) => state.schedule);
   console.log({
     startTime,
@@ -64,6 +65,7 @@ const Schedule = () => {
           enableInterpreter,
           saveConversation,
           language,
+          privacyStatus,
           participants: participants.map((participant) => participant.id),
         },
         {
@@ -224,7 +226,7 @@ const Schedule = () => {
                             participants.length > 0 ? (
                             participants.map((participant) => (
                               <ParticipantSearchSelection
-                                photo={participant.photo}
+                                avatar={participant.avatar}
                                 name={participant.name}
                                 email={participant.email}
                                 selected={participants.some(
@@ -239,7 +241,7 @@ const Schedule = () => {
                             filteredParticipantsSearch.map(
                               (participantSearchItem) => (
                                 <ParticipantSearchSelection
-                                  photo={participantSearchItem.photo}
+                                  avatar={participantSearchItem.avatar}
                                   name={participantSearchItem.name}
                                   email={participantSearchItem.email}
                                   selected={participants.some(
@@ -300,7 +302,7 @@ const Schedule = () => {
                       name={participant.name}
                       email={participant.email}
                       id={participant.id}
-                      photo={participant.photo}
+                      avatar={participant.avatar}
                       index={index}
                       organizer={false}
                     />
@@ -504,6 +506,43 @@ const Schedule = () => {
                         dispatch(scheduleActions.toggleEnableAvatar());
                       }}
                     />
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col mt-2">
+                <h3 className="abel text-[1.25rem] ">Privacy Status</h3>
+                <div className="w-full flex justify-between items-center">
+                  <h3 className="abel text-[0.9rem] ">
+                    Manage your meeting privacy status and wether members can
+                    join uninvited or not
+                  </h3>
+                  <div>
+                    <div className="flex w-full gap-x-3 items-center justify-start px-1">
+                      <button
+                        onClick={() => {
+                          dispatch(scheduleActions.setPrivacyStatus("private"));
+                        }}
+                        className={`abel md:flex transition-all hidden md:text-[1rem] font-semibold text-[1rem] ${
+                          privacyStatus === "private"
+                            ? "text-[#212121]"
+                            : "text-[#cbcaca]"
+                        }`}
+                      >
+                        Private
+                      </button>
+                      <button
+                        onClick={() => {
+                          dispatch(scheduleActions.setPrivacyStatus("public"));
+                        }}
+                        className={`abel md:flex transition-all hidden md:text-[1rem] font-semibold text-[1rem] ${
+                          privacyStatus === "public"
+                            ? "text-[#212121]"
+                            : "text-[#cbcaca]"
+                        }`}
+                      >
+                        Public
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

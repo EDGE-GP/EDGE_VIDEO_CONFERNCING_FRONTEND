@@ -7,7 +7,7 @@ interface IParticipantSearchSelection extends IUser {
   selected: boolean;
 }
 const ParticipantSearchSelection: React.FC<IParticipantSearchSelection> = ({
-  photo,
+  avatar,
   name,
   email,
   id,
@@ -26,7 +26,7 @@ const ParticipantSearchSelection: React.FC<IParticipantSearchSelection> = ({
             scheduleActions.addMeetingParticipant({
               id,
               name,
-              photo,
+              avatar,
               email,
             })
           );
@@ -35,7 +35,7 @@ const ParticipantSearchSelection: React.FC<IParticipantSearchSelection> = ({
       >
         <div className="h-[3rem] w-[3rem]">
           <img
-            src={photo || defaultProfileImage}
+            src={avatar || defaultProfileImage}
             className="h-full w-full rounded-full"
             alt=""
           />
