@@ -359,9 +359,10 @@ const Schedule = () => {
                   <div className="flex w-full gap-x-3 items-center justify-start px-1">
                     <button
                       onClick={() => {
-                        dispatch(scheduleActions.setLanguage("English"));
-                        dispatch(
-                          scheduleActions.toggleEnableInterpreter(false)
+                        return notify(
+                          "English is not yet supported on the platform",
+                          "inform",
+                          3000
                         );
                       }}
                       className={`abel md:flex transition-all hidden md:text-[1rem] font-semibold text-[1rem] ${

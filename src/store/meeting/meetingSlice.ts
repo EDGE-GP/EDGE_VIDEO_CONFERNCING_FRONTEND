@@ -3,8 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: {
   meeting: IMeeting | null;
+  passwordRequirement: boolean;
 } = {
   meeting: null,
+  passwordRequirement: false,
 };
 
 const meetingSlice = createSlice({
@@ -18,6 +20,14 @@ const meetingSlice = createSlice({
       }
     ) => {
       state.meeting = action.payload;
+    },
+    setPasswordRequirement: (
+      state,
+      action: {
+        payload: boolean;
+      }
+    ) => {
+      state.passwordRequirement = action.payload;
     },
     leaveMeeting: (state) => {
       state.meeting = null;

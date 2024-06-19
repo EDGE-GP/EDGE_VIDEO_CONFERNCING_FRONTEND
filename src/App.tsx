@@ -5,8 +5,6 @@ import Auth from "./pages/Auth";
 import Preloader from "./components/ui/Preloader";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
-import io from "socket.io-client";
-
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import { useDispatch } from "react-redux";
@@ -18,11 +16,12 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { notificationsActions } from "./store/notifications/notificationsSlice";
 import { notify } from "./utils/Toaster/notify";
 import { INotification } from "./types/User";
-import { socketActions } from "./store/socket/socketSlice";
 import Model from "./pages/Model";
+import useSocket from "./store/useSocket";
 
 function App() {
   const queryClient = useQueryClient();
+  const socket = useSocket();
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useNavigate();
@@ -102,18 +101,12 @@ function App() {
 
   console.log({ preloader });
   useEffect(() => {
-    if (!isLoggedIn) return;
-
-    const socket = io(`${process.env.BACKEND_SERVER}`, {
-      query: {
-        id: user?.id,
-      },
-    });
-    dispatch(socketActions.setSocket({ socket }));
+    if (!socket) return;
 
     socket.on("connect", () => {
       console.log("Connected to Socket.IO server");
     });
+    console.log("connected");
     //TODO: establish notifications subscription in here based on the upcoming connection invalidate queries
     socket.on("notification", async (notification: INotification) => {
       console.log("Received notification:", notification);
@@ -156,7 +149,7 @@ function App() {
     return () => {
       socket.disconnect();
     };
-  }, [isLoggedIn, user, queryClient, dispatch]);
+  }, [isLoggedIn, user, queryClient, dispatch, socket]);
   return (
     <>
       <Toaster position="top-center" gutter={8} reverseOrder={true} />

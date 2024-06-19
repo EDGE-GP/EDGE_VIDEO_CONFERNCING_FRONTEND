@@ -13,6 +13,8 @@ export interface IMeeting {
   enableInterpreter: boolean;
   enableAvatar: boolean;
   organizerId: string;
+  password: string;
+  privacyStatus: "private" | "public";
 }
 export interface IMeetingSchedule {
   title: string;

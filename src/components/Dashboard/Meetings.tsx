@@ -11,11 +11,7 @@ import MeetingPreview from "@/components/dashboard/meetings/MeetingPreview";
 
 const Meetings = () => {
   const { user } = useSelector((state: RootState) => state.auth);
-  const {
-    data: meetings = [],
-    isLoading,
-    isError,
-  } = useQuery<IMeeting[]>({
+  const { data: meetings = [], isLoading } = useQuery<IMeeting[]>({
     queryKey: ["fetchMeetings", user?.id],
     queryFn: async () => {
       const res = await axios.get(

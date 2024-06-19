@@ -14,8 +14,10 @@ const MeetingPreview: React.FC<IMeeting> = ({
   activityFlag,
   organizerId,
   title,
+  password,
 }) => {
   const { user } = useSelector((state: RootState) => state.auth);
+  const [passwordOnHover, setPasswordOnHover] = React.useState(false);
   const formattedDate = format(new Date(startTime), "iiii, do MMMM yyyy");
   return (
     <div className="w-[23.15rem] h-[11.5rem] card-shadow-2  rounded-2xl px-4 flex flex-col py-4 justify-between items-start">
@@ -35,7 +37,28 @@ const MeetingPreview: React.FC<IMeeting> = ({
         <h1 className="abel text-md text-[#a3a3a3] text-ellipsis overflow-hidden text-nowrap w-full">
           {description}
         </h1>
-        <h1 className="abel text-[1rem] ">{conferenceId}</h1>
+        <div className="flex justify-start items-center gap-x-4">
+          <h1 className="abel text-[1rem] cursor:pointer ">{conferenceId}</h1>
+          {password && (
+            <h1
+              className="abel text-[1rem] flex items-center h-[1rem] "
+              onMouseEnter={() => {
+                setPasswordOnHover(true);
+              }}
+              onMouseLeave={() => {
+                setPasswordOnHover(false);
+              }}
+            >
+              Password:{" "}
+              {passwordOnHover ? (
+                ` ${password}`
+              ) : (
+                <span className="h-full flex ml-1 ">******</span>
+              )}
+            </h1>
+          )}
+        </div>
+
         {/* participants */}
       </div>
       <div className=" w-full flex justify-between items-center">
@@ -46,7 +69,7 @@ const MeetingPreview: React.FC<IMeeting> = ({
               id={participant.id}
               index={index}
               name={participant.name}
-              photo={participant.photo}
+              avatar={participant.avatar}
               key={participant.id}
               organizer={participant.id === organizerId}
             />
