@@ -1,15 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import auth from "@//store/auth/authSlice";
-import preloader from "@//store/preloader/preloaderSlice";
-import schedule from "@//store/schedule/scheduleSlice";
-import notifications from "@//store/notifications/notificationsSlice";
-import socket from "./socket/socketSlice";
+import auth from "@/store/auth/authSlice";
+import preloader from "@/store/preloader/preloaderSlice";
+import schedule from "@/store/schedule/scheduleSlice";
+import notifications from "@/store/notifications/notificationsSlice";
+import meeting from "@/store/meeting/meetingSlice";
+
 const rootReducer = combineReducers({
   auth,
   preloader,
   schedule,
   notifications,
-  socket,
+  meeting,
 });
 
 const store = configureStore({
@@ -17,7 +18,6 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-      
     }),
 });
 export type RootState = ReturnType<typeof rootReducer>;
