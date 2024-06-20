@@ -20,6 +20,7 @@ const ParticipantsPreview: React.FC<IParticipantSelection> = ({
   index,
   organizer,
 }) => {
+  console.log({ avatar });
   return (
     <HoverCard>
       <HoverCardTrigger className="text-xl abel">

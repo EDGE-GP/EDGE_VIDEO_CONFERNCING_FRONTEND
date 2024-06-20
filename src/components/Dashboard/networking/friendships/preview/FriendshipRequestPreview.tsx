@@ -46,7 +46,7 @@ const FriendshipRequestPreview: React.FC<IFriendship> = ({ id, user }) => {
       <div className="flex justify-start items-center gap-x-2">
         <img
           className="w-[2.5rem] object-cover h-[2.5rem] rounded-full"
-          src={user.photo || defaultProfileImage}
+          src={user.avatar || defaultProfileImage}
           alt=""
         />
         <div className="flex flex-col">

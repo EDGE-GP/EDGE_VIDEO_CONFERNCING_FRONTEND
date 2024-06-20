@@ -49,7 +49,7 @@ const MeetingPreview: React.FC<IMeeting> = ({
                 setPasswordOnHover(false);
               }}
             >
-              Password:{" "}
+              Password:
               {passwordOnHover ? (
                 ` ${password}`
               ) : (

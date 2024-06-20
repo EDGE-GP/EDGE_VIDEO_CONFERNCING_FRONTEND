@@ -122,12 +122,8 @@ const MeetingRedirect: React.FC<{
                   meetingId: meeting?.id,
                   signer,
                 });
+                return;
                 //redirect to meeting
-                return notify(
-                  "This meeting does not require a password from you",
-                  "inform",
-                  3000
-                );
               }
 
               checkMeetingPassword();

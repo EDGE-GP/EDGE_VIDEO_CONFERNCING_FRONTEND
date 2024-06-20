@@ -92,7 +92,7 @@ const MeetingParticipantInvitations: React.FC<IMeetingInvitation> = ({
               id={participant.id}
               index={index}
               name={participant.name}
-              photo={participant.photo}
+              avatar={participant.avatar}
               key={participant.id}
               organizer={participant.id === meeting.organizerId}
             />
