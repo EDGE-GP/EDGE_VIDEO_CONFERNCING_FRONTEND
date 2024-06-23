@@ -10,7 +10,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  
 }
 
 .abel {
@@ -339,4 +338,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   max-width: 720px;
   min-width: 360px;
   overflow: hidden;
+}
+#__ReactUnityWebGL {
+  width: 200px !important;
+  height: 200px !important;
+  pointer-events: none !important;
+}
+#canvas {
+  pointer-events: none !important;
 }

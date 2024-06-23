@@ -3,7 +3,7 @@ import Schedule from "@/components/dashboard/Schedule";
 import Sidebar from "@/components/dashboard/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route, Routes } from "react-router";
-import StageMeeting from "@/components/dashboard/StageMeeting";
+import StageMeeting from "@/components/dashboard/Conference";
 import Stage from "@/components/dashboard/Stage";
 import Conversations from "@/components/dashboard/Conversations";
 import Networking from "@/components/dashboard/Networking";
@@ -67,43 +67,21 @@ const Dashboard = () => {
                   </motion.div>
                 }
               />
+
               <Route
-                path="stage/*"
+                path="stage"
                 element={
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={
-                        <motion.div
-                          key="stage"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.1 }}
-                        >
-                          <div className="h-[92vh] w-full">
-                            <Stage />
-                          </div>
-                        </motion.div>
-                      }
-                    />
-                    <Route
-                      path="/:conferenceId"
-                      element={
-                        <motion.div
-                          key="stageMeeting"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.1 }}
-                        >
-                          <div className="h-[92vh] w-full">
-                            <StageMeeting />
-                          </div>
-                        </motion.div>
-                      }
-                    />
-                  </Routes>
+                  <motion.div
+                    key="stage"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <div className="h-[92vh] w-full">
+                      <Stage />
+                    </div>
+                  </motion.div>
                 }
               />
               <Route

@@ -97,8 +97,8 @@ const Login = () => {
       <h3 className="text-lg text-blackish Abel mb-2  tracking-wide">
         Welcome back! please fill in your credentials!
       </h3>
-      <form className="flex flex-col gap-2 w-full">
-        <label htmlFor="email" className="text-md text-black font-semibold ">
+      <form className="flex flex-col gap-1 w-full">
+        <label htmlFor="email" className="text-lg text-black font-semibold ">
           Email
         </label>
         <div>
@@ -118,7 +118,7 @@ const Login = () => {
             {emailError}
           </h5>
         </div>
-        <label htmlFor="password" className="text-md text-black font-semibold ">
+        <label htmlFor="password" className="text-lg text-black font-semibold ">
           Password
         </label>
         <div>

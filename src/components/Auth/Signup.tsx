@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CircularLoading from "@/components/ui/CircularLoading";
 import useForm from "@/hooks/useForm";
-import axios, { AxiosError, isAxiosError } from "axios";
+import axios, { isAxiosError } from "axios";
 import { notify } from "@/utils/Toaster/notify";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
@@ -102,7 +102,7 @@ const Signup = () => {
       //     history("/");
       //     setLoading(true);
       //   }, 1500);
-    } catch (error: Error | AxiosError | unknown) {
+    } catch (error) {
       if (isAxiosError(error)) {
         if (error.response?.data.details) {
           error?.response?.data?.details.forEach(
@@ -126,8 +126,8 @@ const Signup = () => {
       <h3 className="text-lg text-blackish Abel mb-2  tracking-wide">
         Join us today! Fill in your details to create an account.
       </h3>
-      <form className="flex flex-col gap-1 w-full">
-        <label htmlFor="name" className="text-md text-black font-semibold ">
+      <form className="flex flex-col gap- w-full">
+        <label htmlFor="name" className="text-lg text-black font-semibold ">
           Name
         </label>
         <div>
@@ -147,7 +147,7 @@ const Signup = () => {
             {nameError}
           </h5>
         </div>
-        <label htmlFor="email" className="text-md text-black font-semibold ">
+        <label htmlFor="email" className="text-lg text-black font-semibold ">
           Email
         </label>
         <div>
@@ -167,7 +167,7 @@ const Signup = () => {
             {emailError}
           </h5>
         </div>
-        <label htmlFor="password" className="text-md text-black font-semibold ">
+        <label htmlFor="password" className="text-lg text-black font-semibold ">
           Password
         </label>
         <div>
@@ -187,7 +187,7 @@ const Signup = () => {
             {passwordError}
           </h5>
         </div>
-        <label htmlFor="email" className="text-md text-black font-semibold ">
+        <label htmlFor="email" className="text-lg text-black font-semibold ">
           Confirm Password
         </label>
         <div>

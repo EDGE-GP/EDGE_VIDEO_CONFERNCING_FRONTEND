@@ -26,6 +26,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
     });
 
     setSocket(socketInstance);
+    console.log("socket connected");
 
     return () => {
       socketInstance.disconnect();

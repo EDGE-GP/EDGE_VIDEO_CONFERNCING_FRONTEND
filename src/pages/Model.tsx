@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Unity, { UnityContent } from "react-unity-webgl";
 const unityContent = new UnityContent(
-  "src/static/avatar/build/final build.json",
+  "src/static/avatar/build/new final build.json",
   "src/static/avatar/build/UnityLoader.js"
 );
 const Model = () => {

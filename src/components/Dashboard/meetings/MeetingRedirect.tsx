@@ -13,48 +13,48 @@ import { RootState } from "@/store";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { notify } from "@/utils/Toaster/notify";
-import useSocket from "@/store/useSocket";
+import { IMeeting } from "@/types/Meeting";
+import { useNavigate } from "react-router";
+import { meetingActions } from "@/store/meeting/meetingSlice";
+import { useDispatch } from "react-redux";
 const MeetingRedirect: React.FC<{
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ isOpen, setIsOpen }) => {
-  const { meeting, passwordRequirement } = useSelector(
+  const { meeting, passwordRequirement, signer } = useSelector(
     (state: RootState) => state.meeting
   );
-  const socket = useSocket();
-  const [signer, setSigner] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const history = useNavigate();
   const [password, setPassword] = useState<string>("");
   console.log({ meeting });
-  const { isPending, mutateAsync: checkMeetingPassword } = useMutation({
-    mutationKey: ["checkMeetingPassword"],
-    mutationFn: async () => {
-      const res = await axios.post(
-        `${process.env.BACKEND_SERVER}/api/v1/meetings/check-password`,
-        {
-          password,
-          meetingId: meeting?.id,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
-    },
-    onSuccess: () => {
-      //redirect to meeting
-      notify(`You can join the meeting now`, "success", 3000);
-      setIsOpen(false);
-      if (!socket) return;
-      socket.emit("joinMeeting", {
-        meetingId: meeting?.id,
-        signer,
-      });
-    },
-    onError: () => {
-      notify("Password is incorrect", "error", 3000);
-    },
-    retry: false,
-  });
+  const { isPending, mutateAsync: checkMeetingPassword } =
+    useMutation<IMeeting>({
+      mutationKey: ["checkMeetingPassword"],
+      mutationFn: async () => {
+        const res = await axios.post(
+          `${process.env.BACKEND_SERVER}/api/v1/meetings/check-password`,
+          {
+            password,
+            meetingId: meeting?.id,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(res);
+        return res.data.data.meeting;
+      },
+      onSuccess: (meeting) => {
+        notify(`You can join the meeting now`, "success", 3000);
+        setIsOpen(false);
+        history(`/conference/${meeting.conferenceId}?signer=${signer}`);
+      },
+      onError: () => {
+        notify("Password is incorrect", "error", 3000);
+      },
+      retry: false,
+    });
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent
@@ -76,7 +76,7 @@ const MeetingRedirect: React.FC<{
             <div className="flex w-full gap-x-3 items-center justify-start px-1">
               <button
                 onClick={() => {
-                  setSigner(false);
+                  dispatch(meetingActions.setSigner(false));
                 }}
                 className={`abel md:flex transition-all  hidden font-semibold  ${
                   !signer ? "text-[#212121]" : "text-[#cbcaca]"
@@ -86,7 +86,7 @@ const MeetingRedirect: React.FC<{
               </button>
               <button
                 onClick={() => {
-                  setSigner(true);
+                  dispatch(meetingActions.setSigner(true));
                 }}
                 className={`abel md:flex transition-all  hidden font-semibold  ${
                   signer ? "text-[#212121]" : "text-[#cbcaca]"
@@ -116,14 +116,9 @@ const MeetingRedirect: React.FC<{
             onClick={() => {
               if (!passwordRequirement) {
                 setIsOpen(false);
-
-                if (!socket) return;
-                socket.emit("joinMeeting", {
-                  meetingId: meeting?.id,
-                  signer,
-                });
-                return;
-                //redirect to meeting
+                return history(
+                  `/conference/${meeting?.conferenceId}?signer=${signer}`
+                );
               }
 
               checkMeetingPassword();

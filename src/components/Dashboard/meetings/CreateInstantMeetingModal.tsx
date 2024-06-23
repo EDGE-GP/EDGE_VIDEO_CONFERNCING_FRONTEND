@@ -22,12 +22,12 @@ import { meetingActions } from "@/store/meeting/meetingSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { IMeeting } from "@/types/Meeting";
-import useSocket from "@/store/useSocket";
+import { useNavigate } from "react-router";
 
 const CreateInstantMeetingModal = () => {
+  const history = useNavigate();
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
-  const socket = useSocket();
   const { meeting } = useSelector((state: RootState) => state.meeting);
   const [signer, setSigner] = useState<boolean>(false);
   console.log({ meeting });
@@ -59,7 +59,6 @@ const CreateInstantMeetingModal = () => {
   const [enableAvatar, setEnableAvatar] = useState<boolean>(true);
   const [previewBeforeJoinToggle, setPreviewBeforeJoinToggle] =
     useState<boolean>(false);
-  const [previewPassword, setPreviewPassword] = useState<string>("");
   const {
     data: filteredParticipantsSearch,
     isFetching: fetchParticipantsLoading,
@@ -739,11 +738,10 @@ const CreateInstantMeetingModal = () => {
           {previewBeforeJoinToggle ? (
             <button
               onClick={() => {
-                //redirect
-                socket.emit("joinMeeting", {
-                  meetingId: meeting?.id,
-                  signer,
-                });
+                dispatch(meetingActions.setSigner(signer));
+                history(
+                  `/conference/${meeting?.conferenceId}?signer=${signer}`
+                );
               }}
               className="flex gap-x-1 items-center abel h-[2.375rem]  w-[10rem] justify-center text-center transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-[8px] drop-shadow-lg px-6"
             >

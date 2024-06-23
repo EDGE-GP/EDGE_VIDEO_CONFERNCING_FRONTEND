@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "@/store/index.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SocketProvider } from "./store/SocketContext";
+import "regenerator-runtime/runtime";
 
 const queryClient = new QueryClient({
   defaultOptions: {

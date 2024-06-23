@@ -16,9 +16,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { notificationsActions } from "./store/notifications/notificationsSlice";
 import { notify } from "./utils/Toaster/notify";
 import { INotification } from "./types/User";
-import Model from "./pages/Model";
 import useSocket from "./store/useSocket";
-import Conference from "./pages/Conference";
+import Model from "./pages/Model";
+import Conference from "./components/dashboard/Conference";
 
 function App() {
   const queryClient = useQueryClient();
@@ -95,6 +95,9 @@ function App() {
     if (location.pathname.includes("dashboard") && !isLoggedIn && !isLoading) {
       history("/auth/login");
     }
+    if (location.pathname.includes("conference") && !isLoggedIn && !isLoading) {
+      history("/auth/login");
+    }
     if (isLoggedIn && location.pathname.includes("auth") && !isLoading) {
       history("/dashboard/meetings");
     }
@@ -160,12 +163,15 @@ function App() {
         <Route path="/auth/:authParam" element={<Auth />} />
         <Route path="/auth/" element={<Navigate to="/auth/login" replace />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
-        <Route path="/dashboard/meeting/:conferenceId" element={<Conference />} />
+
         {/* <Route path="/model" element={<Model />} /> */}
         <Route
           path="/dashboard/"
           element={<Navigate to="/dashboard/meetings" replace />}
         />
+        <Route path="/conference/:conferenceId" element={<Conference />} />
+        <Route path="/model" element={<Model />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
