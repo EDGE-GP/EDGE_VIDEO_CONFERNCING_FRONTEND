@@ -99,7 +99,7 @@ const Conference = () => {
 
       showLeavingView: true,
       onReturnToHomeScreenClicked: () => {
-        history("/dashboard/meetings");
+        history(`/dashboard/meetings?rating=${conferenceId}`);
         history(0);
         console.log("return to home screen clicked");
       },
@@ -212,7 +212,7 @@ const Conference = () => {
       window.removeEventListener("popstate", (event) => {
         const message = "Are you sure you want to leave?";
         event.preventDefault();
-        history("/dashboard/meetings");
+        history(`/dashboard/meetings?rating=${conferenceId}`);
         history(0);
         return message;
       });
