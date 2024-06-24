@@ -14,6 +14,7 @@ export interface IMeeting {
   enableAvatar: boolean;
   organizerId: string;
   password: string;
+  includeConversation: boolean;
   privacyStatus: "private" | "public";
 }
 export interface IMeetingSchedule {
@@ -40,4 +41,18 @@ export interface IMeetingInvitation {
   id: string;
   meeting: IMeeting;
   status: "pending" | "accepted" | "rejected";
+}
+export interface IMessage {
+  id: string;
+  content: string;
+  senderId: string;
+  isInterpreted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  meetingId: string;
+  sender: IUser;
+}
+export interface IMessageGroup {
+  sender: IUser;
+  messages: IMessage[];
 }

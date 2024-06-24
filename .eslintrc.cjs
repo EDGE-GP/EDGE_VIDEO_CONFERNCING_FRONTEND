@@ -5,16 +5,24 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
+  plugins: ["react-refresh", "react"],
   rules: {
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
     ],
-    // eslint-disable-line @typescript-eslint/no-unused-vars
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
+    "no-unused-vars": [
+      "warn",
+      { vars: "all", args: "after-used", ignoreRestSiblings: true },
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { vars: "all", args: "after-used", ignoreRestSiblings: true },
+    ],
   },
 };

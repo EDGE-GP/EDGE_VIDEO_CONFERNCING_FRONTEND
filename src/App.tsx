@@ -118,31 +118,31 @@ function App() {
         await queryClient.invalidateQueries({
           queryKey: ["UserMeetingInvitations"],
         });
-        notify(notification.message, "success", 3000);
+        notify(notification.message, "success", Infinity);
       }
       if (notification.type === "meetingInvitationAccepted") {
         await queryClient.invalidateQueries({
           queryKey: ["fetchMeetings"],
         });
-        notify(notification.message, "success", 3000);
+        notify(notification.message, "success", Infinity);
       }
       if (notification.type === "friendshipAccepted") {
         await queryClient.invalidateQueries({
           queryKey: ["friendships"],
         });
-        notify(notification.message, "success", 3000);
+        notify(notification.message, "success", Infinity);
       }
       if (notification.type === "friendshipRequest") {
         await queryClient.invalidateQueries({
           queryKey: ["friendshipRequests"],
         });
-        notify(notification.message, "success", 3000);
+        notify(notification.message, "success", Infinity);
       }
       if (notification.type === "meetingInvitationRejected") {
         await queryClient.invalidateQueries({
           queryKey: ["friendshipRequests"],
         });
-        notify(notification.message, "inform", 3000);
+        notify(notification.message, "inform", Infinity);
       }
       dispatch(notificationsActions.pushNotification({ notification }));
     });

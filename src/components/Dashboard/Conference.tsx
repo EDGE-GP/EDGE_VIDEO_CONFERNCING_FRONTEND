@@ -16,6 +16,7 @@ import { RootState } from "@/store/index.js";
 import Avatar from "./meetings/Avatar.tsx";
 import { useBeforeUnload, useSearchParams } from "react-router-dom";
 import useSocket from "@/store/useSocket.tsx";
+import axios from "axios";
 
 const Conference = () => {
   const { user, isLoggedIn } = useSelector((state: RootState) => state.auth);
@@ -128,28 +129,40 @@ const Conference = () => {
     }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "1") {
-        console.log("Number 1 was pressed!");
-        socket?.emit("sendSigns", {
-          conferenceId,
-          message: "السلام عليكم",
-        });
+        setTimeout(() => {
+          console.log("Number 1 was pressed!");
+          socket?.emit("sendSigns", {
+            conferenceId,
+            message: "السلام عليكم",
+          });
+        }, 5000);
       }
       if (event.key === "2") {
-        console.log("Number 2 was pressed!");
+        setTimeout(() => {
+          console.log("Number 2 was pressed!");
+          socket?.emit("sendSigns", {
+            conferenceId,
+            message: "اهلا و سهلا",
+          });
+        }, 5000);
       }
       if (event.key === "3") {
-        console.log("Number 3 was pressed!");
-        socket?.emit("sendSigns", {
-          conferenceId,
-          message: "مرحبا",
-        });
+        setTimeout(() => {
+          console.log("Number 3 was pressed!");
+          socket?.emit("sendSigns", {
+            conferenceId,
+            message: "يمين",
+          });
+        }, 5000);
       }
       if (event.key === "4") {
-        console.log("Number 4 was pressed!");
-        socket?.emit("sendSpeech", {
-          conferenceId,
-          message: "صباح الخير",
-        });
+        setTimeout(() => {
+          console.log("Number 4 was pressed!");
+          socket?.emit("sendSigns", {
+            conferenceId,
+            message: "يسار",
+          });
+        }, 5000);
       }
       if (event.key === "5") {
         console.log("Number 5 was pressed!");
@@ -170,10 +183,6 @@ const Conference = () => {
         console.log("Number 0 was pressed!");
       }
     };
-    socket?.on("signsMessage", (message: string) => {
-      console.log(`recieve from sockets ${message} as a sign message`);
-      console.log({ message });
-    });
 
     window.addEventListener("keydown", handleKeyDown);
 
@@ -183,7 +192,7 @@ const Conference = () => {
   }, [socket, hasJoined, transcript, searchParams, conferenceId]);
 
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       const message = "Are you sure you want to leave?";
       event.preventDefault();
       event.returnValue = message; // For legacy browsers
@@ -215,7 +224,7 @@ const Conference = () => {
   });
   useEffect(() => {
     console.log({ text });
-    if(searchParams.get("signer") !== "true") return;
+    if (searchParams.get("signer") !== "true") return;
     const WordArray: string[] = [];
 
     text.split(" ").forEach((word: string, index: number) => {
@@ -277,12 +286,35 @@ const Conference = () => {
       console.log({ message: payload.message });
     });
   }, [socket, text]);
+  const pushMessage = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.BACKEND_SERVER}/api/v1/meetings/push-message`,
+        {
+          content: text,
+          conferenceId,
+          isInterpreted: true,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     if (!socket || searchParams.get("signer") === "true") return;
     socket.on("signsMessage", (payload: { message: string }) => {
       console.log(`recieve from sockets ${payload.message} as a sign message`);
       // setText(payload.message);
       console.log({ message: payload.message });
+      setText(text + " " + payload.message);
+      if (text.split(" ").length > 10) {
+        pushMessage();
+        setText(payload.message);
+      }
     });
   }, [socket, text]);
   return (

@@ -86,8 +86,8 @@ const ResetPassword = () => {
       <h3 className="text text-blackish Abel mb-2  tracking-wide">
         Enter your new password below to complete the process. assistance.
       </h3>
-      <form className="flex flex-col gap-2 w-full">
-        <label htmlFor="password" className="text-md text-black font-semibold ">
+      <form className="flex flex-col gap- w-full">
+        <label htmlFor="password" className="text-lg text-black font-semibold ">
           Password
         </label>
         <div>
@@ -107,7 +107,7 @@ const ResetPassword = () => {
             {passwordError}
           </h5>
         </div>
-        <label htmlFor="email" className="text-md text-black font-semibold ">
+        <label htmlFor="email" className="text-lg text-black font-semibold ">
           Confirm Password
         </label>
         <div>

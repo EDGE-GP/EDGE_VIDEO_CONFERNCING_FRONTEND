@@ -71,8 +71,8 @@ const ForgotPassword = () => {
         Forgot your password? Simply provide your email, and you will recieve a
         password reset link right away.
       </h3>
-      <form className="flex flex-col gap-2 w-full">
-        <label htmlFor="email" className="text-md text-black font-semibold ">
+      <form className="flex flex-col gap- w-full">
+        <label htmlFor="email" className="text-lg text-black font-semibold ">
           Email
         </label>
         <div>

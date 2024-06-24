@@ -3,10 +3,10 @@ import React from "react";
 import { IMeeting } from "@/types/Meeting";
 import { format, isPast } from "date-fns";
 import ParticipantsPreview from "@/components/dashboard/ParticipantsPreview";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { useNavigate } from "react-router";
 
 const MeetingPreview: React.FC<IMeeting> = ({
+  id,
   participants,
   startTime,
   conferenceId,
@@ -15,8 +15,10 @@ const MeetingPreview: React.FC<IMeeting> = ({
   organizerId,
   title,
   password,
+  includeConversation,
 }) => {
-  const { user } = useSelector((state: RootState) => state.auth);
+  const history = useNavigate();
+  // const { user } = useSelector((state: RootState) => state.auth);
   const [passwordOnHover, setPasswordOnHover] = React.useState(false);
   const formattedDate = format(new Date(startTime), "iiii, do MMMM yyyy");
   return (
@@ -75,8 +77,13 @@ const MeetingPreview: React.FC<IMeeting> = ({
             />
           ))}
         </div>
-        {isPast(new Date(startTime)) && (
-          <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6">
+        {isPast(new Date(startTime)) && includeConversation && (
+          <button
+            onClick={() => {
+              history(`/dashboard/conversations?id=${id}`);
+            }}
+            className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6"
+          >
             <span>View Conversation</span>
             <span>
               <svg
@@ -92,49 +99,6 @@ const MeetingPreview: React.FC<IMeeting> = ({
                   d="M7.20748 4.23214C7.49349 3.93252 7.96823 3.92148 8.26786 4.20748L13.7679 9.45748C13.9161 9.59901 14 9.79504 14 10C14 10.205 13.9161 10.401 13.7679 10.5425L8.26786 15.7925C7.96823 16.0785 7.49349 16.0675 7.20748 15.7679C6.92148 15.4682 6.93252 14.9935 7.23214 14.7075L12.1638 10L7.23214 5.29252C6.93252 5.00651 6.92148 4.53177 7.20748 4.23214Z"
                   fill="white"
                 />
-              </svg>
-            </span>
-          </button>
-        )}
-        {!isPast(new Date(startTime)) && user?.id === organizerId && (
-          <button className="flex gap-x-1 items-center abel h-[2.375rem]  transition-all text-white bg-[#151515] duration-200 hover:bg-[#212121] rounded-full card-shadow px-6">
-            <span>Edit Meeting</span>
-            <span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_1_20437)">
-                  <path
-                    d="M5 16L4 20L8 19L19.5858 7.41421C20.3668 6.63316 20.3668 5.36683 19.5858 4.58579L19.4142 4.41421C18.6332 3.63316 17.3668 3.63317 16.5858 4.41421L5 16Z"
-                    stroke="#ffffff"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15 6L18 9"
-                    stroke="#ffffff"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M13 20H21"
-                    stroke="#ffffff"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_20437">
-                    <rect width="24" height="24" fill="white" />
-                  </clipPath>
-                </defs>
               </svg>
             </span>
           </button>
