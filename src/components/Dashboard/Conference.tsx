@@ -50,11 +50,11 @@ const Conference = () => {
 
   const meetingUi = async (element: HTMLElement) => {
     if (!user) return;
-    const appId = 581235946;
-    const server = "3dc895a6e927e3730e0789526267b918";
+    const appId = process.env.ZEGO_APP_ID || "";
+    const server = process.env.ZEGO_SERVER;
     const token = ZegoUIKitPrebuilt.generateKitTokenForTest(
-      appId,
-      server,
+      parseInt(appId),
+      server || "",
       conferenceId || "",
       user?.id,
       user?.name
