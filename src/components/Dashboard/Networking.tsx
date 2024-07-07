@@ -1,8 +1,8 @@
 // import illustration_404 from "../../assets/404.svg";
 
-import Notifications from "@/components/dashboard/networking/Notifications";
-import MeetingsInvitations from "@/components/dashboard/networking/MeetingsInvitations";
-import UserNetworking from "@/components/dashboard/networking/UserNetworking";
+import Notifications from "./networking/Notifications";
+import MeetingsInvitations from "./networking/MeetingsInvitations";
+import UserNetworking from "./networking/UserNetworking";
 import FriendshipRequests from "./networking/FriendshipRequests";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

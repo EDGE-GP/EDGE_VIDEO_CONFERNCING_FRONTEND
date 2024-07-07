@@ -169,7 +169,7 @@ function App() {
           path="/dashboard/"
           element={<Navigate to="/dashboard/meetings" replace />}
         />
-        <Route path="/conference/:conferenceId" element={<Conference />} />
+        {/* <Route path="/conference/:conferenceId" element={<Conference />} /> */}
         <Route path="/model" element={<Model />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -1,4 +1,4 @@
-import MeetingParticipantInvitations from "@/components/dashboard/networking/invitations/MeetingParticipantInvitations";
+import MeetingParticipantInvitations from "./invitations/MeetingParticipantInvitations";
 import CircularLoading from "@/components/ui/CircularLoading";
 import { IMeetingInvitation } from "@/types/Meeting";
 import { useQuery } from "@tanstack/react-query";

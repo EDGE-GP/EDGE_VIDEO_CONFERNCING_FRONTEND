@@ -1,13 +1,12 @@
-import Meetings from "@/components/dashboard/Meetings";
-import Schedule from "@/components/dashboard/Schedule";
-import Sidebar from "@/components/dashboard/Sidebar";
+import Meetings from "@/components/Dashboard/Meetings";
+import Schedule from "@/components/Dashboard/Schedule";
+import Sidebar from "@/components/Dashboard/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route, Routes } from "react-router";
-import StageMeeting from "@/components/dashboard/Conference";
-import Stage from "@/components/dashboard/Stage";
-import Conversations from "@/components/dashboard/Conversations";
-import Networking from "@/components/dashboard/Networking";
-import Settings from "@/components/dashboard/Settings";
+import Stage from "@/components/Dashboard/Stage";
+import Conversations from "@/components/Dashboard/Conversations";
+import Networking from "@/components/Dashboard/Networking";
+import Settings from "@/components/Dashboard/Settings";
 
 import edgeLogo from "@/assets/edge.png";
 import { useState } from "react";

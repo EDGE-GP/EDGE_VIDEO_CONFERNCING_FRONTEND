@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimatePresence, motion } from "framer-motion";
-import UserFriendships from "@/components/dashboard/networking/friendships/UserFriendships";
-import AddFriendships from "@/components/dashboard/networking/friendships/AddFriendships";
+import UserFriendships from "./friendships/UserFriendships";
+import AddFriendships from "./friendships/AddFriendships";
 
 const UserNetworking = () => {
   return (

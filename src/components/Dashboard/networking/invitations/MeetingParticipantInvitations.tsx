@@ -1,7 +1,7 @@
 import React from "react";
 import { IMeetingInvitation } from "@/types/Meeting";
 import { format, isPast } from "date-fns";
-import ParticipantsPreview from "@/components/dashboard/ParticipantsPreview";
+import ParticipantsPreview from "../../ParticipantsPreview";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError, isAxiosError } from "axios";
 import { notify } from "@/utils/Toaster/notify";
