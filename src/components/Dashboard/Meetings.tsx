@@ -7,7 +7,7 @@ import { IMeeting } from "@/types/Meeting";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import CircularLoading from "@/components/ui/CircularLoading";
-import MeetingPreview from "@/components/dashboard/meetings/MeetingPreview";
+import MeetingPreview from "./meetings/MeetingPreview";
 import { useEffect, useState } from "react";
 import MeetingRating from "./meetings/MeetingRating";
 

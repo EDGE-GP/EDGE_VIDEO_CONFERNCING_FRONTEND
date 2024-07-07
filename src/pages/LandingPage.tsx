@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import Navbar from "@/components/landingPage/Navbar";
+import Navbar from "@/components/LandingPage/Navbar";
 import { Typewriter } from "react-simple-typewriter";
 import background from "@/assets/header.svg";
 import edgeLogo from "@/assets/edge.png";

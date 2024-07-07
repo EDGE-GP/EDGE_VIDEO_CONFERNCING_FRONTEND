@@ -2,7 +2,7 @@ import React from "react";
 
 import { IMeeting } from "@/types/Meeting";
 import { format, isPast } from "date-fns";
-import ParticipantsPreview from "@/components/dashboard/ParticipantsPreview";
+import ParticipantsPreview from "@/components/Dashboard/ParticipantsPreview";
 import { useNavigate } from "react-router";
 
 const MeetingPreview: React.FC<IMeeting> = ({

@@ -6,7 +6,7 @@ import axios, { AxiosError, isAxiosError } from "axios";
 import { IUser } from "@/types/User";
 import { motion, AnimatePresence } from "framer-motion";
 import CircularLoading from "@/components/ui/CircularLoading";
-import ParticipantSearchSelection from "@/components/dashboard/schedule/ParticipantSearchSelection";
+import ParticipantSearchSelection from "./schedule/ParticipantSearchSelection";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useDispatch } from "react-redux";
@@ -14,8 +14,7 @@ import { scheduleActions } from "@/store/schedule/scheduleSlice";
 import { notify } from "@/utils/Toaster/notify";
 import { addMinutes, addYears, isAfter, isBefore } from "date-fns";
 import { useNavigate } from "react-router";
-import ParticipantsPreview from "@/components/dashboard/ParticipantsPreview";
-
+import ParticipantsPreview from "./ParticipantsPreview";
 const Schedule = () => {
   const dispatch = useDispatch();
   const history = useNavigate();

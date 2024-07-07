@@ -8,8 +8,7 @@ import axios, { AxiosError, isAxiosError } from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "@/store/auth/authSlice";
 import CircularLoading from "../ui/CircularLoading";
-import ChangeYourPasswordSettingsModal from "../auth/ChangeYourPasswordSettingsModal";
-
+import ChangeYourPasswordSettingsModal from "../Auth/ChangeYourPasswordSettingsModal";
 const Settings = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.auth);

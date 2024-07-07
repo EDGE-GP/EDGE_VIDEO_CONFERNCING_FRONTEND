@@ -10,7 +10,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-import { getIdByArabicWord } from "./meetings/signs.js";
+import { getIdByArabicWord } from "./meetings/signs.ts";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/index.js";
 import Avatar from "./meetings/Avatar.tsx";
