@@ -5,8 +5,11 @@ import axios, { isAxiosError } from "axios";
 import { notify } from "@/utils/Toaster/notify";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { authActions } from "@/store/auth/authSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const history = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -82,26 +85,28 @@ const Signup = () => {
           email,
           password,
           confirmPassword,
+        },
+        {
+          withCredentials: true,
         }
       );
       console.log(res);
       setLoading(false);
       toast.remove();
-      history("/auth/login");
-      notify(res.data.message, "success", Infinity);
+      notify("Email registered successfully", "success", Infinity);
       setDisabled(true);
-      // setTimeout(() => {
-      //   toast.remove();
-      //   dispatch(
-      //     authActions.setUser({
-      //       user: res.data.user,
-      //     })
-      //   );
-      // }, 2000);
-      //   setTimeout(() => {
-      //     history("/");
-      //     setLoading(true);
-      //   }, 1500);
+      setTimeout(() => {
+        toast.remove();
+        dispatch(
+          authActions.setUser({
+            user: res.data.user,
+          })
+        );
+      }, 2000);
+      setTimeout(() => {
+        history("/");
+        setLoading(true);
+      }, 1500);
     } catch (error) {
       if (isAxiosError(error)) {
         if (error.response?.data.details) {
